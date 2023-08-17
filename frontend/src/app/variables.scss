@@ -2,10 +2,12 @@ $white: #fff;
 $purple:#7b2cbf;
 $orange : #ff9100;
 $dark: #0b090a;
+$very-light-blue:#edf2fb;
+$font-s:16px;
 $font:19px;
 $font-ml:25px;
 $font-xl:48px;
-
+$border-radius:25px;
 
 @mixin flexrow($justify, $align) {
   display: flex;

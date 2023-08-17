@@ -1,12 +1,14 @@
 @import "../../variables.scss";
 
 .hero {
-  margin-top: 60px;
-  @include flexrow(center, flex-start);
-  gap: 30px;
+  @include flexrow(center, center);
+  max-width: 1450px !important;
+  margin: 60px auto 0px;
+  gap: 50px;
   .text {
-    @include flexcolumn(center, center);
-    gap: 40px;
+    height: 410px;
+    max-width: 600px;
+    @include flexcolumn(space-between, flex-start);
     font-size: $font-ml;
     h2 {
       font-size: $font-xl;

@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+.form {
+  @include flexrow(center, center);
+  text-align: center;
+  input,
+  button {
+    border-radius: $border-radius;
+    height: 45px;
+  }
+  input {
+    &::placeholder {
+      color: $dark;
+    }
+    font-size: $font-s;
+    outline: none;
+    border: none;
+    background-color: $very-light-blue;
+    width: 350px;
+    padding: 1em;
+  }
+  button {
+    cursor: pointer;
+    width: 100px;
+    margin-left: -50px;
+    border: none;
+    background-color: $orange;
+  }
+  .icon {
+    color: $white;
+  }
+}
