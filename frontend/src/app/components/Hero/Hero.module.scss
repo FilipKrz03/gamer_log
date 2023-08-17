@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+.hero {
+  margin-top: 60px;
+  @include flexrow(center, flex-start);
+  gap: 30px;
+  .text {
+    @include flexcolumn(center, center);
+    gap: 40px;
+    font-size: $font-ml;
+    h2 {
+      font-size: $font-xl;
+      .search {
+        color: $orange;
+      }
+    }
+  }
+}

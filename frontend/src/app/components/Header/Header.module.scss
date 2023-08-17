@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.header {
+  width: 100%;
+  height: 70px;
+  @include flexrow(space-between, center);
+  .logo {
+    @include flexrow(center, center);
+    gap: 10px;
+    .log {
+      font-weight: bolder;
+      color: $purple;
+    }
+  }
+  ul {
+    @include flexrow(center, center);
+    gap: 30px;
+    a:hover {
+      color: $orange;
+      transition: 0.15s ease-in-out;
+    }
+  }
+}

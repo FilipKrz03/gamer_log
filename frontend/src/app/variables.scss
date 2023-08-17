@@ -1,0 +1,21 @@
+$white: #fff;
+$purple:#7b2cbf;
+$orange : #ff9100;
+$dark: #0b090a;
+$font:19px;
+$font-ml:25px;
+$font-xl:48px;
+
+
+@mixin flexrow($justify, $align) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin flexcolumn($justify, $align) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+}
