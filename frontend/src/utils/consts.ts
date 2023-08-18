@@ -1,11 +1,21 @@
 import VpnLockIcon from "@mui/icons-material/VpnLock";
 import StorageIcon from "@mui/icons-material/Storage";
 import MoneyOffCsredIcon from "@mui/icons-material/MoneyOffCsred";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import SearchIcon from "@mui/icons-material/Search";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 export const navLinks: { desc: string; link: string }[] = [
   { desc: "About", link: "/about" },
   { desc: "Search", link: "/search" },
   { desc: "Log in", link: "/login" },
+];
+export const navMobileLinks: { icon: any; desc: string; link: string }[] = [
+  { icon: HomeOutlinedIcon, desc: "Home", link: "/" },
+  { icon: InfoOutlinedIcon, desc: "About", link: "/about" },
+  { icon: SearchIcon, desc: "Search", link: "/search" },
+  { icon: PersonOutlinedIcon, desc: "Log in", link: "/login" },
 ];
 
 export const informations: { icon: any; title: string; desc: string }[] = [

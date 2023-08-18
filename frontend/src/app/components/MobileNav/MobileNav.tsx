@@ -1,41 +1,29 @@
 "use client";
-import {usePathname} from 'next/navigation';
-import classes from './MobileNav.module.scss';
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import { navMobileLinks } from "@/utils/consts";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+import classes from "./MobileNav.module.scss";
 
 const MobileNav = () => {
-
   const pathname = usePathname();
 
   return (
     <nav className={classes.nav}>
       <ul>
-        <li>
-          <Link href={"/"} className={pathname === '/' ? classes.active : ''}>
-            <HomeOutlinedIcon className={classes.icon} />
-            {pathname === '/' &&  <p>Home</p>}
-          </Link>
-        </li>
-        <li>
-          <Link href={"/about"} className={pathname === '/about' ? classes.active : ''}>
-            <InfoOutlinedIcon className={classes.icon} />
-            {pathname === '/about' &&  <p>About</p>}
-          </Link>
-        </li>
-        <li>
-          <Link href={"/"}>
-            <SearchIcon className={classes.icon} />
-          </Link>
-        </li>
-        <li>
-          <Link href={"/"}>
-            <PersonOutlinedIcon className={classes.icon} />
-          </Link>
-        </li>
+        {navMobileLinks.map((link) => {
+          const Icon = link.icon;
+          return (
+            <li key={link.desc}>
+              <Link
+                href={link.link}
+                className={pathname === link.link ? classes.active : ""}
+              >
+                <Icon className={classes.icon} />
+                {pathname === link.link && <p>{link.desc}</p>}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
