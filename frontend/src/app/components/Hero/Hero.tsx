@@ -22,6 +22,7 @@ const Hero = () => {
         alt="Controller and peaople"
         width={555}
         height={375}
+        className={classes.image}
       />
     </section>
   );

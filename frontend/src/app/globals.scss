@@ -8,8 +8,6 @@
 
 body {
   background-color: $white;
-  width: 82vw;
-  margin: 0 auto;
   font-size: $font;
 }
 
@@ -22,12 +20,18 @@ a {
   color: $dark;
 }
 
-input{
-  font-family: 'Comfortaa', cursive;
+input {
+  font-family: "Comfortaa", cursive;
 }
 
-@include media-xl{
-  body{
+@include media-xl {
+  body {
     width: 95vw;
+  }
+}
+
+@include media-m {
+  body {
+    margin-bottom: 90px;
   }
 }

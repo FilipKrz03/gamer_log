@@ -30,3 +30,15 @@
     color: $white;
   }
 }
+
+
+@include media-m{
+  .form{
+    button{
+      width: 75px;
+    }
+    input{
+      width: 280px;
+    }
+  }
+}

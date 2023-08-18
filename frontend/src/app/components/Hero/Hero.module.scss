@@ -20,17 +20,34 @@
   }
 }
 
-@include media-l{
-  .hero{
-    margin-top: 0px;
-    margin-bottom: 20px;
+@include media-l {
+  .hero {
     flex-direction: column;
-    justify-content:flex-start;
-    .text{
+    justify-content: space-evenly;
+    gap: 0px;
+    .text {
       text-align: center;
       align-items: center;
       justify-content: center;
       gap: 40px;
+    }
+  }
+}
+
+@include media-m {
+  .hero {
+    justify-content: space-evenly;
+    min-height: calc(100vh - 160px);
+    .text {
+      font-size: $font;
+      h2 {
+        font-size: $font-l;
+      }
+    }
+    .image {
+      width: 90vw;
+      height: auto;
+      margin: 0 auto;
     }
   }
 }
