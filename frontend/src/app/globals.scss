@@ -24,12 +24,6 @@ input {
   font-family: "Comfortaa", cursive;
 }
 
-@include media-xl {
-  body {
-    width: 95vw;
-  }
-}
-
 @include media-m {
   body {
     margin-bottom: 90px;

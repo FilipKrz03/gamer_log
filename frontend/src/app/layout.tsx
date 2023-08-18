@@ -1,10 +1,13 @@
-import { Comfortaa} from "next/font/google";
-import './globals.scss';
+import { Comfortaa } from "next/font/google";
+import "./globals.scss";
+import Header from "./components/Header/Header";
+import MobileNav from "./components/MobileNav/MobileNav";
+import PageContainer from "./UI/PageContainer/PageContainer";
 
 const comfortaa = Comfortaa({
   weight: ["400", "700"],
   style: ["normal"],
-  subsets:['latin']
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -19,7 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={comfortaa.className}>{children}</body>
+      <body className={comfortaa.className}>
+        <PageContainer>
+          <Header />
+          {children}
+        </PageContainer>
+        <MobileNav />
+      </body>
     </html>
   );
 }

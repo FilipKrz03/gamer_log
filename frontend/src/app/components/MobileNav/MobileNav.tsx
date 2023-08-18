@@ -15,14 +15,15 @@ const MobileNav = () => {
     <nav className={classes.nav}>
       <ul>
         <li>
-          <Link href={"/"} className={classes.active}>
+          <Link href={"/"} className={pathname === '/' ? classes.active : ''}>
             <HomeOutlinedIcon className={classes.icon} />
             {pathname === '/' &&  <p>Home</p>}
           </Link>
         </li>
         <li>
-          <Link href={"/"}>
+          <Link href={"/about"} className={pathname === '/about' ? classes.active : ''}>
             <InfoOutlinedIcon className={classes.icon} />
+            {pathname === '/about' &&  <p>About</p>}
           </Link>
         </li>
         <li>

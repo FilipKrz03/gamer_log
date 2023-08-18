@@ -1,0 +1,12 @@
+@import "../../variables.scss";
+
+.container {
+  width: 82vw;
+  margin: 0 auto;
+}
+
+@include media-xl{
+    .container{
+        width: 95vw;
+    }
+}

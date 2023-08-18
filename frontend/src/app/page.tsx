@@ -5,13 +5,5 @@ import Informations from "./components/Informations/Informations";
 import classes from "./page.module.scss";
 
 export default function Home() {
-  return (
-    <>
-      <div style={{ width: "82vw", margin: "0 auto" }}>
-        <Header />
-        <Hero />
-      </div>
-      <MobileNav />
-    </>
-  );
+  return <Hero />;
 }
