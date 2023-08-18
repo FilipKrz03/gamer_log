@@ -6,17 +6,19 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>
-        <Image
-          src={"/images/logo.png"}
-          alt="Website logo"
-          width={45}
-          height={45}
-        />
-        <p>
-          Gamer<span className={classes.log}>Log</span>
-        </p>
-      </div>
+      <Link href={"/"}>
+        <div className={classes.logo}>
+          <Image
+            src={"/images/logo.png"}
+            alt="Website logo"
+            width={45}
+            height={45}
+          />
+          <p>
+            Gamer<span className={classes.log}>Log</span>
+          </p>
+        </div>
+      </Link>
       <nav>
         <ul>
           {navLinks.map((link) => {

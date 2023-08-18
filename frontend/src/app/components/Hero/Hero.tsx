@@ -7,7 +7,7 @@ const Hero = () => {
     <section className={classes.hero}>
       <div className={classes.text}>
         <h2>
-          We help to{" "}
+          We help to
           <span className={classes.search}> search and explore </span>
           games community
         </h2>

@@ -1,13 +1,15 @@
 $white: #fff;
-$purple:#7b2cbf;
-$orange : #ff9100;
+$purple: #7b2cbf;
+$light-purple: #c6b6d3;
+$orange: #ff9100;
 $dark: #0b090a;
-$very-light-blue:#edf2fb;
-$font-s:16px;
-$font:19px;
-$font-ml:25px;
-$font-xl:48px;
-$border-radius:25px;
+$very-light-blue: #edf2fb;
+$font-s: 16px;
+$font: 19px;
+$font-ml: 25px;
+$font-l:35px;
+$font-xl: 48px;
+$border-radius: 25px;
 
 @mixin flexrow($justify, $align) {
   display: flex;
@@ -20,4 +22,22 @@ $border-radius:25px;
   flex-direction: column;
   justify-content: $justify;
   align-items: $align;
+}
+
+@mixin media-xl {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin media-l {
+  @media (max-width: 1050px) {
+    @content;
+  }
+}
+
+@mixin media-m {
+  @media (max-width: 600px) {
+    @content;
+  }
 }

@@ -8,7 +8,7 @@
 
 body {
   background-color: $white;
-  width: 80vw;
+  width: 82vw;
   margin: 0 auto;
   font-size: $font;
 }
@@ -20,4 +20,14 @@ ul {
 a {
   text-decoration: none;
   color: $dark;
+}
+
+input{
+  font-family: 'Comfortaa', cursive;
+}
+
+@include media-xl{
+  body{
+    width: 95vw;
+  }
 }
