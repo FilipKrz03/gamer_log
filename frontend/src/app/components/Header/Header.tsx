@@ -1,9 +1,13 @@
+"use client";
 import { navLinks } from "@/utils/consts";
+import { usePathname } from "next/navigation";
 import classes from "./Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header className={classes.header}>
       <Link href={"/"}>
@@ -24,7 +28,12 @@ const Header = () => {
           {navLinks.map((link) => {
             return (
               <li key={link.desc}>
-                <Link href={link.link}>{link.desc}</Link>
+                <Link
+                  href={link.link}
+                  className={pathname === link.link ? classes.active : ""}
+                >
+                  {link.desc}
+                </Link>
               </li>
             );
           })}
