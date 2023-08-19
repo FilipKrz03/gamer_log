@@ -34,4 +34,14 @@ export const informations: { icon: any; title: string; desc: string }[] = [
     title: "Safety First",
     desc: "Our product uses very safe authenctiaction methods. You can be sure that your data is completly safe",
   },
+  {
+    icon: MoneyOffCsredIcon,
+    title: "Completly Free",
+    desc: "This application is completly free ! You can browse your favourite games without worry of any payments",
+  },
+  {
+    icon: VpnLockIcon,
+    title: "Safety First",
+    desc: "Our product uses very safe authenctiaction methods. You can be sure that your data is completly safe",
+  },
 ];

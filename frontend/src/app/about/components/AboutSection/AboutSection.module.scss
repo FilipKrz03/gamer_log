@@ -1,0 +1,23 @@
+@import "../../../variables.scss";
+
+.section {
+  @include flexcolumn(center, center);
+  gap: 17px;
+  min-height: calc(100vh - 80px);
+  .desc{
+    @include flexcolumn(center , center);
+    gap: 5px;
+    .works{
+        color: $purple;
+        font-family:'Courier New', Courier, monospace;
+    }
+  }
+  .main-content {
+    @include flexrow(space-between, center);
+    width: 100%;
+    .side-column {
+      @include flexcolumn(space-between, center);
+      align-self: normal;
+    }
+  }
+}

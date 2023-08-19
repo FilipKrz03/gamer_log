@@ -1,0 +1,10 @@
+@import '../../../variables.scss';
+
+.information{
+    @include flexcolumn(center , center);
+    gap: 13px;
+    max-width: 300px;
+    .icon{
+        color: $orange;
+    }
+}
