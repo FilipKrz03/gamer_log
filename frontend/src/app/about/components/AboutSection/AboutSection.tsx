@@ -1,5 +1,5 @@
 "use client";
-import Informations from "@/app/components/Informations/Informations";
+import { motion } from "framer-motion";
 import InfoItem from "../InfoItem/InfoItem";
 import classes from "./AboutSection.module.scss";
 import { informations } from "@/utils/consts";
@@ -28,14 +28,19 @@ const AboutSection = () => {
             );
           })}
         </div>
-        <div className={classes["main-column"]}>
+        <motion.div
+          animate={{ opacity: 1 , filter:'blur(0px)' }}
+          initial={{ opacity: 0  , filter:'blur(2px)'}}
+          transition={{ delay: 0.5, duration: 0.5}}
+          className={classes["main-column"]}
+        >
           <Image
             src={"/images/about.svg"}
             alt="About photo"
-            width={450}
+            width={590}
             height={300}
           />
-        </div>
+        </motion.div>
         <div className={classes["side-column"]}>
           {informationsRight.map((information) => {
             return (
@@ -45,7 +50,9 @@ const AboutSection = () => {
         </div>
       </div>
       <InfoItem information={informationCenter} />
-      <Button desc="Get Started" />
+      <span className={classes["button-wraper"]}>
+        <Button desc="Get Started" />
+      </span>
     </section>
   );
 };

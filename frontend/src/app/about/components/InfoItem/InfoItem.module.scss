@@ -1,8 +1,9 @@
 @import '../../../variables.scss';
 
 .information{
-    font-size: $font-s;
     @include flexcolumn(center , center);
+    font-size: $font-s;
+    text-align: center;
     gap: 13px;
     max-width: 300px;
     .icon{
