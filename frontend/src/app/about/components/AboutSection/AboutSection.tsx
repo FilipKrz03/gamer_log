@@ -4,6 +4,7 @@ import InfoItem from "../InfoItem/InfoItem";
 import classes from "./AboutSection.module.scss";
 import { informations } from "@/utils/consts";
 import Image from "next/image";
+import Button from "@/app/UI/Button/Button";
 
 const AboutSection = () => {
   const informationsLeft = informations.slice(0, 2);
@@ -31,8 +32,8 @@ const AboutSection = () => {
           <Image
             src={"/images/about.svg"}
             alt="About photo"
-            width={585}
-            height={350}
+            width={450}
+            height={300}
           />
         </div>
         <div className={classes["side-column"]}>
@@ -44,6 +45,7 @@ const AboutSection = () => {
         </div>
       </div>
       <InfoItem information={informationCenter} />
+      <Button desc="Get Started" />
     </section>
   );
 };
