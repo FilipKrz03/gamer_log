@@ -1,4 +1,5 @@
-$white: #fff;
+$main-bg:#f2f2f2;
+$white:#fff;
 $purple: #7b2cbf;
 $light-purple: #c6b6d3;
 $orange: #ff9100;
@@ -7,9 +8,9 @@ $very-light-blue: #edf2fb;
 $font-s: 16px;
 $font: 19px;
 $font-ml: 25px;
-$font-ll:30px;
-$font-l:35px;
-$font-xl:42px;
+$font-ll: 30px;
+$font-l: 35px;
+$font-xl: 42px;
 $font-xxl: 48px;
 $border-radius: 25px;
 
@@ -19,6 +20,7 @@ $border-radius: 25px;
   justify-content: $justify;
   align-items: $align;
 }
+
 @mixin flexcolumn($justify, $align) {
   display: flex;
   flex-direction: column;
@@ -38,8 +40,20 @@ $border-radius: 25px;
   }
 }
 
+@mixin media-ml {
+  @media (max-width: 850px) {
+    @content;
+  }
+}
+
 @mixin media-m {
   @media (max-width: 630px) {
+    @content;
+  }
+}
+
+@mixin media-s{
+  @media (max-width:400px) {
     @content;
   }
 }

@@ -1,0 +1,49 @@
+@import "../../../variables.scss";
+
+.section {
+  @include flexrow(space-evenly, center);
+  margin-bottom: 30px;
+  .stats-container {
+    @include flexcolumn(space-evenly, center);
+    align-self: normal;
+    .item {
+      @include flexrow(space-between, center);
+      width: 250px;
+      .icon-container {
+        display: grid;
+        place-content: center;
+        width: 75px;
+        height: 75px;
+        border-radius: 50px;
+        background-color: $light-purple;
+        .icon {
+          color: $purple;
+        }
+      }
+      .desc {
+        @include flexcolumn(center, center);
+        gap: 5px;
+        h3 {
+          color: $orange;
+        }
+      }
+    }
+  }
+}
+
+@include media-ml {
+  .section {
+    flex-direction: column;
+    gap: 25px;
+    .stats-container{
+        gap: 25px;
+    }
+  }
+}
+
+@include media-s{
+    .section .image{
+        width: 60%;
+        height: auto;
+    }
+}

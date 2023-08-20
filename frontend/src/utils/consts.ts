@@ -59,6 +59,5 @@ export const statisticsText = {
 export const statisticItems: { icon: any; number: number; desc: string }[] = [
   { icon: GroupOutlinedIcon, number: 100000, desc: "Users" },
   { icon: SportsEsportsOutlinedIcon, number: 20000, desc: "Games" },
-  { icon: LanguageOutlinedIcon, number: 195999, desc: "Visits/month" },
-  { icon: LanguageOutlinedIcon, number: 195999, desc: "Visits/month" },
+  { icon: LanguageOutlinedIcon, number: 195999, desc: "Visits" },
 ];

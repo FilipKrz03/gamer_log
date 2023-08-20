@@ -10,8 +10,12 @@
   font-size: $font-xl;
   color: $dark;
   margin-bottom: 30px;
-  .counter {
+  .trusted{
     color: $purple;
+    font-weight: bolder;
+  }
+  .counter {
+    color: $orange;
     font-size: $font-xxl;
     font-weight: bolder;
   }
@@ -19,7 +23,7 @@
 
 @include media-m{
   .section{
-    font-size: $font-ll;
+    font-size: $font-ml;
     .counter{
       font-size: $font-xl;
     }
