@@ -3,10 +3,10 @@
 .section {
   @include flexcolumn(center, center);
   gap: 17px;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 70px);
   .desc {
-    h1{
-        font-size: $font-xl;
+    h1 {
+      font-size: $font-xl;
     }
     @include flexcolumn(center, center);
     gap: 5px;
@@ -23,5 +23,42 @@
       align-self: normal;
     }
   }
+}
 
+@include media-l {
+  .section {
+    gap: 25px;
+    .main-content {
+      flex-direction: column;
+      margin-top: 10px;
+      gap: 20px;
+      .side-column {
+        flex-direction: row;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@include media-m {
+  .section {
+    margin-top: 25px;
+    .desc {
+      font-size: $font-s;
+      h1 {
+        font-size: $font-ml;
+      }
+    }
+    .main-content {
+      .main-column {
+        img {
+          width: 65vw;
+          height: auto;
+        }
+      }
+      .side-column {
+        flex-direction: column;
+      }
+    }
+  }
 }

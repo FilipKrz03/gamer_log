@@ -24,6 +24,10 @@ input {
   font-family: "Comfortaa", cursive;
 }
 
+button {
+  font-size: $font-s;
+}
+
 @include media-m {
   body {
     margin-bottom: 90px;

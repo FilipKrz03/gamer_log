@@ -36,7 +36,6 @@
 
 @include media-m {
   .hero {
-    justify-content: space-evenly;
     min-height: calc(100vh - 160px);
     .text {
       font-size: $font;

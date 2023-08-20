@@ -5,9 +5,11 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import MobileFriendlyOutlinedIcon from '@mui/icons-material/MobileFriendlyOutlined';
-import ApiOutlinedIcon from '@mui/icons-material/ApiOutlined';
-
+import MobileFriendlyOutlinedIcon from "@mui/icons-material/MobileFriendlyOutlined";
+import ApiOutlinedIcon from "@mui/icons-material/ApiOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 export const navLinks: { desc: string; link: string }[] = [
   { desc: "About", link: "/about" },
   { desc: "Search", link: "/search" },
@@ -46,4 +48,17 @@ export const informations: { icon: any; title: string; desc: string }[] = [
     title: "Data",
     desc: "Our product has acces to almost all games . We are using the biggest game database in the market ",
   },
+];
+
+export const statisticsText = {
+  title: "Stay aware of our statistics",
+  description:
+    "Number does not lay take a look and admire what we have achived. But do not worry , we still try to improve our website  ",
+};
+
+export const statisticItems: { icon: any; number: number; desc: string }[] = [
+  { icon: GroupOutlinedIcon, number: 100000, desc: "Users" },
+  { icon: SportsEsportsOutlinedIcon, number: 20000, desc: "Games" },
+  { icon: LanguageOutlinedIcon, number: 195999, desc: "Visits/month" },
+  { icon: LanguageOutlinedIcon, number: 195999, desc: "Visits/month" },
 ];

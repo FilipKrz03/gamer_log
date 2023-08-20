@@ -1,12 +1,12 @@
-@import '../../../variables.scss';
+@import "../../../variables.scss";
 
-.information{
-    @include flexcolumn(center , center);
-    font-size: $font-s;
-    text-align: center;
-    gap: 13px;
-    max-width: 300px;
-    .icon{
-        color: $orange;
-    }
+.information {
+  @include flexcolumn(center, center);
+  font-size: $font-s;
+  text-align: center;
+  gap: 13px;
+  max-width: 300px;
+  .icon {
+    color: $orange;
+  }
 }

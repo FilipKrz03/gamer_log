@@ -29,16 +29,16 @@ const AboutSection = () => {
           })}
         </div>
         <motion.div
-          animate={{ opacity: 1 , filter:'blur(0px)' }}
-          initial={{ opacity: 0  , filter:'blur(2px)'}}
-          transition={{ delay: 0.5, duration: 0.5}}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, filter: "blur(2px)" }}
+          transition={{ delay: 0.5, duration: 0.5 }}
           className={classes["main-column"]}
         >
           <Image
             src={"/images/about.svg"}
             alt="About photo"
             width={590}
-            height={300}
+            height={295}
           />
         </motion.div>
         <div className={classes["side-column"]}>
