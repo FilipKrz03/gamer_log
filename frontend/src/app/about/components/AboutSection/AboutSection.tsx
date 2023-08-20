@@ -7,6 +7,7 @@ import Image from "next/image";
 import Button from "@/app/UI/Button/Button";
 
 const AboutSection = () => {
+
   const informationsLeft = informations.slice(0, 2);
   const informationCenter = informations[2];
   const informationsRight = informations.slice(3, 5);
@@ -15,7 +16,7 @@ const AboutSection = () => {
     <section className={classes.section}>
       <div className={classes.desc}>
         <h1>
-          How GamerLog <span className={classes.works}> works </span>
+          How GamerLog <span className={classes.works}> works?</span>
         </h1>
         <p>No complicated settings</p>
         <p>No payments . No subscriptions</p>

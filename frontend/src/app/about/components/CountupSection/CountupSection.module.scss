@@ -1,0 +1,27 @@
+@import "../../../variables.scss";
+
+.section {
+  @include flexcolumn(center, center);
+  gap: 50px;
+  margin-top: 50px;
+  border-top: 2px solid $light-purple;
+  border-bottom: 2px solid $light-purple;
+  padding: 1em 0em;
+  font-size: $font-xl;
+  color: $dark;
+  margin-bottom: 30px;
+  .counter {
+    color: $purple;
+    font-size: $font-xxl;
+    font-weight: bolder;
+  }
+}
+
+@include media-m{
+  .section{
+    font-size: $font-ll;
+    .counter{
+      font-size: $font-xl;
+    }
+  }
+}
