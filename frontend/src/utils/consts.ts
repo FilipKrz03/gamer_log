@@ -26,12 +26,12 @@ export const informations: { icon: any; title: string; desc: string }[] = [
   {
     icon: StorageIcon,
     title: "Modern Web",
-    desc: "This websites uses modern technologies , what providers to the best possible user expirience and functionality ",
+    desc: "This websites uses modern technologies , what providers to the best possible user expirience (eg. No reloads).",
   },
   {
     icon: MoneyOffCsredIcon,
     title: "Completly Free",
-    desc: "This application is completly free ! You can browse your favourite games without worry of any payments",
+    desc: "This application is completly free ! You can browse your favourite games without worry of any payments.",
   },
   {
     icon: VpnLockIcon,
@@ -46,15 +46,9 @@ export const informations: { icon: any; title: string; desc: string }[] = [
   {
     icon: ApiOutlinedIcon,
     title: "Data",
-    desc: "Our product has acces to almost all games . We are using the biggest game database in the market ",
+    desc: "Our product has acces to almost all games . Which you can : save , add to library etc.. (only logged users) ",
   },
 ];
-
-export const statisticsText = {
-  title: "Stay aware of our statistics",
-  description:
-    "Number does not lay take a look and admire what we have achived. But do not worry , we still try to improve our website  ",
-};
 
 export const statisticItems: { icon: any; number: number; desc: string }[] = [
   { icon: GroupOutlinedIcon, number: 100000, desc: "Users" },
