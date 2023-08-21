@@ -4,12 +4,17 @@ import TextField from "@mui/material/TextField/TextField";
 import classes from "./SearchBox.module.scss";
 import { textfieldTheme } from "@/utils/themes";
 
-const SearchBox = () => {
+type Props = {
+  genres: any;
+};
+
+const SearchBox = ({ genres }: Props) => {
+    console.log(genres);
   return (
     <form className={classes.form}>
       <div className={classes.left}>
         <ThemeProvider theme={textfieldTheme}>
-          <TextField label="Game" variant="outlined"/>
+          <TextField label="Game" variant="outlined" />
         </ThemeProvider>
       </div>
     </form>
