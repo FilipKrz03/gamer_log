@@ -1,24 +1,40 @@
 "use client";
-import { useEffect } from "react";
-import { ThemeProvider } from "@mui/material/styles";
-import TextField from "@mui/material/TextField/TextField";
 import classes from "./SearchBox.module.scss";
-import { textfieldTheme } from "@/utils/themes";
 import { Genre } from "../../../../../../types";
-import axios from "@/utils/axios";
+import { Platform } from "../../../../../../types";
+import PlatformItem from "../PlatformItem/PlatformItem";
+import GenreItem from "../GenreItem/GenreItem";
+import Search from "@/app/components/Search/Search";
 
 type Props = {
   genres: Genre[];
+  platforms: Platform[];
 };
 
-const SearchBox = ({ genres }: Props) => {
+const SearchBox = ({ genres, platforms }: Props) => {
   return (
     <form className={classes.form}>
-      <div className={classes.left}>
-        <ThemeProvider theme={textfieldTheme}>
-          <TextField label="Game" variant="outlined" />
-        </ThemeProvider>
+      <div className={classes["parametrs-box"]}>
+        <div className={classes.left}>
+          <p>Platforms</p>
+          <div className={classes["box"]}>
+            {platforms.map((platformItem) => {
+              return (
+                <PlatformItem key={platformItem.id} platform={platformItem} />
+              );
+            })}
+          </div>
+        </div>
+        <div className={classes.right}>
+          <p>Categories</p>
+          <div className={classes["box"]}>
+            {genres.map((genreItem) => {
+              return <GenreItem key={genreItem.id} genre={genreItem} />;
+            })}
+          </div>
+        </div>
       </div>
+      <Search />
     </form>
   );
 };

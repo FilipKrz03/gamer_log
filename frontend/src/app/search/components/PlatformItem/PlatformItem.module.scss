@@ -1,0 +1,10 @@
+@import "../../../variables.scss";
+
+.platform {
+  background-color: $very-light-blue;
+  width: max-content;
+  padding: 0.5em 1em;
+  font-size: $font-s;
+  border: 1px solid $dark;
+  border-radius: $border-radius-s;
+}

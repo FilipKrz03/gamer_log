@@ -1,0 +1,29 @@
+@import "../../../variables.scss";
+
+.form {
+  @include flexcolumn(center, center);
+  gap: 75px;
+  border: 3px solid $gray;
+  border-radius: $border-radius;
+  padding: 2em;
+  .parametrs-box {
+    @include flexrow(center, flex-start);
+    gap: 150px;
+    .left,
+    .right {
+      @include flexcolumn(flex-start, center);
+      gap: 30px;
+      .box {
+        @include flexrow(flex-start, center);
+        flex-wrap: wrap;
+        row-gap: 20px;
+        gap: 10px;
+      }
+      p {
+        color: $orange;
+        font-size: $font-ml;
+      }
+    }
+  }
+
+}

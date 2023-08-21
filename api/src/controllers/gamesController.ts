@@ -28,4 +28,22 @@ const getGeneres = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllGames, getGeneres };
+const getPlafroms = async (req: Request, res: Response) => {
+  try {
+    const plafroms: Promise<Genre[]> = await axiosApi("platforms");
+    let plafromsArray: Genre[] = [];
+    (await plafroms).map((genre) => {
+      const genreIitem = {
+        id: genre.id,
+        name: genre.name,
+      };
+      plafromsArray.push(genreIitem);
+      plafromsArray = plafromsArray.slice(0, 13);
+    });
+    res.status(200).json({ plafroms: plafromsArray });
+  } catch (err) {
+    res.sendStatus(401);
+  }
+};
+
+export { getAllGames, getGeneres, getPlafroms };

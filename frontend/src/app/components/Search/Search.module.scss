@@ -1,6 +1,6 @@
 @import "../../variables.scss";
 
-.form {
+.input {
   @include flexrow(center, center);
   text-align: center;
   input,
@@ -9,9 +9,6 @@
     height: 45px;
   }
   input {
-    &::placeholder {
-      color: $dark;
-    }
     font-size: $font-s;
     outline: none;
     border: none;
