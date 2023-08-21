@@ -8,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/games", gamesRouter);
+app.use("/", gamesRouter);
 
 app.listen(3500, () => {
   console.log("Server is working");

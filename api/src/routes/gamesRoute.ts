@@ -1,8 +1,9 @@
 import express from "express";
-import { fetchAllGames } from "../controllers/gamesController";
+import { getAllGames, getGeneres } from "../controllers/gamesController";
 
 const gamesRouter = express.Router();
 
-gamesRouter.get("/", fetchAllGames);
+gamesRouter.get("/games", getAllGames);
+gamesRouter.get("/genres", getGeneres);
 
 export default gamesRouter;
