@@ -38,7 +38,7 @@ const getPlafroms = async (req: Request, res: Response) => {
         name: genre.name,
       };
       plafromsArray.push(genreIitem);
-      plafromsArray = plafromsArray.slice(0, 13);
+      plafromsArray = plafromsArray.slice(0, 15);
     });
     res.status(200).json({ plafroms: plafromsArray });
   } catch (err) {

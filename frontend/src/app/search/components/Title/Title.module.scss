@@ -2,12 +2,16 @@
 
 .title-box {
   width: fit-content;
-  height: 90px;
   text-align: center;
-  margin: 0 auto;
-  margin-top: 30px;
+  margin: 0px auto;
   h2 {
     padding-bottom: 5px;
     border-bottom: 4px solid $purple;
+  }
+}
+
+@include media-m{
+  .title-box {
+    margin: 20px 0px;
   }
 }

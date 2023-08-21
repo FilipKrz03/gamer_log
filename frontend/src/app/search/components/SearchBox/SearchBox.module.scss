@@ -1,18 +1,22 @@
 @import "../../../variables.scss";
 
 .form {
+  margin-top: 15px;
   @include flexcolumn(center, center);
+  max-width: 1500px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   gap: 75px;
   border: 3px solid $gray;
   border-radius: $border-radius;
   padding: 2em;
   .parametrs-box {
-    @include flexrow(center, flex-start);
-    gap: 150px;
+    @include flexrow(center, center);
+    gap: 100px;
     .left,
     .right {
       @include flexcolumn(flex-start, center);
       gap: 30px;
+      width: 50%;
       .box {
         @include flexrow(flex-start, center);
         flex-wrap: wrap;
@@ -25,5 +29,23 @@
       }
     }
   }
+}
 
+@include media-l {
+  .form {
+    gap: 35px;
+  }
+}
+
+@include media-ml{
+  .form{
+    padding: 1em;
+   .parametrs-box{
+    flex-direction: column;
+    gap: 30px;
+    .left , .right{
+      width: 100%;
+    }
+   }
+  }
 }

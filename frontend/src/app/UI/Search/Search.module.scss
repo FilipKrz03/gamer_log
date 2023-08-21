@@ -1,6 +1,6 @@
 @import "../../variables.scss";
 
-.input {
+.search {
   @include flexrow(center, center);
   text-align: center;
   input,
@@ -12,8 +12,9 @@
     font-size: $font-s;
     outline: none;
     border: none;
-    background-color: $very-light-blue;
+    background-color: $gray-100;
     width: 350px;
+    transition: 0.3 ease-in-out;
     padding: 1em;
   }
   button {
@@ -22,20 +23,31 @@
     margin-left: -50px;
     border: none;
     background-color: $orange;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   .icon {
     color: $white;
   }
 }
 
-
-@include media-m{
-  .form{
-    button{
+@include media-m {
+  .search {
+    button {
       width: 75px;
     }
-    input{
+    input {
       width: 280px;
+    }
+  }
+}
+
+@include media-s {
+  .search {
+    button {
+      width: 70px;
+    }
+    input {
+      width: 250px;
     }
   }
 }

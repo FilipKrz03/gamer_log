@@ -6,5 +6,9 @@
   padding: 0.5em 1em;
   font-size: $font-s;
   border: 1px solid $dark;
-  border-radius:$border-radius-s;
+  border-radius: $border-radius-s;
+  cursor: pointer;
+}
+.active {
+  background-color: $light-purple;
 }

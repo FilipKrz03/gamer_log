@@ -7,4 +7,9 @@
   font-size: $font-s;
   border: 1px solid $dark;
   border-radius: $border-radius-s;
+  cursor: pointer;
+}
+
+.active {
+  background-color: $light-purple;
 }

@@ -1,4 +1,4 @@
-import Search from "../Search/Search";
+import Search from "@/app/UI/Search/Search";
 import classes from "./Hero.module.scss";
 import Image from "next/image";
 
@@ -15,7 +15,9 @@ const Hero = () => {
           Search,brows and judge video games. Create your profile and find out
           all avaliable features
         </p>
-        <Search />
+        <form>
+          <Search />
+        </form>
       </div>
       <Image
         src={"/images/hero-image.svg"}

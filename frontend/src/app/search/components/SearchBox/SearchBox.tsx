@@ -1,10 +1,9 @@
-"use client";
 import classes from "./SearchBox.module.scss";
 import { Genre } from "../../../../../../types";
 import { Platform } from "../../../../../../types";
 import PlatformItem from "../PlatformItem/PlatformItem";
 import GenreItem from "../GenreItem/GenreItem";
-import Search from "@/app/components/Search/Search";
+import Search from "@/app/UI/Search/Search";
 
 type Props = {
   genres: Genre[];
