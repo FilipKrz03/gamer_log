@@ -10,9 +10,12 @@ import ApiOutlinedIcon from "@mui/icons-material/ApiOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+
 export const navLinks: { desc: string; link: string }[] = [
   { desc: "About", link: "/about" },
   { desc: "Search", link: "/search" },
+  { desc: "Explore", link: "/explore" },
   { desc: "Log in", link: "/login" },
 ];
 export const navMobileLinks: { icon: any; desc: string; link: string }[] = [
@@ -20,6 +23,7 @@ export const navMobileLinks: { icon: any; desc: string; link: string }[] = [
   { icon: InfoOutlinedIcon, desc: "About", link: "/about" },
   { icon: SearchIcon, desc: "Search", link: "/search" },
   { icon: PersonOutlinedIcon, desc: "Log in", link: "/login" },
+  { icon: ExploreOutlinedIcon, desc: "Explore", link: "/explore" },
 ];
 
 export const informations: { icon: any; title: string; desc: string }[] = [
