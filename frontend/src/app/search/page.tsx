@@ -7,13 +7,15 @@ export default async function Search() {
   const platforms = await getPlafroms();
 
   return (
-    <main style={{
-      minHeight:'calc(100vh - 100px)' , 
-      display:'flex' , 
-      flexDirection:'column' , 
-      justifyContent:'space-evenly' , 
-      alignItems : 'center' , 
-    }}>
+    <main
+      style={{
+        minHeight: "calc(100vh - 100px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+      }}
+    >
       <Title />
       <SearchBox genres={genres} platforms={platforms} />
     </main>

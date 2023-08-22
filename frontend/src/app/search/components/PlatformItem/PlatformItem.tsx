@@ -6,13 +6,14 @@ import { useState } from "react";
 
 type Props = {
   platform: Platform;
+  onChangePlatformFilter: (id: number) => void;
 };
 
-const PlatformItem = ({ platform }: Props) => {
-  
+const PlatformItem = ({ platform, onChangePlatformFilter }: Props) => {
   const [isItemActive, setIsItemActive] = useState(false);
 
   const itemChangeHandler = () => {
+    onChangePlatformFilter(platform.id);
     setIsItemActive((prevState) => !prevState);
   };
 
