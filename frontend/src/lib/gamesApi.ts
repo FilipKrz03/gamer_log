@@ -13,3 +13,10 @@ export const getPlafroms = async () => {
   const platforms = res.data.plafroms;
   return platforms;
 };
+
+export const getSearchedGames = async (searchPramas: string) => {
+  const res = await axios.post(`/games/${searchPramas}`, searchPramas);
+  if (res.status !== 200) throw new Error("Failed to fetch data");
+  const games = res.data.games;
+  return games;
+};

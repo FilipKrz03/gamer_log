@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import classes from "./SearchBox.module.scss";
 import { Genre } from "../../../../../../types";
 import { Platform } from "../../../../../../types";
@@ -17,6 +18,8 @@ const SearchBox = ({ genres, platforms }: Props) => {
   const [genreFilters, setGenreFilters] = useState<number[]>([]);
   const [platformFilters, setPlatformFilters] = useState<number[]>([]);
 
+  const router = useRouter();
+
   const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
     const genreString = `${
@@ -32,6 +35,8 @@ const SearchBox = ({ genres, platforms }: Props) => {
     const searchString = `${
       inputValue !== "" ? "&search=" + inputValue : ""
     }${genreString}${platformString}`;
+
+    router.push(`/search/${searchString}/`);
   };
 
   const getInputValue = (inputValue: string) => {
