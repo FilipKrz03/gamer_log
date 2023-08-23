@@ -47,12 +47,12 @@ const getPlafroms = async (req: Request, res: Response) => {
 };
 
 const getSearchedGames = async (req: Request, res: Response) => {
-  const { search, genres, platforms } = req.query;
+  const { search, genres, platforms , page } = req.query;
   const url = `${search ? "&search=" + search : ""}${
     genres ? "&genres=" + genres : ""
-  }${platforms ? "&platforms=" + platforms : ""}&page=1&page_size=10`;
+  }${platforms ? "&platforms=" + platforms : ""}&page=${page}&page_size=25`;
   try {
-    const games = await axiosApi("games", url);
+    const games = await axiosApi("games", url, false);
     res.status(200).json({ games });
   } catch (err) {
     res.sendStatus(401);

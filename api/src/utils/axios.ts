@@ -1,14 +1,14 @@
 require("dotenv").config();
 import axios from "axios";
-import { Response } from "express";
 
-const axiosApi = async (category: string, params?: string) => {
+const axiosApi = async (category: string, params?: string , onlyResults:boolean = true) => {
   const request = await axios.get(
     `https://api.rawg.io/api/${category}?key=${process.env.API_KEY}${
       params ? params : ""
     }`
   );
-  return request.data.results;
+  if (onlyResults === true) return request.data.results;
+  else return request.data;
 };
 
 export default axiosApi;

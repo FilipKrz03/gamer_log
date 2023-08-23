@@ -7,3 +7,12 @@ export type Platform = {
   id: number;
   name: string;
 };
+
+export type Games = {
+  count: number;
+  results: any[];
+};
+
+export type Game = {
+  name: string;
+};
