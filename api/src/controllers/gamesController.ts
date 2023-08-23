@@ -13,9 +13,9 @@ const getAllGames = async (req: Request, res: Response) => {
 
 const getGeneres = async (req: Request, res: Response) => {
   try {
-    const genres: Promise<Genre[]> = await axiosApi("genres");
+    const genres: Awaited<Genre[]> = await axiosApi("genres");
     let genresArray: Genre[] = [];
-    (await genres).map((genre) => {
+    genres.map((genre) => {
       const genreIitem = {
         id: genre.id,
         name: genre.name,
@@ -30,9 +30,9 @@ const getGeneres = async (req: Request, res: Response) => {
 
 const getPlafroms = async (req: Request, res: Response) => {
   try {
-    const plafroms: Promise<Genre[]> = await axiosApi("platforms");
+    const plafroms: Awaited<Genre[]> = await axiosApi("platforms");
     let plafromsArray: Genre[] = [];
-    (await plafroms).map((genre) => {
+    plafroms.map((genre) => {
       const genreIitem = {
         id: genre.id,
         name: genre.name,
@@ -47,7 +47,7 @@ const getPlafroms = async (req: Request, res: Response) => {
 };
 
 const getSearchedGames = async (req: Request, res: Response) => {
-  const { search, genres, platforms , page } = req.query;
+  const { search, genres, platforms, page } = req.query;
   const url = `${search ? "&search=" + search : ""}${
     genres ? "&genres=" + genres : ""
   }${platforms ? "&platforms=" + platforms : ""}&page=${page}&page_size=25`;
