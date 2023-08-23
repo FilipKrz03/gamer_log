@@ -1,0 +1,16 @@
+@import "../../../../variables.scss";
+
+.item {
+  width: 280px;
+  .image {
+    border-radius: $border-radius $border-radius 0px 0px;
+  }
+  .desc {
+    text-align: center;
+    background-color: $light-purple;
+    height: 80px;
+    h2{
+        font-size: $font-ml;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import "../../../../variables.scss";
+.container {
+  @include flexrow(center, flex-start);
+  flex-wrap: wrap;
+  gap: 30px;
+}

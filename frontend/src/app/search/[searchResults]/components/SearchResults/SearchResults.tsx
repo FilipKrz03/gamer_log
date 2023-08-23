@@ -48,7 +48,7 @@ const SearchResults = () => {
   });
 
   return (
-    <div className={classes.containier}>
+    <div className={classes.container}>
       {gamesItems}
       {isLoading && <p>Loading .... </p>}
     </div>

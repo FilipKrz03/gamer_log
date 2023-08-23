@@ -14,5 +14,9 @@ export type Games = {
 };
 
 export type Game = {
-  name: string;
+  name: string , 
+  background_image:string , 
+  id:number , 
+  relased:string ,
+  rating:number ,
 };

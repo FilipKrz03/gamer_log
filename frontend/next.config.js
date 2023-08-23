@@ -1,4 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-
-module.exports = nextConfig
+const nextConfig = {
+    experimental:{
+        serverActions:true , 
+    }
+}
+module.exports = {
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'media.rawg.io',
+          port : '' , 
+          pathname: '/media/**'
+        },
+      ],
+    },
+  };
