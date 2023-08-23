@@ -46,4 +46,17 @@ const getPlafroms = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllGames, getGeneres, getPlafroms };
+const getSearchedGames = async (req: Request, res: Response) => {
+  const { search, genres, platforms } = req.query;
+  const url = `${search ? "&search=" + search : ""}${
+    genres ? "&genres=" + genres : ""
+  }${platforms ? "&platforms=" + platforms : ""}&page=1&page_size=10`;
+  try {
+    const games = await axiosApi("games", url);
+    res.status(200).json({ games });
+  } catch (err) {
+    res.sendStatus(401);
+  }
+};
+
+export { getAllGames, getGeneres, getPlafroms, getSearchedGames };
