@@ -1,0 +1,21 @@
+@import "../../variables.scss";
+
+.skeleton {
+  width: 280px;
+  .image {
+    border-radius: $border-radius $border-radius 0px 0px;
+  }
+  .text {
+    padding: 0.3em 0.5em;
+    @include flexcolumn(space-between, flex-start);
+    height: 110px;
+    background-color: $white;
+    .bottom{
+        @include flexrow(space-between , center);
+        align-self: normal;
+        .genre{
+            border-radius: $border-radius;
+        }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import React, { useState, useRef, useCallback } from "react";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import Search from "@/app/UI/Search/Search";
 import GameItem from "../GameItem/GameItem";
+import Skeletons from "@/app/UI/Skeletons/Skeletons";
 import { Game } from "../../../../../../../types";
 import classes from "./SearchResults.module.scss";
 
@@ -67,9 +68,8 @@ const SearchResults = () => {
         <Search onFormSubmit={getInputValue} />
       </form>
       <div className={classes.container}>
-        {games.length === 0 && !isLoading && <p>No results</p>}
         {games.length > 0 && gamesItems}
-        {isLoading && <p>Loading .... </p>}
+        {isLoading && <Skeletons />}
       </div>
     </div>
   );
