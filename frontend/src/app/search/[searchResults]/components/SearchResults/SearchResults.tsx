@@ -5,6 +5,7 @@ import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import Search from "@/app/UI/Search/Search";
 import GameItem from "../GameItem/GameItem";
 import Skeletons from "@/app/UI/Skeletons/Skeletons";
+import NotFoundComponent from "@/app/UI/NotFoundComponent/NotFoundComponent";
 import { Game } from "../../../../../../../types";
 import classes from "./SearchResults.module.scss";
 
@@ -23,8 +24,6 @@ const SearchResults = () => {
     setSearchValue(inputValue);
   };
 
-
-
   const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
     const path = searchValue !== "" ? "&search=" + searchValue : "&all";
@@ -37,8 +36,6 @@ const SearchResults = () => {
     results: games,
     maxResultsCount,
   } = useInfiniteScroll(pageNumber, searchParams);
-
-  console.log(games);
 
   const lastPostRef = useCallback(
     (item: HTMLDivElement) => {
@@ -74,6 +71,9 @@ const SearchResults = () => {
       <div className={classes.container}>
         {games.length > 0 && gamesItems}
         {isLoading && <Skeletons />}
+        {isLoading === false && games.length === 0 && (
+          <NotFoundComponent message="We could not find you search." />
+        )}
       </div>
     </div>
   );
