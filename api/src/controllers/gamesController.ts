@@ -51,7 +51,6 @@ const getSearchedGames = async (req: Request, res: Response) => {
   const url = `${search ? "&search=" + search : ""}${
     genres ? "&genres=" + genres : ""
   }${platforms ? "&platforms=" + platforms : ""}&page=${page}&page_size=25`;
-  console.log('games'+url);
   try {
     const games = await axiosApi("games", url, false);
     res.status(200).json({ games });
