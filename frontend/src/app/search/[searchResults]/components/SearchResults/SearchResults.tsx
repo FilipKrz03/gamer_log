@@ -1,18 +1,32 @@
 "use client";
-import { usePathname } from "next/navigation";
-import classes from "./SearchResults.module.scss";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useRef, useCallback } from "react";
-import GameItem from "../GameItem/GameItem";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
+import Search from "@/app/UI/Search/Search";
+import GameItem from "../GameItem/GameItem";
 import { Game } from "../../../../../../../types";
+import classes from "./SearchResults.module.scss";
 
 const SearchResults = () => {
   const pathname = usePathname();
+  const router = useRouter();
+
   const searchParams = pathname.slice(8);
 
   const [pageNumber, setPageNumber] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
 
   const intObserver = useRef<IntersectionObserver>();
+
+  const getInputValue = (inputValue: string) => {
+    setSearchValue(inputValue);
+  };
+
+  const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const path = searchValue !== "" ? "&search=" + searchValue : "&all";
+    router.push(`/search/${path}`);
+  };
 
   const {
     isLoading,
@@ -48,9 +62,15 @@ const SearchResults = () => {
   });
 
   return (
-    <div className={classes.container}>
-      {gamesItems}
-      {isLoading && <p>Loading .... </p>}
+    <div className={classes.page}>
+      <form onSubmit={submitFormHandler}>
+        <Search onFormSubmit={getInputValue} />
+      </form>
+      <div className={classes.container}>
+        {games.length === 0 && !isLoading && <p>No results</p>}
+        {games.length > 0 && gamesItems}
+        {isLoading && <p>Loading .... </p>}
+      </div>
     </div>
   );
 };

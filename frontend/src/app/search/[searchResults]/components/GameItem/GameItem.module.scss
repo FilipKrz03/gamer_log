@@ -1,16 +1,36 @@
 @import "../../../../variables.scss";
 
 .item {
+  @include flexcolumn(center, center);
   width: 280px;
   .image {
     border-radius: $border-radius $border-radius 0px 0px;
   }
   .desc {
-    text-align: center;
-    background-color: $light-purple;
-    height: 80px;
+    @include flexcolumn(space-between, flex-start);
+    gap: 20px;
+    padding: 0.3em 0.5em;
+    width: 100%;
+    background-color: $gray;
+    height: 110px;
     h2{
-        font-size: $font-ml;
+      font-size: $font;
+     }
+    .basic {
+      @include flexrow(space-between, center);
+      align-self: normal;
+      .genre{
+        background-color: $light-purple;
+        padding: 0.2em 0.7em;
+        border-radius: $border-radius;
+      }
+      .rating-box{
+       padding: 0.3em;
+       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+       .rating{
+        font-size: $font-s;
+       }
+      }
     }
   }
 }

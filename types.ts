@@ -14,9 +14,10 @@ export type Games = {
 };
 
 export type Game = {
-  name: string , 
-  background_image:string , 
-  id:number , 
-  relased:string ,
-  rating:number ,
+  name: string;
+  background_image: string;
+  id: number;
+  relased: string;
+  rating: number;
+  genres: { name: string }[];
 };
