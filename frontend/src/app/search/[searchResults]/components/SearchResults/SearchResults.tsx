@@ -66,7 +66,9 @@ const SearchResults = () => {
   return (
     <div className={classes.page}>
       <form onSubmit={submitFormHandler}>
+        <div className={classes.search}>
         <Search onFormSubmit={getInputValue} />
+        </div>
       </form>
       <div className={classes.container}>
         {games.length > 0 && gamesItems}

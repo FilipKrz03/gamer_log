@@ -1,7 +1,7 @@
-$main-bg:#f2f2f2;
-$white:#fff;
-$gray:#e5e5e5;
-$gray-100:#dee2e6;
+$main-bg: #f2f2f2;
+$white: #fff;
+$gray: #e5e5e5;
+$gray-100: #dee2e6;
 $purple: #7b2cbf;
 $light-purple: #c6b6d3;
 $orange: #ff9100;
@@ -14,7 +14,7 @@ $font-ll: 30px;
 $font-l: 35px;
 $font-xl: 42px;
 $font-xxl: 48px;
-$border-radius-s:10px;
+$border-radius-s: 10px;
 $border-radius: 25px;
 
 @mixin flexrow($justify, $align) {
@@ -29,6 +29,12 @@ $border-radius: 25px;
   flex-direction: column;
   justify-content: $justify;
   align-items: $align;
+}
+
+@mixin media-xxl {
+  @media (max-width: 1430px) {
+    @content;
+  }
 }
 
 @mixin media-xl {
@@ -55,8 +61,8 @@ $border-radius: 25px;
   }
 }
 
-@mixin media-s{
-  @media (max-width:400px) {
+@mixin media-s {
+  @media (max-width: 400px) {
     @content;
   }
 }
