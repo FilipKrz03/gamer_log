@@ -23,6 +23,8 @@ const SearchResults = () => {
     setSearchValue(inputValue);
   };
 
+
+
   const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
     const path = searchValue !== "" ? "&search=" + searchValue : "&all";
@@ -35,6 +37,8 @@ const SearchResults = () => {
     results: games,
     maxResultsCount,
   } = useInfiniteScroll(pageNumber, searchParams);
+
+  console.log(games);
 
   const lastPostRef = useCallback(
     (item: HTMLDivElement) => {

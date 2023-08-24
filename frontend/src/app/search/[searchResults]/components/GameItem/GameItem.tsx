@@ -33,17 +33,25 @@ const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
 
   return (
     <Wraper>
-      <Image
-        src={gameItem.background_image}
-        alt="Game image"
-        width={280}
-        height={150}
-        className={classes.image}
-      />
+      {gameItem.background_image && (
+        <Image
+          src={gameItem.background_image}
+          alt="Game image"
+          width={280}
+          height={150}
+          className={classes.image}
+        />
+      )}
+      {!gameItem.background_image && (
+        <p className={classes["no-img"]}>Image not found</p>
+      )}
+
       <div className={classes.desc}>
         <h2>{gameItem.name}</h2>
         <div className={classes.basic}>
-          <p className={classes.genre}>{gameItem.genres[0].name}</p>
+          <p className={classes.genre}>
+            {gameItem.genres.length > 0 ? gameItem.genres[0].name : "Action"}
+          </p>
           <div
             className={classes["rating-box"]}
             style={{ border: `1px solid ${ratingColor}` }}
