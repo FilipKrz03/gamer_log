@@ -16,13 +16,18 @@
   }
   .desc {
     @include flexcolumn(space-between, flex-start);
-    gap: 20px;
+
     padding: 0.3em 0.5em;
     width: 100%;
-    background-color: $gray;
+    background-color: $gray-100;
     height: 110px;
     h2 {
       font-size: $font;
+    }
+    .icons {
+      @include flexrow(flex-start, center);
+      gap: 10px;
+      align-self: normal;
     }
     .basic {
       @include flexrow(space-between, center);

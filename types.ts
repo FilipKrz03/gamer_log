@@ -20,4 +20,5 @@ export type Game = {
   relased: string;
   rating: number;
   genres: { name: string }[];
+  platforms: {platform:{name:string}}[];
 };

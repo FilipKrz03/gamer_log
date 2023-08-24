@@ -3,6 +3,7 @@ import classes from "./GameItem.module.scss";
 import { forwardRef } from "react";
 import Image from "next/image";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
+import checkPlaforms from "@/utils/functions/checkPlatforms";
 
 type Props = {
   gameItem: Game;
@@ -15,7 +16,6 @@ type WraperProps = {
 type Ref = HTMLDivElement;
 
 const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
-  console.log(gameItem);
   const Wraper = ({ children }: WraperProps) => {
     return (
       <>
@@ -29,7 +29,18 @@ const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
     );
   };
 
+  const { hasPc, hasXbox, hasPlayStation } = checkPlaforms(gameItem.platforms);
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
+  const gameName =
+    gameItem.name.length > 23
+      ? gameItem.name.slice(0, 22) + "..."
+      : gameItem.name;
+  const gameGenre =
+    gameItem.genres.length > 0
+      ? gameItem.genres[0].name.length > 10
+        ? gameItem.genres[0].name.slice(0, 9) + "..."
+        : gameItem.genres[0].name
+      : "Action";
 
   return (
     <Wraper>
@@ -47,11 +58,31 @@ const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
       )}
 
       <div className={classes.desc}>
-        <h2>{gameItem.name}</h2>
+        <h2>{gameName}</h2>
+        <div className={classes.icons}>
+          {hasPc && (
+            <Image
+              alt="PC"
+              src={"/images/windows.png"}
+              width={30}
+              height={30}
+              style={{ marginRight: "-5px" }}
+            />
+          )}
+          {hasXbox && (
+            <Image alt="Xbox" src={"/images/xbox.png"} width={20} height={20} />
+          )}
+          {hasPlayStation && (
+            <Image
+              alt="PlayStation"
+              src={"/images/playstation.png"}
+              width={20}
+              height={20}
+            />
+          )}
+        </div>
         <div className={classes.basic}>
-          <p className={classes.genre}>
-            {gameItem.genres.length > 0 ? gameItem.genres[0].name : "Action"}
-          </p>
+          <p className={classes.genre}>{gameGenre}</p>
           <div
             className={classes["rating-box"]}
             style={{ border: `1px solid ${ratingColor}` }}
