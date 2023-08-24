@@ -1,9 +1,10 @@
-import { Comfortaa } from "next/font/google";
-import "./globals.scss";
+import { Suspense } from "react";
 import Header from "./components/Header/Header";
 import MobileNav from "./components/MobileNav/MobileNav";
 import PageContainer from "./UI/PageContainer/PageContainer";
 import ProgressBarComponent from "./UI/ProgresBar/ProgresBar";
+import { Comfortaa } from "next/font/google";
+import "./globals.scss";
 
 const comfortaa = Comfortaa({
   weight: ["400", "700"],
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={comfortaa.className}>
-        <ProgressBarComponent />
+        <Suspense>
+          <ProgressBarComponent />
+        </Suspense>
         <PageContainer>
           <Header />
           {children}
