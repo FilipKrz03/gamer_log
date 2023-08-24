@@ -20,16 +20,6 @@ const SearchResults = () => {
 
   const intObserver = useRef<IntersectionObserver>();
 
-  const getInputValue = (inputValue: string) => {
-    setSearchValue(inputValue);
-  };
-
-  const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const path = searchValue !== "" ? "&search=" + searchValue : "&all";
-    router.push(`/search/${path}`);
-  };
-
   const {
     isLoading,
     error,
@@ -55,6 +45,16 @@ const SearchResults = () => {
     [pageNumber, maxResultsCount, isLoading]
   );
 
+  const getInputValue = (inputValue: string) => {
+    setSearchValue(inputValue);
+  };
+
+  const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const path = searchValue !== "" ? "&search=" + searchValue : "&all";
+    router.push(`/search/${path}`);
+  };
+
   const gamesItems = games.map((game: Game, i: number) => {
     if (i + 1 === games.length) {
       return <GameItem key={game.name} gameItem={game} ref={lastPostRef} />;
@@ -67,7 +67,7 @@ const SearchResults = () => {
     <div className={classes.page}>
       <form onSubmit={submitFormHandler}>
         <div className={classes.search}>
-        <Search onFormSubmit={getInputValue} />
+          <Search onFormSubmit={getInputValue} />
         </div>
       </form>
       <div className={classes.container}>

@@ -20,3 +20,9 @@ export const getSearchedGames = async (searchParams: string) => {
   const games = res.data.games;
   return games;
 };
+
+export const getSpecificGame = async (id: number) => {
+  const res = await axios.get(`/search/${id}`);
+  if (res.status !== 200) throw new Error("Failed to fetch data");
+  return res.data;
+};

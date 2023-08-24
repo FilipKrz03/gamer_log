@@ -1,5 +1,6 @@
 import { Game } from "../../../../../../../types";
 import classes from "./GameItem.module.scss";
+import Link from "next/link";
 import { forwardRef } from "react";
 import Image from "next/image";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
@@ -16,31 +17,40 @@ type WraperProps = {
 type Ref = HTMLDivElement;
 
 const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
-  const Wraper = ({ children }: WraperProps) => {
-    return (
-      <>
-        {ref && (
-          <div className={classes.item} ref={ref}>
-            {children}
-          </div>
-        )}
-        {!ref && <div className={classes.item}>{children}</div>}
-      </>
-    );
-  };
-
   const { hasPc, hasXbox, hasPlayStation } = checkPlaforms(gameItem.platforms);
+
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
+
   const gameName =
     gameItem.name.length > 23
       ? gameItem.name.slice(0, 22) + "..."
       : gameItem.name;
+
   const gameGenre =
     gameItem.genres.length > 0
       ? gameItem.genres[0].name.length > 10
         ? gameItem.genres[0].name.slice(0, 9) + "..."
         : gameItem.genres[0].name
       : "Action";
+
+  const Wraper = ({ children }: WraperProps) => {
+    return (
+      <>
+        {ref && (
+          <Link href={`/${gameItem.id}`}>
+            <div className={classes.item} ref={ref}>
+              {children}
+            </div>
+          </Link>
+        )}
+        {!ref && (
+          <Link href={`/${gameItem.id}`}>
+            <div className={classes.item}>{children}</div>{" "}
+          </Link>
+        )}
+      </>
+    );
+  };
 
   return (
     <Wraper>

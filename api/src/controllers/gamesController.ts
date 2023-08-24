@@ -59,4 +59,21 @@ const getSearchedGames = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllGames, getGeneres, getPlafroms, getSearchedGames };
+const getSpecificGame = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  if (!id) return res.sendStatus(400);
+  try {
+    const game = await axiosApi(`games/${id}`, undefined, false);
+    res.status(200).json({ game });
+  } catch (err) {
+    res.sendStatus(401);
+  }
+};
+
+export {
+  getAllGames,
+  getGeneres,
+  getPlafroms,
+  getSearchedGames,
+  getSpecificGame,
+};
