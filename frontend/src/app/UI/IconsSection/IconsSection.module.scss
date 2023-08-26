@@ -1,0 +1,7 @@
+@import "../../variables.scss";
+
+.icons {
+  @include flexrow(flex-start, center);
+  gap: 10px;
+  align-self: normal;
+}

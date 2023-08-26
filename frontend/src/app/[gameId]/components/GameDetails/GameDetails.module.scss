@@ -1,0 +1,87 @@
+@import "../../../variables.scss";
+
+.container {
+  margin-top: 30px;
+  @include flexcolumn(center, center);
+  gap: 60px;
+  .main-info {
+    @include flexrow(center, flex-start);
+    gap: 50px;
+    .text-info {
+      @include flexcolumn(space-around, center);
+      gap: 30px;
+      align-self: normal;
+      .first-row {
+        @include flexrow(flex-start, center);
+        gap: 10px;
+        .released {
+          padding: 0.2em 0.6em;
+          border-radius: $border-radius;
+          background-color: $light-purple;
+        }
+        .average {
+          .title {
+            font-weight: bolder;
+          }
+        }
+      }
+      h1 {
+        font-size: $font-xxl;
+      }
+      .genres-row {
+        @include flexrow(space-evenly, center);
+        align-self: normal;
+        .genre-item {
+          padding: 0.4em 1em;
+          background-color: $orange;
+          border-radius: $border-radius;
+          box-shadow: $box-shadow;
+        }
+      }
+      .rating-row {
+        @include flexrow(space-evenly, center);
+        align-self: normal;
+        gap: 30px;
+        .count {
+          @include flexcolumn(space-between, center);
+          align-self: normal;
+          .number {
+            color: $purple;
+            font-weight: bolder;
+          }
+        }
+
+        .rating-box {
+          padding: 0.5em;
+          box-shadow: $box-shadow;
+          display: grid;
+          place-content: center;
+        }
+      }
+      .actions-row {
+        @include flexrow(space-evenly, center);
+        align-self: normal;
+        .content {
+          @include flexrow(space-evenly, center);
+          padding: 0.3em;
+          width: 140px;
+          gap: 10px;
+          border: 1px solid $dark;
+          box-shadow: $box-shadow;
+          cursor: pointer;
+          .icon{
+            color: $orange;
+          }
+          .text {
+            @include flexcolumn(space-between, center);
+            gap: 3px;
+            font-size: $font-s;
+          }
+        }
+      }
+    }
+  }
+  .description {
+    font-size: 23px;
+  }
+}

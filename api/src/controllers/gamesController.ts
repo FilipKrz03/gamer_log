@@ -64,7 +64,8 @@ const getSpecificGame = async (req: Request, res: Response) => {
   if (!id) return res.sendStatus(400);
   try {
     const game = await axiosApi(`games/${id}`, undefined, false);
-    res.status(200).json({ game });
+    const screenshots = await axiosApi(`games/${id}/screenshots`);
+    res.status(200).json({ game, screenshots });
   } catch (err) {
     res.sendStatus(401);
   }

@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 import Image from "next/image";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
 import checkPlaforms from "@/utils/functions/checkPlatforms";
+import IconsSection from "@/app/UI/IconsSection/IconsSection";
 
 type Props = {
   gameItem: Game;
@@ -17,7 +18,6 @@ type WraperProps = {
 type Ref = HTMLDivElement;
 
 const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
-  const { hasPc, hasXbox, hasPlayStation } = checkPlaforms(gameItem.platforms);
 
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
 
@@ -69,28 +69,7 @@ const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
 
       <div className={classes.desc}>
         <h2>{gameName}</h2>
-        <div className={classes.icons}>
-          {hasPc && (
-            <Image
-              alt="PC"
-              src={"/images/windows.png"}
-              width={30}
-              height={30}
-              style={{ marginRight: "-5px" }}
-            />
-          )}
-          {hasXbox && (
-            <Image alt="Xbox" src={"/images/xbox.png"} width={20} height={20} />
-          )}
-          {hasPlayStation && (
-            <Image
-              alt="PlayStation"
-              src={"/images/playstation.png"}
-              width={20}
-              height={20}
-            />
-          )}
-        </div>
+        <IconsSection game={gameItem} />
         <div className={classes.basic}>
           <p className={classes.genre}>{gameGenre}</p>
           <div

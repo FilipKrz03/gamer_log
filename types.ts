@@ -17,8 +17,16 @@ export type Game = {
   name: string;
   background_image: string;
   id: number;
-  relased: string;
+  released: string;
   rating: number;
   genres: { name: string }[];
-  platforms: {platform:{name:string}}[];
+  platforms: { platform: { name: string } }[];
+  description_raw: string;
+  description: TrustedHTML;
+  playtime: number;
+  ratings_count: number;
+};
+
+export type Screenshots = {
+  image: string[];
 };
