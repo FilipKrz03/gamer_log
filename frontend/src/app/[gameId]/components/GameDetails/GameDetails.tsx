@@ -2,6 +2,7 @@
 import { Game, Screenshots } from "../../../../../../types";
 import classes from "./GameDetails.module.scss";
 import MainSection from "../MainSection/MainSection";
+import ScreensCaraousel from "../ScreensCaraousel/ScreensCaraousel";
 
 type Props = {
   gameItem: Game;
@@ -16,6 +17,7 @@ const GameDetails = ({ gameItem, screenshots }: Props) => {
         className={classes.description}
         dangerouslySetInnerHTML={{ __html: gameItem.description }}
       />
+      {screenshots.length > 0 && <ScreensCaraousel screenshots={screenshots} />}
     </div>
   );
 };

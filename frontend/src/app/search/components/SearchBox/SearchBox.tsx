@@ -36,7 +36,7 @@ const SearchBox = ({ genres, platforms }: Props) => {
       inputValue !== "" ? "&search=" + inputValue : ""
     }${genreString}${platformString}`;
 
-    router.push(`/search/${searchString}/`);
+    router.push(`/search/${searchString !== "" ? searchString : "&all"}/`);
   };
 
   const getInputValue = (inputValue: string) => {

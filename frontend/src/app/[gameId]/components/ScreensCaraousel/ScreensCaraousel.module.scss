@@ -1,0 +1,10 @@
+@import '../../../variables.scss';
+
+@include media-ml{
+    .caraousel{
+        width: 90vw!important;
+        .image{
+            width: 90vw!important;
+        }
+    }
+}

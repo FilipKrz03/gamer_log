@@ -27,6 +27,4 @@ export type Game = {
   ratings_count: number;
 };
 
-export type Screenshots = {
-  image: string[];
-};
+export type Screenshots = { image: string }[];
