@@ -25,6 +25,10 @@ export type Game = {
   description: TrustedHTML;
   playtime: number;
   ratings_count: number;
+  website: string;
+  tags: { name: string };
+  developers: { name: string }[];
+  reddit_url: string;
 };
 
 export type Screenshots = { image: string }[];

@@ -1,0 +1,33 @@
+@import "../../../variables.scss";
+
+.aside {
+  @include flexcolumn(center, center);
+  gap: 20px;
+  margin-bottom: 30px;
+  .aside-short-box {
+    @include flexcolumn(center, center);
+    gap: 20px;
+    padding: 1em;
+    border-left: 2px solid $purple;
+    border-right: 2px solid $purple;
+    .aside-item {
+      @include flexrow(space-between, center);
+      width: min(1000px, 90vw);
+      border-bottom: 2px solid $purple;
+      padding-bottom: 10px;
+      a,
+      .developer {
+        font-weight: bolder;
+      }
+    }
+  }
+}
+
+@include media-ml {
+  .aside .aside-short-box .aside-item {
+    font-size: 15px;
+    a {
+      font-size: 15px;
+    }
+  }
+}

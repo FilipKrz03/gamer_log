@@ -8,10 +8,6 @@ type Props = {
 };
 
 const ScreensCaraousel = ({ screenshots }: Props) => {
-  const images = screenshots.map((scrren) => {
-    return { original: scrren.image };
-  });
-
   return (
     <div>
       <h2 style={{ marginBottom: "20px" }}>Game screenshots : </h2>
