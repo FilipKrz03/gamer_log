@@ -1,0 +1,134 @@
+@import "../../../variables.scss";
+
+.main-info {
+  @include flexrow(center, flex-start);
+  gap: 50px;
+  .text-info {
+    @include flexcolumn(space-around, flex-start);
+    align-self: normal;
+    .first-row {
+      @include flexrow(flex-start, center);
+      gap: 10px;
+      .released {
+        padding: 0.2em 0.6em;
+        border-radius: $border-radius;
+        background-color: $light-purple;
+      }
+      .average {
+        .title {
+          font-weight: bolder;
+        }
+      }
+    }
+    h1 {
+      font-size: $font-xxl;
+    }
+    .genres-row {
+      @include flexrow(flex-start, center);
+      gap: 30px;
+      .genre-item {
+        padding: 0.4em 1em;
+        background-color: $orange;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+      }
+    }
+    .rating-row {
+      @include flexrow(flex-start, center);
+      gap: 30px;
+      .count {
+        @include flexcolumn(space-between, center);
+        .number {
+          color: $purple;
+          font-weight: bolder;
+        }
+      }
+
+      .rating-box {
+        padding: 0.5em;
+        box-shadow: $box-shadow;
+        display: grid;
+        place-content: center;
+      }
+    }
+    .actions-row {
+      @include flexrow(flex-start, center);
+      gap: 30px;
+      .content {
+        @include flexrow(space-evenly, center);
+        padding: 0.3em;
+        width: 140px;
+        gap: 10px;
+        border: 1px solid $dark;
+        box-shadow: $box-shadow;
+        cursor: pointer;
+        .icon {
+          color: $orange;
+        }
+        .text {
+          @include flexcolumn(space-between, center);
+          gap: 3px;
+          font-size: $font-s;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1700px) {
+  .main-info {
+    flex-direction: column;
+    .image {
+      width: 65vw !important;
+      aspect-ratio: 2/1.05 !important;
+      height: auto;
+    }
+    .text-info {
+      align-items: center;
+      justify-content: flex-start;
+      gap: 30px;
+    }
+  }
+}
+
+@include media-l {
+  .main-info {
+    .image {
+      width: 85vw !important;
+    }
+  }
+}
+
+@include media-m {
+  .main-info .text-info {
+    h1 {
+      font-size: $font-xl;
+    }
+    .first-row {
+      flex-direction: column;
+      align-items: center;
+      align-self: normal;
+      gap: 15px;
+    }
+  }
+}
+
+@include media-s {
+  .main-info .text-info {
+    h1 {
+      font-size: $font-l;
+    }
+    .genres-row {
+      gap: 0px;
+      justify-content: space-between;
+      align-self: normal;
+      .genre-item {
+        padding: 0.2em 0.6em;
+      }
+    }
+    .rating-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
