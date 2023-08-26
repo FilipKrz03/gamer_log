@@ -8,7 +8,6 @@ export default async function GameInfo() {
   const activePath = headersList.get("x-invoke-path")?.slice(1);
   const gameInfo: Awaited<{ game: Game; screenshots: Screenshots }> =
     await getSpecificGame(parseInt(activePath!));
-  console.log(gameInfo);
 
   return (
     <GameDetails gameItem={gameInfo.game} screenshots={gameInfo.screenshots} />

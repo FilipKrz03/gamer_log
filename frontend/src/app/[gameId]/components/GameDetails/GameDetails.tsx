@@ -9,8 +9,6 @@ type Props = {
 };
 
 const GameDetails = ({ gameItem, screenshots }: Props) => {
-  console.log(gameItem);
-
   return (
     <div className={classes.container}>
       <MainSection gameItem={gameItem} />

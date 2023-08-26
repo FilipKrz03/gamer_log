@@ -67,7 +67,7 @@ const getSpecificGame = async (req: Request, res: Response) => {
     const screenshots = await axiosApi(`games/${id}/screenshots`);
     res.status(200).json({ game, screenshots });
   } catch (err) {
-    res.sendStatus(401);
+    res.status(401).json({ message: "We could not find game" });
   }
 };
 

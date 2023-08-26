@@ -16,7 +16,6 @@ export const getPlafroms = async () => {
 
 export const getSearchedGames = async (searchParams: string) => {
   const res = await axios.get(searchParams);
-  if (res.status !== 200) throw new Error("Failed to fetch data");
   const games = res.data.games;
   return games;
 };
