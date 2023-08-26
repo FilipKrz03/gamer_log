@@ -8,8 +8,7 @@
     @include flexrow(center, flex-start);
     gap: 50px;
     .text-info {
-      @include flexcolumn(space-around, center);
-      gap: 30px;
+      @include flexcolumn(space-around, flex-start);
       align-self: normal;
       .first-row {
         @include flexrow(flex-start, center);
@@ -29,8 +28,8 @@
         font-size: $font-xxl;
       }
       .genres-row {
-        @include flexrow(space-evenly, center);
-        align-self: normal;
+        @include flexrow(flex-start, center);
+        gap: 30px;
         .genre-item {
           padding: 0.4em 1em;
           background-color: $orange;
@@ -39,12 +38,10 @@
         }
       }
       .rating-row {
-        @include flexrow(space-evenly, center);
-        align-self: normal;
+        @include flexrow(flex-start, center);
         gap: 30px;
         .count {
           @include flexcolumn(space-between, center);
-          align-self: normal;
           .number {
             color: $purple;
             font-weight: bolder;
@@ -59,8 +56,8 @@
         }
       }
       .actions-row {
-        @include flexrow(space-evenly, center);
-        align-self: normal;
+        @include flexrow(flex-start, center);
+        gap: 30px;
         .content {
           @include flexrow(space-evenly, center);
           padding: 0.3em;
@@ -69,7 +66,7 @@
           border: 1px solid $dark;
           box-shadow: $box-shadow;
           cursor: pointer;
-          .icon{
+          .icon {
             color: $orange;
           }
           .text {
@@ -83,5 +80,70 @@
   }
   .description {
     font-size: 23px;
+  }
+  .description{
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 1700px) {
+  .container {
+    .main-info {
+      flex-direction: column;
+      .image {
+        width: 65vw !important;
+        aspect-ratio: 2/1.05 !important;
+        height: auto;
+      }
+      .text-info {
+        align-items: center;
+        justify-content: flex-start;
+        gap: 30px;
+      }
+    }
+  }
+}
+
+@include media-l {
+  .container {
+    .main-info {
+      .image {
+        width: 85vw !important;
+      }
+    }
+  }
+}
+
+@include media-m {
+  .container .main-info .text-info {
+    h1 {
+      font-size: $font-xl;
+    }
+    .first-row {
+      flex-direction: column;
+      align-items: center;
+      align-self: normal;
+      gap: 15px;
+    }
+  }
+}
+
+@include media-s {
+  .container .main-info .text-info {
+    h1 {
+      font-size: $font-l;
+    }
+    .genres-row {
+      gap: 0px;
+      justify-content: space-between;
+      align-self: normal;
+      .genre-item {
+        padding: 0.2em 0.6em;
+      }
+    }
+    .rating-row {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 }

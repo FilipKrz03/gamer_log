@@ -22,10 +22,42 @@ const GameDetails = ({ gameItem, screenshots }: Props) => {
   return (
     <div className={classes.container}>
       <div className={classes["main-info"]}>
+        <Image
+          className={classes.image}
+          src={gameItem.background_image}
+          alt="Game image"
+          width={0}
+          height={0}
+          sizes="50vw"
+          style={{
+            aspectRatio: 2 / 1,
+            width: "50vw",
+            height: "auto",
+            margin: "0 auto",
+          }}
+        />
         <div className={classes["text-info"]}>
+          <div className={classes["actions-row"]}>
+            <div className={classes.content}>
+              <div className={classes.text}>
+                <span> Add to </span>
+                <span className={classes.list}>My Games</span>
+              </div>
+              <AddOutlinedIcon className={classes.icon} />
+            </div>
+            <div className={classes.content}>
+              <div className={classes.text}>
+                <span> Add to </span>
+                <span className={classes.list}>Wishlist</span>
+              </div>
+              <CardGiftcardOutlinedIcon className={classes.icon} />
+            </div>
+          </div>
           <div className={classes["first-row"]}>
             <div className={classes.released}>{gameItem.released}</div>
-            <IconsSection game={gameItem} />
+            <div className={classes.icons}>
+              <IconsSection game={gameItem} />
+            </div>
             <p className={classes.average}>
               <span className={classes.title}> Average Playtime: </span>
               {gameItem.playtime} hours
@@ -59,31 +91,7 @@ const GameDetails = ({ gameItem, screenshots }: Props) => {
               />
             </div>
           </div>
-          <div className={classes["actions-row"]}>
-            <div className={classes.content}>
-              <div className={classes.text}>
-                <span> Add to </span>
-                <span className={classes.list}>My Games</span>
-              </div>
-              <AddOutlinedIcon className={classes.icon} />
-            </div>
-            <div className={classes.content}>
-              <div className={classes.text}>
-                <span> Add to </span>
-                <span className={classes.list}>Wishlist</span>
-              </div>
-              <CardGiftcardOutlinedIcon className={classes.icon} />
-            </div>
-          </div>
         </div>
-        <Image
-          src={gameItem.background_image}
-          alt="Game image"
-          width={0}
-          height={0}
-          sizes="50vw"
-          style={{ aspectRatio: 2 / 1, width: "50vw", height: "auto" }}
-        />
       </div>
       <div
         className={classes.description}
