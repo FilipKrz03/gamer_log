@@ -26,7 +26,7 @@ export type Game = {
   playtime: number;
   ratings_count: number;
   website: string;
-  tags: { name: string };
+  tags: { name: string }[];
   developers: { name: string }[];
   reddit_url: string;
 };

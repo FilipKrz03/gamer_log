@@ -8,11 +8,11 @@ type Props = {
 };
 
 const AsideDetails = ({ gameItem }: Props) => {
-
   const windowWidth = useWindowWidth();
 
   const slicedWebsiteLink = gameItem.website?.slice(0, 22) + "...";
   const slicedRedditLink = gameItem.reddit_url?.slice(0, 22) + "...";
+  const tagsArr = gameItem.tags?.slice(0, 8);
 
   return (
     <aside className={classes.aside}>
@@ -36,13 +36,24 @@ const AsideDetails = ({ gameItem }: Props) => {
         )}
         {gameItem.reddit_url && (
           <div className={classes["aside-item"]}>
-            <span>Reddit Url:</span>
+            <span> Reddit Url: </span>
             <a href={gameItem.reddit_url} target="_blank">
               {windowWidth < 600 ? slicedRedditLink : gameItem.reddit_url}
             </a>
           </div>
         )}
       </div>
+      {gameItem.tags!.length > 0 && (
+        <div className={classes.tags}>
+          {gameItem.tags?.map((tag) => {
+            return (
+              <div key={tag.name} className={classes.tag}>
+                {tag.name}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </aside>
   );
 };

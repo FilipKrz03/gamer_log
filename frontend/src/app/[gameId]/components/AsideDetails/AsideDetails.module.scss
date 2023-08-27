@@ -21,6 +21,20 @@
       }
     }
   }
+  .tags {
+    @include flexrow(flex-start, center);
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    .tag {
+      background-color: $light-purple;
+      padding: 0.3em 0.8em;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+      border: 1px solid black;
+    }
+  }
 }
 
 @include media-ml {
@@ -29,5 +43,9 @@
     a {
       font-size: 15px;
     }
+  }
+  .aside .tags {
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
