@@ -75,10 +75,14 @@ const RegisterForm = () => {
             })}
           />
           {errors.repeatPassword && (
-            <Alert message={errors.repeatPassword.message! || "Your passwords do no match"} />
+            <Alert
+              message={
+                errors.repeatPassword.message! || "Your passwords do no match"
+              }
+            />
           )}
         </div>
-        <Button desc="Log in" isSubmit={true} />
+        <Button desc="Register" isSubmit={true} />
       </ThemeProvider>
       <p>
         Already have an account ? <Link href={"/login"}>Log in</Link>

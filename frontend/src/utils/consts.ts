@@ -22,8 +22,8 @@ export const navMobileLinks: { icon: any; desc: string; link: string }[] = [
   { icon: HomeOutlinedIcon, desc: "Home", link: "/" },
   { icon: InfoOutlinedIcon, desc: "About", link: "/about" },
   { icon: SearchIcon, desc: "Search", link: "/search" },
-  { icon: PersonOutlinedIcon, desc: "Log in", link: "/login" },
   { icon: ExploreOutlinedIcon, desc: "Explore", link: "/explore" },
+  { icon: PersonOutlinedIcon, desc: "Log in", link: "/login" },
 ];
 
 export const informations: { icon: any; title: string; desc: string }[] = [

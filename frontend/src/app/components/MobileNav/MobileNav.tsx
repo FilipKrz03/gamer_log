@@ -16,10 +16,20 @@ const MobileNav = () => {
             <li key={link.desc}>
               <Link
                 href={link.link}
-                className={pathname === link.link ? classes.active : ""}
+                className={
+                  pathname === link.link ||
+                  (pathname === "/register" && link.desc === "Log in")
+                    ? classes.active
+                    : ""
+                }
               >
                 <Icon className={classes.icon} />
-                {pathname === link.link && <p>{link.desc}</p>}
+                {pathname === link.link ||
+                (pathname === "/register" && link.desc === "Log in") ? (
+                  <p>{link.desc}</p>
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
           );
