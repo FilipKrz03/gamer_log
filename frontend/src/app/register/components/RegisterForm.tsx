@@ -4,16 +4,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
 import { motion } from "framer-motion";
-import classes from "./LoginForm.module.scss";
+import classes from "./RegisterForm.module.scss";
 import Button from "@/app/UI/Button/Button";
 import Alert from "@/app/UI/Alert/Alert";
 
 type Inputs = {
   email: string;
   password: string;
+  repeatPassword: string;
 };
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const {
     register,
     handleSubmit,
@@ -57,13 +58,33 @@ const LoginForm = () => {
             <Alert message="Password need to be at least 6 characters long" />
           )}
         </div>
+        <div className={classes["input-control"]}>
+          <TextField
+            className={classes.field}
+            type="password"
+            fullWidth
+            label="Password"
+            {...register("repeatPassword", {
+              required: true,
+              minLength: 6,
+              validate: (val: string) => {
+                if (watch("password") !== val) {
+                  return "Your passwords do no match";
+                }
+              },
+            })}
+          />
+          {errors.repeatPassword && (
+            <Alert message={errors.repeatPassword.message! || "Your passwords do no match"} />
+          )}
+        </div>
         <Button desc="Log in" isSubmit={true} />
       </ThemeProvider>
       <p>
-        Do not have account ? <Link href={"/register"}>Sign up</Link>
+        Already have an account ? <Link href={"/login"}>Log in</Link>
       </p>
     </motion.form>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
