@@ -1,5 +1,7 @@
+require("dotenv").config();
 import User from "../models/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { validateRegister } from "../utils/validate";
 
@@ -36,6 +38,29 @@ const handleLogin = async (req: Request, res: Response) => {
   const matchPwd = await bcrypt.compare(password, user.password);
 
   if (!matchPwd) return res.sendStatus(401);
+
+  const accesToken = jwt.sign(
+    { email: email },
+    process.env.ACCESS_TOKEN_SECRET!,
+    { expiresIn: "15m" }
+  );
+
+  const refreshToken = jwt.sign(
+    { email: email },
+    process.env.REFRESH_TOKEN_SECRET!,
+    { expiresIn: "1d" }
+  );
+
+  user.token = refreshToken;
+  await user.save();
+
+  res.cookie("jwt", refreshToken, {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+  res.json({ accesToken, email });
 };
 
 export { handleNewUser, handleLogin };
