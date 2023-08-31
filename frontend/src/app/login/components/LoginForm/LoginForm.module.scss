@@ -13,3 +13,9 @@
     color: $orange;
   }
 }
+
+@include media-s {
+  .form {
+    width: 300px;
+  }
+}

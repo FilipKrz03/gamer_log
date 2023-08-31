@@ -11,3 +11,24 @@
     font-size: $font-xxl;
   }
 }
+
+@include media-m{
+  .title{
+    h1{
+      font-size: $font-xxl;
+    }
+    p{
+      font-size: $font-xl;
+    }
+  }
+}
+@include media-s{
+  .title{
+    h1{
+      font-size: $font-l;
+    }
+    p{
+      font-size: $font-ml;
+    }
+  }
+}

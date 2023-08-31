@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
+import { motion } from "framer-motion";
 import classes from "./LoginForm.module.scss";
 import Button from "@/app/UI/Button/Button";
 
@@ -22,7 +23,13 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {};
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+    <motion.form
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ delay: 0.3, duration: 0.3 }}
+      onSubmit={handleSubmit(onSubmit)}
+      className={classes.form}
+    >
       <ThemeProvider theme={textfieldTheme}>
         <div className={classes["input-control"]}>
           <TextField
@@ -48,7 +55,7 @@ const LoginForm = () => {
       <p>
         Do not have account ? <Link href={"/register"}>Sign up</Link>
       </p>
-    </form>
+    </motion.form>
   );
 };
 

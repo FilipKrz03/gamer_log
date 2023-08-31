@@ -5,3 +5,12 @@
   width: 100%;
   @include flexrow(space-evenly, center);
 }
+
+@include media-l {
+  .container {
+    margin-top: 50px;
+    flex-direction: column;
+    min-height: auto;
+    gap: 70px;
+  }
+}
