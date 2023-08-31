@@ -1,0 +1,7 @@
+@import "../../variables.scss";
+
+.container {
+  min-height: calc(100vh - 140px);
+  width: 100%;
+  @include flexrow(space-evenly, center);
+}

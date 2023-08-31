@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+
+.title {
+  @include flexcolumn(center, center);
+  gap: 25px;
+  h1 {
+    font-size: 62px;
+    font-weight: bolder;
+  }
+  p{
+    font-size: $font-xxl;
+  }
+}

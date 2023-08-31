@@ -1,0 +1,15 @@
+@import "../../../variables.scss";
+
+.form {
+  @include flexcolumn(center, center);
+  gap: 30px;
+  width: 350px;
+  .input-control {
+    width: 100%;
+    background-color: $white;
+  }
+  a {
+    text-decoration: underline;
+    color: $orange;
+  }
+}
