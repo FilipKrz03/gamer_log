@@ -23,4 +23,19 @@ const handleNewUser = async (req: Request, res: Response) => {
   }
 };
 
-export {handleNewUser}
+const handleLogin = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  if (!email || !password)
+    return res.status(400).json({ message: "Password and email are required" });
+
+  const user = await User.findOne({ where: { email } });
+
+  if (!user) return res.sendStatus(401);
+
+  const matchPwd = await bcrypt.compare(password, user.password);
+
+  if (!matchPwd) return res.sendStatus(401);
+};
+
+export { handleNewUser, handleLogin };
