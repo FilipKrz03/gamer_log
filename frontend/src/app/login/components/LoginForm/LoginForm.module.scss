@@ -6,7 +6,11 @@
   width: 350px;
   .input-control {
     width: 100%;
-    background-color: $white;
+    @include flexcolumn(center, flex-start);
+    gap: 5px;
+    .field {
+      background-color: $white;
+    }
   }
   a {
     text-decoration: underline;

@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+
+.alert {
+  @include flexrow(center, center);
+  gap: 5px;
+  font-size: $font-xs;
+  color: $red;
+  .icon {
+    color: $red;
+  }
+}

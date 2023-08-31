@@ -6,6 +6,7 @@ import { textfieldTheme } from "@/utils/themes";
 import { motion } from "framer-motion";
 import classes from "./LoginForm.module.scss";
 import Button from "@/app/UI/Button/Button";
+import Alert from "@/app/UI/Alert/Alert";
 
 type Inputs = {
   email: string;
@@ -22,6 +23,8 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {};
 
+  console.log(errors);
+
   return (
     <motion.form
       initial={{ x: 100, opacity: 0 }}
@@ -33,6 +36,7 @@ const LoginForm = () => {
       <ThemeProvider theme={textfieldTheme}>
         <div className={classes["input-control"]}>
           <TextField
+            className={classes.field}
             fullWidth
             label="Email"
             {...register("email", {
@@ -41,14 +45,19 @@ const LoginForm = () => {
                 /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             })}
           />
+          {errors.email && <Alert message="Enter valid email adress" />}
         </div>
         <div className={classes["input-control"]}>
           <TextField
+            className={classes.field}
             type="password"
             fullWidth
             label="Password"
             {...register("password", { required: true, minLength: 6 })}
           />
+          {errors.password && (
+            <Alert message="Password need to be at least 6 characters long" />
+          )}
         </div>
         <Button desc="Log in" isSubmit={true} />
       </ThemeProvider>
