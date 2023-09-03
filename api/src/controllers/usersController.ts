@@ -39,7 +39,7 @@ const handleLogin = async (req: Request, res: Response) => {
 
   if (!matchPwd) return res.sendStatus(401);
 
-  const accesToken = jwt.sign(
+  const accessToken = jwt.sign(
     { email: email },
     process.env.ACCESS_TOKEN_SECRET!,
     { expiresIn: "15m" }
@@ -57,10 +57,34 @@ const handleLogin = async (req: Request, res: Response) => {
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
     sameSite: "none",
-    secure: true,
     maxAge: 24 * 60 * 60 * 1000,
   });
-  res.json({ accesToken, email });
+  res.json({ accessToken, email });
 };
 
-export { handleNewUser, handleLogin };
+const handleRefresh = async (req: Request, res: Response) => {
+  const cookies = req.cookies;
+
+  if (!cookies?.jwt) return res.sendStatus(401);
+
+  const refreshToken = cookies.jwt;
+
+  const user = await User.findOne({ where: { token: refreshToken } });
+  if (!user) return res.sendStatus(403);
+
+  jwt.verify(
+    refreshToken,
+    process.env.REFRESH_TOKEN_SECRET!,
+    (err: any, decoded: any) => {
+      if (err || decoded.email !== user.email) return res.sendStatus(403);
+      const accessToken = jwt.sign(
+        { email: decoded.email },
+        process.env.ACCESS_TOKEN_SECRET!,
+        { expiresIn: "15m" }
+      );
+      res.json({ accessToken, email: user.email });
+    }
+  );
+};
+
+export { handleNewUser, handleLogin, handleRefresh };
