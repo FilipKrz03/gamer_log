@@ -12,6 +12,7 @@ import Alert from "@/app/UI/Alert/Alert";
 import axios from "@/utils/axios";
 import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 import { userActions } from "@/store/userSlice";
+import { AxiosError, isAxiosError } from "axios";
 
 type Inputs = {
   email: string;
@@ -46,10 +47,10 @@ const LoginForm = () => {
       );
       console.log(login.data);
       dispatch(userActions.setUser(login.data));
-    } catch (err) {
+    } catch (err: AxiosError | any) {
       setShowError(true);
-      if (typeof err === "string") {
-        setErrMessage(err.toUpperCase());
+      if (isAxiosError(err)) {
+        setErrMessage(err.response?.data.message || err.message);
       } else if (err instanceof Error) {
         setErrMessage(err.message);
       }

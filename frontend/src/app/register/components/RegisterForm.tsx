@@ -11,6 +11,7 @@ import Alert from "@/app/UI/Alert/Alert";
 import axios from "@/utils/axios";
 import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 import Success from "@/app/UI/Success/Success";
+import { AxiosError, isAxiosError } from "axios";
 
 type Inputs = {
   email: string;
@@ -19,7 +20,6 @@ type Inputs = {
 };
 
 const RegisterForm = () => {
-
   const [showSucces, setShowSucces] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
@@ -43,10 +43,10 @@ const RegisterForm = () => {
         password: data.password,
       });
       setShowSucces(true);
-    } catch (err) {
+    } catch (err: AxiosError | any) {
       setShowError(true);
-      if (typeof err === "string") {
-        setErrMessage(err.toUpperCase());
+      if (isAxiosError(err)) {
+        setErrMessage(err.response?.data.message || err.message);
       } else if (err instanceof Error) {
         setErrMessage(err.message);
       }

@@ -14,7 +14,7 @@ const handleNewUser = async (req: Request, res: Response) => {
   const findMail = await User.findOne({ where: { email } });
 
   if (findMail)
-    return res.status(409).json({ message: "This email already exists" });
+    return res.status(409).json({ message: "This email already exists." });
 
   try {
     const hashedPwd = await bcrypt.hash(password, 10);
@@ -33,11 +33,12 @@ const handleLogin = async (req: Request, res: Response) => {
 
   const user = await User.findOne({ where: { email } });
 
-  if (!user) return res.sendStatus(401);
+  if (!user)
+    return res.status(401).json({ message: "We could not find this user" });
 
   const matchPwd = await bcrypt.compare(password, user.password);
 
-  if (!matchPwd) return res.sendStatus(401);
+  if (!matchPwd) return res.status(401).json({ message: "Bad password" });
 
   const accessToken = jwt.sign(
     { email: email },
@@ -57,7 +58,7 @@ const handleLogin = async (req: Request, res: Response) => {
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
     sameSite: "none",
-    secure:true , 
+    secure: true,
     maxAge: 24 * 60 * 60 * 1000,
   });
   res.json({ accessToken, email });
