@@ -18,6 +18,7 @@ const userSlice = createSlice({
     ) {
       state.accessToken = action.payload.accessToken;
       state.email = action.payload.email;
+      state.isLogged = true;
     },
   },
 });

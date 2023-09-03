@@ -1,12 +1,15 @@
 "use client";
 import { navLinks } from "@/utils/consts";
+import { useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
 import classes from "./Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { RootState } from "@/store";
 
 const Header = () => {
   const pathname = usePathname();
+  const isLogged = useSelector((state: RootState) => state.users.isLogged);
 
   return (
     <header className={classes.header}>
@@ -30,18 +33,37 @@ const Header = () => {
               <li key={link.desc}>
                 <Link
                   href={link.link}
-                  className={
-                    pathname === link.link ||
-                    (pathname === "/register" && link.desc === "Log in")
-                      ? classes.active
-                      : ""
-                  }
+                  className={pathname === link.link ? classes.active : ""}
                 >
                   {link.desc}
                 </Link>
               </li>
             );
           })}
+          {!isLogged && (
+            <li>
+              <Link
+                className={
+                  pathname === "/login" || pathname === "/register"
+                    ? classes.active
+                    : ""
+                }
+                href={"/login"}
+              >
+                Log In
+              </Link>
+            </li>
+          )}
+          {isLogged && (
+            <li>
+              <Link
+                className={pathname.includes("dashboard") ? classes.active : ""}
+                href={"/dashboard"}
+              >
+                Dashboard
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

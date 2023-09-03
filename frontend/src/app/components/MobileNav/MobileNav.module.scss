@@ -12,6 +12,7 @@
     bottom: 0;
     width: 100vw !important;
     height: 80px;
+    font-size: 17px;
     border-radius: $border-radius $border-radius 0px 0px;
     background-color: $light-purple;
     padding: 1.3em;
@@ -28,7 +29,7 @@
         gap: 7px;
         background-color: $purple;
         color: $white;
-        width: 130px;
+        width: 150px;
         height: 52px;
         border-radius: $border-radius;
         .icon {

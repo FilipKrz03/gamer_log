@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, ThemeProvider } from "@mui/material";
@@ -25,6 +26,7 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     register,
@@ -45,8 +47,8 @@ const LoginForm = () => {
           withCredentials: true,
         }
       );
-      console.log(login.data);
       dispatch(userActions.setUser(login.data));
+      router.push("/dashboard");
     } catch (err: AxiosError | any) {
       setShowError(true);
       if (isAxiosError(err)) {
