@@ -5,6 +5,7 @@ import PageContainer from "./UI/PageContainer/PageContainer";
 import ProgressBarComponent from "./UI/ProgresBar/ProgresBar";
 import { Comfortaa } from "next/font/google";
 import "./globals.scss";
+import ReduxProvider from "./UI/ReduxProvider/ReduxProvider";
 
 const comfortaa = Comfortaa({
   weight: ["400", "700"],
@@ -25,14 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={comfortaa.className}>
-        <Suspense>
-          <ProgressBarComponent />
-        </Suspense>
-        <PageContainer>
-          <Header />
-          {children}
-        </PageContainer>
-        <MobileNav />
+        <ReduxProvider>
+          <Suspense>
+            <ProgressBarComponent />
+          </Suspense>
+          <PageContainer>
+            <Header />
+            {children}
+          </PageContainer>
+          <MobileNav />
+        </ReduxProvider>
       </body>
     </html>
   );

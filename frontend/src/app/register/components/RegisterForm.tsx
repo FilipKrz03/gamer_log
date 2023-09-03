@@ -19,7 +19,7 @@ type Inputs = {
 };
 
 const RegisterForm = () => {
-  
+
   const [showSucces, setShowSucces] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
@@ -43,7 +43,6 @@ const RegisterForm = () => {
         password: data.password,
       });
       setShowSucces(true);
-      console.log(register.data);
     } catch (err) {
       setShowError(true);
       if (typeof err === "string") {
