@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import classes from "./LoginForm.module.scss";
 import Button from "@/app/UI/Button/Button";
 import Alert from "@/app/UI/Alert/Alert";
+import axios from "@/utils/axios";
 
 type Inputs = {
   email: string;
@@ -21,7 +22,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {};
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {};
 
   return (
     <motion.form
