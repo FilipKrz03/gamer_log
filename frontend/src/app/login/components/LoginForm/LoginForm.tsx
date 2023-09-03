@@ -36,10 +36,15 @@ const LoginForm = () => {
     setErrMessage("");
     setShowError(false);
     try {
-      const login = await axios.post("/login", {
-        email: data.email,
-        password: data.password,
-      });
+      const login = await axios.post(
+        "/login",
+        JSON.stringify({ email: data.email, password: data.password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(login.data);
       dispatch(userActions.setUser(login.data));
     } catch (err) {
       setShowError(true);
