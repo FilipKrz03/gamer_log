@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
@@ -10,6 +11,7 @@ import Button from "@/app/UI/Button/Button";
 import Alert from "@/app/UI/Alert/Alert";
 import axios from "@/utils/axios";
 import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
+import { userActions } from "@/store/userSlice";
 
 type Inputs = {
   email: string;
@@ -20,6 +22,8 @@ const LoginForm = () => {
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -36,7 +40,7 @@ const LoginForm = () => {
         email: data.email,
         password: data.password,
       });
-      console.log(login);
+      dispatch(userActions.setUser(login.data));
     } catch (err) {
       setShowError(true);
       if (typeof err === "string") {
