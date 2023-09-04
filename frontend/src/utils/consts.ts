@@ -62,10 +62,26 @@ export const exploreOpitons: {
   desc: string;
   imagePath: string;
 }[] = [
-  { link: "", desc: "With friends", imagePath: "/images/multi.svg" },
-  { link: "", desc: "Scary nights", imagePath: "/images/scary.svg" },
-  { link: "", desc: "Sport passion", imagePath: "/images/sport.svg" },
-  { link: "", desc: "Most popular", imagePath: "/images/popular.svg" },
+  {
+    link: "/search/&tags=multiplayer",
+    desc: "With friends",
+    imagePath: "/images/multi.svg",
+  },
+  {
+    link: "/search/&tags=horror,zombie",
+    desc: "Scary nights",
+    imagePath: "/images/scary.svg",
+  },
+  {
+    link: "/search/&tags=sport",
+    desc: "Sport passion",
+    imagePath: "/images/sport.svg",
+  },
+  {
+    link: "/search/&all",
+    desc: "Most popular",
+    imagePath: "/images/popular.svg",
+  },
 ];
 
 export const dashboardOpitons: {

@@ -18,6 +18,7 @@ const MainContainer = () => {
         {dashboardOpitons.map((option) => {
           return (
             <OptionItem
+              link={option.link}
               key={option.imagePath}
               desc={option.desc}
               imagePath={option.imagePath}

@@ -10,6 +10,7 @@ const MainContainer = () => {
         {exploreOpitons.map((option) => {
           return (
             <OptionItem
+              link={option.link}
               key={option.imagePath}
               desc={option.desc}
               imagePath={option.imagePath}
