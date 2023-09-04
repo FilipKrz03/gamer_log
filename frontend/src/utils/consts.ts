@@ -56,3 +56,14 @@ export const statisticItems: { icon: any; number: number; desc: string }[] = [
   { icon: SportsEsportsOutlinedIcon, number: 20000, desc: "Games" },
   { icon: LanguageOutlinedIcon, number: 195999, desc: "Visits" },
 ];
+
+export const exploreOpitons: {
+  link: string;
+  desc: string;
+  imagePath: string;
+}[] = [
+  { link: "", desc: "With friends", imagePath: "/images/multi.svg" },
+  { link: "", desc: "Scary nights", imagePath: "/images/scary.svg" },
+  { link: "", desc: "Sport passion", imagePath: "/images/sport.svg" },
+  { link: "", desc: "Most popular", imagePath: "/images/popular.svg" },
+];
