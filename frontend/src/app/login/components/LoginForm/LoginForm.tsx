@@ -32,6 +32,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -47,6 +48,7 @@ const LoginForm = () => {
           withCredentials: true,
         }
       );
+      console.log(login.data);
       dispatch(userActions.setUser(login.data));
       router.push("/dashboard");
     } catch (err: AxiosError | any) {
@@ -58,6 +60,7 @@ const LoginForm = () => {
       }
     } finally {
       setLoading(false);
+      reset();
     }
   };
 

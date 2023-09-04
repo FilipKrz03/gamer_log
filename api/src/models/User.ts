@@ -15,6 +15,7 @@ interface UserModel
   id: CreationOptional<number>;
   email: string;
   password: string;
+  username: string;
   token?: string;
 }
 
@@ -29,6 +30,9 @@ const User = sequelize.define<UserModel>("User", {
     type: DataTypes.STRING,
   },
   password: {
+    type: DataTypes.STRING,
+  },
+  username: {
     type: DataTypes.STRING,
   },
   token: {

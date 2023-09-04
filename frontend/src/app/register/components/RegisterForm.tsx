@@ -17,6 +17,7 @@ type Inputs = {
   email: string;
   password: string;
   repeatPassword: string;
+  username: string;
 };
 
 const RegisterForm = () => {
@@ -29,6 +30,7 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     watch,
+    reset ,
     formState: { errors },
   } = useForm<Inputs>();
 
@@ -41,6 +43,7 @@ const RegisterForm = () => {
       const register = await axios.post("/register", {
         email: data.email,
         password: data.password,
+        username:data.username , 
       });
       setShowSucces(true);
     } catch (err: AxiosError | any) {
@@ -52,6 +55,7 @@ const RegisterForm = () => {
       }
     } finally {
       setLoading(false);
+      reset();
     }
   };
 
@@ -82,6 +86,20 @@ const RegisterForm = () => {
               })}
             />
             {errors.email && <Alert message="Enter valid email adress" />}
+          </div>
+          <div className={classes["input-control"]}>
+            <TextField
+              className={classes.field}
+              fullWidth
+              label="Username"
+              {...register("username", {
+                required: true,
+                minLength: 3,
+              })}
+            />
+            {errors.username && (
+              <Alert message="Username needs to be at least 3 characters length" />
+            )}
           </div>
           <div className={classes["input-control"]}>
             <TextField

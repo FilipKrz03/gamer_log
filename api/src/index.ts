@@ -10,7 +10,6 @@ import credentials from "./middleware/credentials";
 import gamesRouter from "./routes/gamesRoute";
 import usersRouter from "./routes/usersRoute";
 
-
 const User = require("./models/User");
 
 const app = express();

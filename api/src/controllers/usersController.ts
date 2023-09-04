@@ -6,7 +6,7 @@ import { Request, Response } from "express";
 import { validateRegister } from "../utils/validate";
 
 const handleNewUser = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
   const { error } = validateRegister(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
@@ -18,7 +18,7 @@ const handleNewUser = async (req: Request, res: Response) => {
 
   try {
     const hashedPwd = await bcrypt.hash(password, 10);
-    await User.create({ email, password: hashedPwd });
+    await User.create({ email, password: hashedPwd, username });
     res.status(201).json({ message: "User created" });
   } catch (err) {
     res.status(500).json({ message: "Something went wrong" });
@@ -61,7 +61,7 @@ const handleLogin = async (req: Request, res: Response) => {
     secure: true,
     maxAge: 24 * 60 * 60 * 1000,
   });
-  res.json({ accessToken, email });
+  res.json({ accessToken, email, username: user.username });
 };
 
 const handleRefresh = async (req: Request, res: Response) => {
