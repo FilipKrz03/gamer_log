@@ -6,3 +6,18 @@
   justify-content: space-between;
   width: 100%;
 }
+
+@include media-xxl {
+  .container {
+    grid-template-columns: repeat(2, 280px);
+    row-gap: 40px;
+    justify-content: space-evenly;
+  }
+}
+
+@include media-m{
+  .container{
+    margin-top: 30px;
+    grid-template-columns: repeat(1,280px);
+  }
+}
