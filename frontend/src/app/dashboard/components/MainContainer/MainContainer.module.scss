@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+
+.main-container {
+  min-height: calc(100vh - 140px);
+  @include flexcolumn(space-evenly, center);
+  p{
+    font-size: $font-xl;
+    .hello {
+      font-size: $font-xxl;
+      font-weight: bolder;
+    }
+  }
+}
+
+@include media-xxl{
+    .main-container p {
+        margin-top: 20px;
+    }
+}

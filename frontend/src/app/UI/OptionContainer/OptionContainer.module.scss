@@ -10,14 +10,14 @@
 @include media-xxl {
   .container {
     grid-template-columns: repeat(2, 280px);
-    row-gap: 40px;
+    row-gap: 75px;
     justify-content: space-evenly;
   }
 }
 
 @include media-m{
   .container{
-    margin-top: 30px;
+    margin-top: 20px;
     grid-template-columns: repeat(1,280px);
   }
 }

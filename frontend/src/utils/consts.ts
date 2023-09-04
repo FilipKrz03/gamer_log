@@ -67,3 +67,14 @@ export const exploreOpitons: {
   { link: "", desc: "Sport passion", imagePath: "/images/sport.svg" },
   { link: "", desc: "Most popular", imagePath: "/images/popular.svg" },
 ];
+
+export const dashboardOpitons: {
+  link: string;
+  desc: string;
+  imagePath: string;
+}[] = [
+  { link: "", desc: "My games", imagePath: "/images/games.svg" },
+  { link: "", desc: "Wish list", imagePath: "/images/wish.svg" },
+  { link: "", desc: "Games for you", imagePath: "/images/personalized.svg" },
+  { link: "", desc: "Settings", imagePath: "/images/settings.svg" },
+];
