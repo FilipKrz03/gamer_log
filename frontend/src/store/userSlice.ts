@@ -29,6 +29,13 @@ const userSlice = createSlice({
       state.userId = action.payload.userId;
       state.isLogged = true;
     },
+    logoutUser(state) {
+      state.isLogged = false;
+      state.accessToken = null;
+      state.email = null;
+      state.username = null;
+      state.userId = null;
+    },
   },
 });
 

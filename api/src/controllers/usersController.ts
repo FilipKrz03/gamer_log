@@ -44,7 +44,7 @@ const handleLogin = async (req: Request, res: Response) => {
   const accessToken = jwt.sign(
     { userId: user.id },
     process.env.ACCESS_TOKEN_SECRET!,
-    { expiresIn: "15s" }
+    { expiresIn: "15m" }
   );
 
   const refreshToken = jwt.sign(
@@ -59,7 +59,7 @@ const handleLogin = async (req: Request, res: Response) => {
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
     sameSite: "none",
-    secure:true , 
+    secure: true,
     maxAge: 24 * 60 * 60 * 1000,
   });
   res.json({ accessToken, email, username: user.username, userId: user.id });
@@ -83,7 +83,7 @@ const handleRefresh = async (req: Request, res: Response) => {
       const accessToken = jwt.sign(
         { userId: decoded.userId },
         process.env.ACCESS_TOKEN_SECRET!,
-        { expiresIn: "15s" }
+        { expiresIn: "15m" }
       );
       res.json({
         accessToken,
