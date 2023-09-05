@@ -44,7 +44,7 @@ const handleLogin = async (req: Request, res: Response) => {
   const accessToken = jwt.sign(
     { userId: user.id },
     process.env.ACCESS_TOKEN_SECRET!,
-    { expiresIn: "15m" }
+    { expiresIn: "15s" }
   );
 
   const refreshToken = jwt.sign(
@@ -59,7 +59,7 @@ const handleLogin = async (req: Request, res: Response) => {
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
     sameSite: "none",
-    secure: true,
+    secure:true , 
     maxAge: 24 * 60 * 60 * 1000,
   });
   res.json({ accessToken, email, username: user.username, userId: user.id });
@@ -68,22 +68,22 @@ const handleLogin = async (req: Request, res: Response) => {
 const handleRefresh = async (req: Request, res: Response) => {
   const cookies = req.cookies;
 
-  if (!cookies?.jwt) return res.sendStatus(401);
-
+  if (!cookies?.jwt) return res.sendStatus(403);
   const refreshToken = cookies.jwt;
 
   const user = await User.findOne({ where: { token: refreshToken } });
+
   if (!user) return res.sendStatus(403);
 
   jwt.verify(
     refreshToken,
     process.env.REFRESH_TOKEN_SECRET!,
     (err: any, decoded: any) => {
-      if (err || decoded.email !== user.email) return res.sendStatus(403);
+      if (err) return res.sendStatus(403);
       const accessToken = jwt.sign(
-        { userId: decoded.usedId },
+        { userId: decoded.userId },
         process.env.ACCESS_TOKEN_SECRET!,
-        { expiresIn: "15m" }
+        { expiresIn: "15s" }
       );
       res.json({
         accessToken,
