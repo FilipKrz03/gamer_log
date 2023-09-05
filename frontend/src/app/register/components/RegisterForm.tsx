@@ -50,9 +50,7 @@ const RegisterForm = () => {
       setShowError(true);
       if (isAxiosError(err)) {
         setErrMessage(err.response?.data.message || err.message);
-      } else if (err instanceof Error) {
-        setErrMessage(err.message);
-      }
+      } 
     } finally {
       setLoading(false);
       reset();

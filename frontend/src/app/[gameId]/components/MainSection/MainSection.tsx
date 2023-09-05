@@ -12,6 +12,7 @@ import IconsSection from "@/app/UI/IconsSection/IconsSection";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
 import StatusNotification from "@/app/UI/StatusNotification/StatusNotification";
+import { isAxiosError, AxiosError } from "axios";
 
 type Props = {
   gameItem: Game;
@@ -21,7 +22,6 @@ const MainSection = ({ gameItem }: Props) => {
   const statuses = useSelector((state: RootState) => state.status);
   const isLogged = useSelector((state: RootState) => state.users.isLogged);
   const dispatch = useDispatch();
-  console.log(statuses);
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -37,8 +37,15 @@ const MainSection = ({ gameItem }: Props) => {
       });
       if (request.status === 200)
         dispatch(setSuccesMessage("Game added to your games !") as any);
-    } catch (err) {
-      dispatch(setErrorMessage("Something went wrong ") as any);
+    } catch (err: AxiosError | any) {
+      if (isAxiosError(err)) {
+        console.log(err);
+        dispatch(
+          setErrorMessage(err.response?.data.message || err.message) as any
+        );
+      } else if (err instanceof Error) {
+        dispatch(setErrorMessage("Something went wrong ") as any);
+      }
     }
   };
 

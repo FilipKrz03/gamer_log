@@ -98,8 +98,16 @@ const handleRefresh = async (req: Request, res: Response) => {
 const addGameToUsersGames = async (req: any, res: Response) => {
   const { gameId } = req.body;
   const userId = req.userId;
-  console.log(userId);
+
   if (!gameId || !userId) return res.sendStatus(403);
+
+  const duplicateGame = await UserGames.findOne({
+    where: { gameId, UserId: userId },
+  });
+
+  if (duplicateGame)
+    return res.status(409).json({ message: "Game already in your games" });
+
   await UserGames.create({ gameId, UserId: userId });
   res.status(200).json({ message: "Game added!" });
 };
