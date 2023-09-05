@@ -16,8 +16,9 @@ type Props = {
 };
 
 const MainSection = ({ gameItem }: Props) => {
-  const userId = useSelector((state: RootState) => state.users.userId);
 
+  const userId = useSelector((state: RootState) => state.users.userId);
+  
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
   const genres = gameItem.genres.slice(0, 3);
 
