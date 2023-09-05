@@ -1,5 +1,6 @@
 require("dotenv").config();
 import User from "../models/User";
+import UserGames from "../models/UserGames";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
@@ -61,7 +62,7 @@ const handleLogin = async (req: Request, res: Response) => {
     secure: true,
     maxAge: 24 * 60 * 60 * 1000,
   });
-  res.json({ accessToken, email, username: user.username });
+  res.json({ accessToken, email, username: user.username, userId: user.id });
 };
 
 const handleRefresh = async (req: Request, res: Response) => {
@@ -89,4 +90,11 @@ const handleRefresh = async (req: Request, res: Response) => {
   );
 };
 
-export { handleNewUser, handleLogin, handleRefresh };
+const addGameToUsersGames = async (req: Request, res: Response) => {
+  const { gameId, userId } = req.body;
+  if (!gameId || !userId) return res.sendStatus(403);
+  await UserGames.create({ gameId, UserId: userId });
+  res.status(200).json({ message: "Game added!" });
+};
+
+export { handleNewUser, handleLogin, handleRefresh , addGameToUsersGames };

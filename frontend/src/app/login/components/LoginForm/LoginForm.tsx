@@ -48,7 +48,6 @@ const LoginForm = () => {
           withCredentials: true,
         }
       );
-      console.log(login.data);
       dispatch(userActions.setUser(login.data));
       router.push("/dashboard");
     } catch (err: AxiosError | any) {

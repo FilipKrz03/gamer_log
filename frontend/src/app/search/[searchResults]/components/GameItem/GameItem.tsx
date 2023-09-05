@@ -4,7 +4,6 @@ import Link from "next/link";
 import { forwardRef } from "react";
 import Image from "next/image";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
-import checkPlaforms from "@/utils/functions/checkPlatforms";
 import IconsSection from "@/app/UI/IconsSection/IconsSection";
 
 type Props = {
@@ -18,7 +17,7 @@ type WraperProps = {
 type Ref = HTMLDivElement;
 
 const GameItem = forwardRef<Ref, Props>(({ gameItem }, ref) => {
-
+  
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
 
   const gameName =

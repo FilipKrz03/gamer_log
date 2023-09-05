@@ -1,4 +1,5 @@
 require("dotenv").config();
+import { Sequelize } from "sequelize";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -10,7 +11,8 @@ import credentials from "./middleware/credentials";
 import gamesRouter from "./routes/gamesRoute";
 import usersRouter from "./routes/usersRoute";
 
-const User = require("./models/User");
+import User from "./models/User";
+import UserGames from "./models/UserGames";
 
 const app = express();
 
@@ -23,6 +25,9 @@ app.use(express.json());
 
 app.use("/", gamesRouter);
 app.use("/", usersRouter);
+
+User.hasMany(UserGames);
+UserGames.hasMany(User);
 
 sequelize
   .sync()
