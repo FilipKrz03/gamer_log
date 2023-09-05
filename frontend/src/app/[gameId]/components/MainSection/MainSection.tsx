@@ -28,41 +28,21 @@ const MainSection = ({ gameItem }: Props) => {
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
   const genres = gameItem.genres.slice(0, 3);
 
-  const addToMyGamesHandler = async () => {
+  const addToListHandler = async (path: string, listName: string) => {
     if (!isLogged)
       return dispatch(setErrorMessage("You need to be logged !") as any);
     try {
-      const request = await axiosPrivate.post("/newgame", {
+      const request = await axiosPrivate.post(path, {
         gameId: gameItem.id,
       });
       if (request.status === 200)
-        dispatch(setSuccesMessage("Game added to your games !") as any);
+        dispatch(setSuccesMessage(`Game added to your ${listName} !`) as any);
     } catch (err: AxiosError | any) {
       if (isAxiosError(err)) {
         dispatch(
           setErrorMessage(err.response?.data.message || err.message) as any
         );
-      } else if (err instanceof Error) {
-        dispatch(setErrorMessage("Something went wrong ") as any);
-      }
-    }
-  };
-
-  const addToMyWishesHandler = async () => {
-    if (!isLogged)
-      return dispatch(setErrorMessage("You need to be logged !") as any);
-    try {
-      const request = await axiosPrivate.post("/newwish", {
-        gameId: gameItem.id,
-      });
-      if (request.status === 200)
-        dispatch(setSuccesMessage("Game added to your wishes !") as any);
-    } catch (err: AxiosError | any) {
-      if (isAxiosError(err)) {
-        dispatch(
-          setErrorMessage(err.response?.data.message || err.message) as any
-        );
-      } else if (err instanceof Error) {
+      } else {
         dispatch(setErrorMessage("Something went wrong ") as any);
       }
     }
@@ -99,14 +79,21 @@ const MainSection = ({ gameItem }: Props) => {
         />
         <div className={classes["text-info"]}>
           <div className={classes["actions-row"]}>
-            <div className={classes.content} onClick={addToMyGamesHandler}>
+            _
+            <div
+              className={classes.content}
+              onClick={addToListHandler.bind(null, "/newgame", "games")}
+            >
               <div className={classes.text}>
                 <span> Add to </span>
                 <span className={classes.list}>My Games</span>
               </div>
               <AddOutlinedIcon className={classes.icon} />
             </div>
-            <div className={classes.content} onClick={addToMyWishesHandler}>
+            <div
+              className={classes.content}
+              onClick={addToListHandler.bind(null, "/newwish", "wishes")}
+            >
               <div className={classes.text}>
                 <span> Add to </span>
                 <span className={classes.list}>Wishlist</span>
