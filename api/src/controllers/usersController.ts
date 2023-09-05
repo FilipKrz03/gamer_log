@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { validateRegister } from "../utils/validate";
+import UserWishes from "../models/UserWishes";
 
 const handleNewUser = async (req: Request, res: Response) => {
   const { email, password, username } = req.body;
@@ -112,4 +113,27 @@ const addGameToUsersGames = async (req: any, res: Response) => {
   res.status(200).json({ message: "Game added!" });
 };
 
-export { handleNewUser, handleLogin, handleRefresh, addGameToUsersGames };
+const addGameToUsersWishes = async (req: any, res: Response) => {
+  const { gameId } = req.body;
+  const userId = req.userId;
+
+  if (!gameId || !userId) return res.sendStatus(403);
+
+  const duplicateGame = await UserWishes.findOne({
+    where: { gameId, UserId: userId },
+  });
+
+  if (duplicateGame)
+    return res.status(409).json({ message: "Game already in your wishes" });
+
+  await UserWishes.create({ gameId, UserId: userId });
+  res.status(200).json({ message: "Game added to your wish list !" });
+};
+
+export {
+  handleNewUser,
+  handleLogin,
+  handleRefresh,
+  addGameToUsersGames,
+  addGameToUsersWishes,
+};

@@ -13,6 +13,7 @@ import usersRouter from "./routes/usersRoute";
 
 import User from "./models/User";
 import UserGames from "./models/UserGames";
+import UserWishes from "./models/UserWishes";
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.use("/", usersRouter);
 
 User.hasMany(UserGames);
 UserGames.hasMany(User);
+User.hasMany(UserWishes);
+UserWishes.hasMany(User);
 
 sequelize
   .sync()

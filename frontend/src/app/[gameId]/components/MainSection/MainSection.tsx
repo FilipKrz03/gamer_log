@@ -48,6 +48,26 @@ const MainSection = ({ gameItem }: Props) => {
     }
   };
 
+  const addToMyWishesHandler = async () => {
+    if (!isLogged)
+      return dispatch(setErrorMessage("You need to be logged !") as any);
+    try {
+      const request = await axiosPrivate.post("/newwish", {
+        gameId: gameItem.id,
+      });
+      if (request.status === 200)
+        dispatch(setSuccesMessage("Game added to your wishes !") as any);
+    } catch (err: AxiosError | any) {
+      if (isAxiosError(err)) {
+        dispatch(
+          setErrorMessage(err.response?.data.message || err.message) as any
+        );
+      } else if (err instanceof Error) {
+        dispatch(setErrorMessage("Something went wrong ") as any);
+      }
+    }
+  };
+
   return (
     <>
       {statuses.isError && (
@@ -79,14 +99,14 @@ const MainSection = ({ gameItem }: Props) => {
         />
         <div className={classes["text-info"]}>
           <div className={classes["actions-row"]}>
-            <div className={classes.content}>
-              <div className={classes.text} onClick={addToMyGamesHandler}>
+            <div className={classes.content} onClick={addToMyGamesHandler}>
+              <div className={classes.text}>
                 <span> Add to </span>
                 <span className={classes.list}>My Games</span>
               </div>
               <AddOutlinedIcon className={classes.icon} />
             </div>
-            <div className={classes.content}>
+            <div className={classes.content} onClick={addToMyWishesHandler}>
               <div className={classes.text}>
                 <span> Add to </span>
                 <span className={classes.list}>Wishlist</span>
