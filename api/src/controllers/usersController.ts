@@ -42,13 +42,13 @@ const handleLogin = async (req: Request, res: Response) => {
   if (!matchPwd) return res.status(401).json({ message: "Bad password" });
 
   const accessToken = jwt.sign(
-    { email: email },
+    { userId: user.id },
     process.env.ACCESS_TOKEN_SECRET!,
     { expiresIn: "15m" }
   );
 
   const refreshToken = jwt.sign(
-    { email: email },
+    { userId: user.id },
     process.env.REFRESH_TOKEN_SECRET!,
     { expiresIn: "1d" }
   );
@@ -81,20 +81,27 @@ const handleRefresh = async (req: Request, res: Response) => {
     (err: any, decoded: any) => {
       if (err || decoded.email !== user.email) return res.sendStatus(403);
       const accessToken = jwt.sign(
-        { email: decoded.email },
+        { userId: decoded.usedId },
         process.env.ACCESS_TOKEN_SECRET!,
         { expiresIn: "15m" }
       );
-      res.json({ accessToken, email: user.email , username:user.username , id:user.id});
+      res.json({
+        accessToken,
+        email: user.email,
+        username: user.username,
+        id: user.id,
+      });
     }
   );
 };
 
-const addGameToUsersGames = async (req: Request, res: Response) => {
-  const { gameId, userId } = req.body;
+const addGameToUsersGames = async (req: any, res: Response) => {
+  const { gameId } = req.body;
+  const userId = req.userId;
+  console.log(userId);
   if (!gameId || !userId) return res.sendStatus(403);
   await UserGames.create({ gameId, UserId: userId });
   res.status(200).json({ message: "Game added!" });
 };
 
-export { handleNewUser, handleLogin, handleRefresh , addGameToUsersGames };
+export { handleNewUser, handleLogin, handleRefresh, addGameToUsersGames };

@@ -38,7 +38,8 @@ const useAxiosPrivate = () => {
       axiosPrivate.interceptors.request.eject(requestIntercept);
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };
-  });
+  } , [refresh , accesToken]);
+  return axiosPrivate;
 };
 
 export default useAxiosPrivate;

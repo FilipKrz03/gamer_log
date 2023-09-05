@@ -10,7 +10,6 @@ const useRefreshToken = () => {
     });
     if (request.status === 200) {
       dispatch(userActions.setUser(request.data));
-      console.log(request.data);
     }
   };
   return refresh;

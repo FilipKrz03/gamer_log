@@ -1,32 +1,29 @@
 "use client";
 import Image from "next/image";
 import { Game } from "../../../../../../types";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import classes from "./MainSection.module.scss";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import CardGiftcardOutlinedIcon from "@mui/icons-material/CardGiftcardOutlined";
 import { Rating } from "@mui/material";
 import IconsSection from "@/app/UI/IconsSection/IconsSection";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
-import axios from "@/utils/axios";
 
 type Props = {
   gameItem: Game;
 };
 
 const MainSection = ({ gameItem }: Props) => {
-
-  const userId = useSelector((state: RootState) => state.users.userId);
   
+  const axiosPrivate = useAxiosPrivate();
+
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
   const genres = gameItem.genres.slice(0, 3);
 
   const addToMyGamesHandler = async () => {
     try {
-      const request = await axios.post("/newgame", {
+      const request = await axiosPrivate.post("/newgame", {
         gameId: gameItem.id,
-        userId,
       });
       console.log(request);
     } catch (err) {
