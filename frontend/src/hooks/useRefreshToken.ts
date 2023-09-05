@@ -11,6 +11,7 @@ const useRefreshToken = () => {
     if (request.status === 200) {
       dispatch(userActions.setUser(request.data));
     }
+    return request.data.accessToken;
   };
   return refresh;
 };

@@ -39,7 +39,6 @@ const MainSection = ({ gameItem }: Props) => {
         dispatch(setSuccesMessage("Game added to your games !") as any);
     } catch (err: AxiosError | any) {
       if (isAxiosError(err)) {
-        console.log(err);
         dispatch(
           setErrorMessage(err.response?.data.message || err.message) as any
         );
