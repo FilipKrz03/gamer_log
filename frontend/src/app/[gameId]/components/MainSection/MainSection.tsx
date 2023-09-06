@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Game } from "../../../../../../types";
+import { useState, useEffect } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
@@ -19,11 +20,31 @@ type Props = {
 };
 
 const MainSection = ({ gameItem }: Props) => {
+  const [isGameAdded, setIsGameAdded] = useState(false);
+  const [isGameInWishes, setIsGameInWishes] = useState(false);
+
   const statuses = useSelector((state: RootState) => state.status);
   const isLogged = useSelector((state: RootState) => state.users.isLogged);
   const dispatch = useDispatch();
 
   const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {
+    if (!isLogged) return;
+    async function checkStatus() {
+      try {
+        const isGameInLists = await axiosPrivate.post("/check", {
+          gameId: gameItem.id,
+        });
+        setIsGameAdded(isGameInLists.data.isOnTheGameList);
+        setIsGameInWishes(isGameInLists.data.isOnTheWishList);
+      } catch (err) {
+        setIsGameInWishes(false);
+        setIsGameAdded(false);
+      }
+    }
+    checkStatus();
+  }, [axiosPrivate, gameItem.id, isLogged]);
 
   const ratingColor = pickColorBasedOnRating(gameItem.rating);
   const genres = gameItem.genres.slice(0, 3);
@@ -35,9 +56,31 @@ const MainSection = ({ gameItem }: Props) => {
       const request = await axiosPrivate.post(path, {
         gameId: gameItem.id,
       });
-      if (request.status === 200)
-        dispatch(setSuccesMessage(`Game added to your ${listName} !`) as any);
+      dispatch(setSuccesMessage(`Game added to your ${listName} !`) as any);
+      listName === "games" ? setIsGameAdded(true) : setIsGameInWishes(true);
     } catch (err: AxiosError | any) {
+      if (isAxiosError(err)) {
+        dispatch(
+          setErrorMessage(err.response?.data.message || err.message) as any
+        );
+      } else {
+        dispatch(setErrorMessage("Something went wrong ") as any);
+      }
+    }
+  };
+
+  const removeFromListHandler = async (path: string, listName: string) => {
+    if (!isLogged)
+      return dispatch(setErrorMessage("You need to be logged !") as any);
+    try {
+      const delateGame = await axiosPrivate.delete(path, {
+        data: {
+          gameId: gameItem.id,
+        },
+      });
+      dispatch(setSuccesMessage(`Game delated from your ${listName} !`) as any);
+      listName === "games" ? setIsGameAdded(false) : setIsGameInWishes(false);
+    } catch (err) {
       if (isAxiosError(err)) {
         dispatch(
           setErrorMessage(err.response?.data.message || err.message) as any
@@ -79,23 +122,34 @@ const MainSection = ({ gameItem }: Props) => {
         />
         <div className={classes["text-info"]}>
           <div className={classes["actions-row"]}>
-            _
             <div
-              className={classes.content}
-              onClick={addToListHandler.bind(null, "/newgame", "games")}
+              className={`${classes.content} ${
+                isGameAdded ? classes.added : ""
+              }`}
+              onClick={
+                !isGameAdded
+                  ? addToListHandler.bind(null, "/newgame", "games")
+                  : removeFromListHandler.bind(null, "/game", "games")
+              }
             >
               <div className={classes.text}>
-                <span> Add to </span>
+                <span> {isGameAdded ? "Remove From" : "Add to"}</span>
                 <span className={classes.list}>My Games</span>
               </div>
               <AddOutlinedIcon className={classes.icon} />
             </div>
             <div
-              className={classes.content}
-              onClick={addToListHandler.bind(null, "/newwish", "wishes")}
+              className={`${classes.content} ${
+                isGameInWishes ? classes.added : ""
+              }`}
+              onClick={
+                !isGameInWishes
+                  ? addToListHandler.bind(null, "/newwish", "wishes")
+                  : removeFromListHandler.bind(null, "/wish", "wishes")
+              }
             >
               <div className={classes.text}>
-                <span> Add to </span>
+                <span> {isGameInWishes ? "Remove From" : "Add to"}</span>
                 <span className={classes.list}>Wishlist</span>
               </div>
               <CardGiftcardOutlinedIcon className={classes.icon} />

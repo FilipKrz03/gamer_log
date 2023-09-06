@@ -54,10 +54,18 @@
     .actions-row {
       @include flexrow(flex-start, center);
       gap: 30px;
+      .added {
+        background-color: $red !important;
+        color: $white!important;
+        .icon{
+          color: $dark!important;
+        }
+      }
       .content {
         @include flexrow(space-evenly, center);
+        transition: .3s ease-in-out;
         padding: 0.3em;
-        width: 140px;
+        width: 150px;
         gap: 10px;
         border: 1px solid $dark;
         box-shadow: $box-shadow;
@@ -68,7 +76,7 @@
         .text {
           @include flexcolumn(space-between, center);
           gap: 3px;
-          font-size: $font-s;
+          font-size: $font-xs;
         }
       }
     }

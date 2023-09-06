@@ -5,6 +5,9 @@ import {
   handleRefresh,
   addGameToUsersGames,
   addGameToUsersWishes,
+  checkIfGameIsOnTheList,
+  removeGameFromUserGames,
+  removeGameFromUserWishes
 } from "../controllers/usersController";
 import verifyJwt from "../middleware/verifyJWT";
 
@@ -15,5 +18,8 @@ usersRouter.post("/login", handleLogin);
 usersRouter.get("/refresh", handleRefresh);
 usersRouter.post("/newgame", verifyJwt, addGameToUsersGames);
 usersRouter.post("/newwish", verifyJwt, addGameToUsersWishes);
+usersRouter.post("/check", verifyJwt, checkIfGameIsOnTheList);
+usersRouter.delete('/game' , verifyJwt , removeGameFromUserGames);
+usersRouter.delete('/wish' , verifyJwt , removeGameFromUserWishes)
 
 export default usersRouter;

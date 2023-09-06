@@ -130,10 +130,53 @@ const addGameToUsersWishes = async (req: any, res: Response) => {
   res.status(200).json({ message: "Game added to your wish list !" });
 };
 
+const checkIfGameIsOnTheList = async (req: any, res: Response) => {
+  const userId = req.userId;
+  console.log("USER ID ", userId);
+  const { gameId } = req.body;
+  if (!gameId || !userId) return res.sendStatus(403);
+  let isOnTheGameList = false;
+  let isOnTheWishList = false;
+  const searchGameInGames = await UserGames.findOne({
+    where: { UserId: userId, gameId },
+  });
+  searchGameInGames?.gameId ? (isOnTheGameList = true) : false;
+
+  const searchGameInWishes = await UserWishes.findOne({
+    where: { UserId: userId, gameId },
+  });
+  searchGameInWishes?.gameId ? (isOnTheWishList = true) : false;
+
+  res.status(200).json({ isOnTheGameList, isOnTheWishList });
+};
+
+const removeGameFromUserGames = async (req: any, res: Response) => {
+  const { gameId } = req.body;
+  const userId = req.userId;
+  if (!gameId || !userId) return res.sendStatus(403);
+  const delateGame = await UserGames.destroy({
+    where: { UserId: userId, gameId },
+  });
+  res.status(200).json({ message: "Game delated" });
+};
+
+const removeGameFromUserWishes = async (req: any, res: Response) => {
+  const { gameId } = req.body;
+  const userId = req.userId;
+  if (!gameId || !userId) return res.sendStatus(403);
+  const delateGame = await UserWishes.destroy({
+    where: { UserId: userId, gameId },
+  });
+  res.status(200).json({ message: "Game delated" });
+};
+
 export {
   handleNewUser,
   handleLogin,
   handleRefresh,
   addGameToUsersGames,
   addGameToUsersWishes,
+  checkIfGameIsOnTheList,
+  removeGameFromUserGames,
+  removeGameFromUserWishes,
 };
