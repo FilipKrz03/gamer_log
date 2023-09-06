@@ -2,7 +2,11 @@
 import { useState } from "react";
 import classes from "./Options.module.scss";
 
-const Options = () => {
+type Props = {
+  onSetOption: (option: string) => void;
+};
+
+const Options = ({ onSetOption }: Props) => {
   const [activeOption, setActiveOption] = useState("User info");
 
   return (
@@ -13,6 +17,7 @@ const Options = () => {
         }`}
         onClick={() => {
           setActiveOption("User info");
+          onSetOption("User info");
         }}
       >
         User info
@@ -23,6 +28,7 @@ const Options = () => {
         }`}
         onClick={() => {
           setActiveOption("Change password");
+          onSetOption("Change password");
         }}
       >
         Change password
@@ -33,6 +39,7 @@ const Options = () => {
         }`}
         onClick={() => {
           setActiveOption("Change username");
+          onSetOption("Change username");
         }}
       >
         Change username
