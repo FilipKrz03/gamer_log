@@ -1,0 +1,7 @@
+@import "../../../../variables.scss";
+
+.main-container {
+  min-height: calc(100vh - 140px);
+  @include flexcolumn(center, center);
+  gap: 50px;
+}
