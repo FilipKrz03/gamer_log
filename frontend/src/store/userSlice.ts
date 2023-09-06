@@ -32,8 +32,8 @@ const userSlice = createSlice({
     logoutUser(state) {
       state.isLogged = false;
       state.accessToken = undefined;
-      state.email = undefined;
-      state.username = undefined;
+      state.email = "";
+      state.username = "";
       state.userId = undefined;
     },
   },
