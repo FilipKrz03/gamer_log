@@ -96,6 +96,22 @@ const handleRefresh = async (req: Request, res: Response) => {
   );
 };
 
+const handleLogout = async (req: Request, res: Response) => {
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(204);
+  const refreshToken = cookies.jwt;
+
+  const foundUser = await User.findOne({ where: { token: refreshToken } });
+  if (!foundUser) {
+    res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
+    return res.sendStatus(204);
+  }
+  foundUser!.token = undefined;
+  await foundUser.save();
+  res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
+  return res.sendStatus(204);
+};
+
 const addGameToUsersGames = async (req: any, res: Response) => {
   const { gameId } = req.body;
   const userId = req.userId;
@@ -154,7 +170,7 @@ const removeGameFromUserGames = async (req: any, res: Response) => {
   const { gameId } = req.body;
   const userId = req.userId;
   if (!gameId || !userId) return res.sendStatus(403);
-  const delateGame = await UserGames.destroy({
+  await UserGames.destroy({
     where: { UserId: userId, gameId },
   });
   res.status(200).json({ message: "Game delated" });
@@ -164,7 +180,7 @@ const removeGameFromUserWishes = async (req: any, res: Response) => {
   const { gameId } = req.body;
   const userId = req.userId;
   if (!gameId || !userId) return res.sendStatus(403);
-  const delateGame = await UserWishes.destroy({
+  await UserWishes.destroy({
     where: { UserId: userId, gameId },
   });
   res.status(200).json({ message: "Game delated" });
@@ -179,4 +195,5 @@ export {
   checkIfGameIsOnTheList,
   removeGameFromUserGames,
   removeGameFromUserWishes,
+  handleLogout,
 };

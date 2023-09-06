@@ -1,6 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import classes from "./Options.module.scss";
+import axios from "@/utils/axios";
+import { userActions } from "@/store/userSlice";
+import { setErrorMessage } from "@/store/statusSlice";
 
 type Props = {
   onSetOption: (option: string) => void;
@@ -8,6 +13,20 @@ type Props = {
 
 const Options = ({ onSetOption }: Props) => {
   const [activeOption, setActiveOption] = useState("User info");
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await axios.get("/logout", {
+        withCredentials: true,
+      });
+      dispatch(userActions.logoutUser());
+      router.push("/");
+    } catch (err) {
+      dispatch(setErrorMessage("Something went wrong") as any);
+    }
+  };
 
   return (
     <div className={classes.options}>
@@ -44,7 +63,9 @@ const Options = ({ onSetOption }: Props) => {
       >
         Change username
       </p>
-      <p className={classes["option-item"]}>Logout</p>
+      <p className={classes["option-item"]} onClick={handleLogout}>
+        Logout
+      </p>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface userState {
-  email: string | null;
-  accessToken: string | null;
-  username: string | null;
-  userId: number | null;
+  email: string | undefined;
+  accessToken: string | undefined;
+  username: string | undefined;
+  userId: number | undefined;
   isLogged: boolean;
 }
 
@@ -31,10 +31,10 @@ const userSlice = createSlice({
     },
     logoutUser(state) {
       state.isLogged = false;
-      state.accessToken = null;
-      state.email = null;
-      state.username = null;
-      state.userId = null;
+      state.accessToken = undefined;
+      state.email = undefined;
+      state.username = undefined;
+      state.userId = undefined;
     },
   },
 });
