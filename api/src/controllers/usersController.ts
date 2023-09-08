@@ -4,7 +4,7 @@ import UserGames from "../models/UserGames";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-import { validateRegister } from "../utils/validate";
+import { validateNewGame, validateRegister } from "../utils/validate";
 import UserWishes from "../models/UserWishes";
 
 const handleNewUser = async (req: Request, res: Response) => {
@@ -113,95 +113,43 @@ const handleLogout = async (req: Request, res: Response) => {
 };
 
 const addGameToUsersGames = async (req: any, res: Response) => {
-  const {
-    gameId,
-    title,
-    image,
-    hasPc,
-    hasXbox,
-    hasPlayStation,
-    genre,
-    rating,
-  } = req.body;
+  const { gameId } = req.body;
   const userId = req.userId;
 
-  if (
-    !gameId ||
-    !userId ||
-    !title ||
-    !image ||
-    !hasPc ||
-    !hasXbox ||
-    !hasPlayStation ||
-    !genre ||
-    !rating
-  )
-    return res.sendStatus(403);
+  const { error } = validateNewGame(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 
   const duplicateGame = await UserGames.findOne({
     where: { gameId, UserId: userId },
   });
-
   if (duplicateGame)
     return res.status(409).json({ message: "Game already in your games" });
 
   await UserGames.create({
-    UserId: userId,
-    gameId,
-    title,
-    image,
-    hasPc,
-    hasXbox,
-    hasPlayStation,
-    genre,
-    rating,
+    ...req.body,
   });
   res.status(200).json({ message: "Game added!" });
 };
 
 const addGameToUsersWishes = async (req: any, res: Response) => {
-  const {
-    gameId,
-    title,
-    image,
-    hasPc,
-    hasXbox,
-    hasPlayStation,
-    genre,
-    rating,
-  } = req.body;
+  const { gameId } = req.body;
   const userId = req.userId;
 
-  if (
-    !gameId ||
-    !userId ||
-    !title ||
-    !image ||
-    !hasPc ||
-    !hasXbox ||
-    !hasPlayStation ||
-    !genre ||
-    !rating
-  )
-    return res.sendStatus(403);
+  const { error } = validateNewGame(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 
   const duplicateGame = await UserWishes.findOne({
     where: { gameId, UserId: userId },
   });
-
   if (duplicateGame)
-    return res.status(409).json({ message: "Game already in your wishes" });
+    return res.status(409).json({ message: "Game already in your games" });
 
   await UserWishes.create({
-    UserId: userId,
-    gameId,
-    title,
-    image,
-    hasPc,
-    hasXbox,
-    hasPlayStation,
-    genre,
-    rating,
+    ...req.body,
   });
   res.status(200).json({ message: "Game added!" });
 };
