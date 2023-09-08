@@ -5,6 +5,9 @@ import {
   InferAttributes,
   InferCreationAttributes,
   INTEGER,
+  STRING,
+  DOUBLE,
+  BOOLEAN,
 } from "sequelize";
 
 interface UserGameModel
@@ -13,15 +16,28 @@ interface UserGameModel
     InferCreationAttributes<UserGameModel>
   > {
   gameId: number;
-  UserId:number,
+  title: string;
+  image: string;
+  hasPc: boolean;
+  hasXbox: boolean;
+  hasPlayStation: boolean;
+  genre: string;
+  rating: number;
+  UserId: number;
 }
 
 const UserGames = sequelize.define<UserGameModel>("UserGames", {
   gameId: {
     type: DataTypes.INTEGER,
   },
-  UserId:INTEGER
- 
+  title: STRING,
+  image: STRING,
+  hasPc: BOOLEAN,
+  hasXbox: BOOLEAN,
+  hasPlayStation: BOOLEAN,
+  genre: STRING,
+  rating: DOUBLE,
+  UserId: INTEGER,
 });
 
 export default UserGames;

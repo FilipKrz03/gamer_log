@@ -113,10 +113,30 @@ const handleLogout = async (req: Request, res: Response) => {
 };
 
 const addGameToUsersGames = async (req: any, res: Response) => {
-  const { gameId } = req.body;
+  const {
+    gameId,
+    title,
+    image,
+    hasPc,
+    hasXbox,
+    hasPlayStation,
+    genre,
+    rating,
+  } = req.body;
   const userId = req.userId;
 
-  if (!gameId || !userId) return res.sendStatus(403);
+  if (
+    !gameId ||
+    !userId ||
+    !title ||
+    !image ||
+    !hasPc ||
+    !hasXbox ||
+    !hasPlayStation ||
+    !genre ||
+    !rating
+  )
+    return res.sendStatus(403);
 
   const duplicateGame = await UserGames.findOne({
     where: { gameId, UserId: userId },
@@ -125,15 +145,45 @@ const addGameToUsersGames = async (req: any, res: Response) => {
   if (duplicateGame)
     return res.status(409).json({ message: "Game already in your games" });
 
-  await UserGames.create({ gameId, UserId: userId });
+  await UserGames.create({
+    UserId: userId,
+    gameId,
+    title,
+    image,
+    hasPc,
+    hasXbox,
+    hasPlayStation,
+    genre,
+    rating,
+  });
   res.status(200).json({ message: "Game added!" });
 };
 
 const addGameToUsersWishes = async (req: any, res: Response) => {
-  const { gameId } = req.body;
+  const {
+    gameId,
+    title,
+    image,
+    hasPc,
+    hasXbox,
+    hasPlayStation,
+    genre,
+    rating,
+  } = req.body;
   const userId = req.userId;
 
-  if (!gameId || !userId) return res.sendStatus(403);
+  if (
+    !gameId ||
+    !userId ||
+    !title ||
+    !image ||
+    !hasPc ||
+    !hasXbox ||
+    !hasPlayStation ||
+    !genre ||
+    !rating
+  )
+    return res.sendStatus(403);
 
   const duplicateGame = await UserWishes.findOne({
     where: { gameId, UserId: userId },
@@ -142,8 +192,18 @@ const addGameToUsersWishes = async (req: any, res: Response) => {
   if (duplicateGame)
     return res.status(409).json({ message: "Game already in your wishes" });
 
-  await UserWishes.create({ gameId, UserId: userId });
-  res.status(200).json({ message: "Game added to your wish list !" });
+  await UserWishes.create({
+    UserId: userId,
+    gameId,
+    title,
+    image,
+    hasPc,
+    hasXbox,
+    hasPlayStation,
+    genre,
+    rating,
+  });
+  res.status(200).json({ message: "Game added!" });
 };
 
 const checkIfGameIsOnTheList = async (req: any, res: Response) => {

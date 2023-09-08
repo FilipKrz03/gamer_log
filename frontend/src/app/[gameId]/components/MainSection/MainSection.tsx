@@ -13,6 +13,7 @@ import IconsSection from "@/app/UI/IconsSection/IconsSection";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
 import { isAxiosError, AxiosError } from "axios";
+import checkPlaforms from "@/utils/functions/checkPlatforms";
 
 type Props = {
   gameItem: Game;
@@ -26,6 +27,19 @@ const MainSection = ({ gameItem }: Props) => {
   const dispatch = useDispatch();
 
   const axiosPrivate = useAxiosPrivate();
+
+  const { hasPc, hasXbox, hasPlayStation } = checkPlaforms(gameItem.platforms);
+
+  const gameInfoObj = {
+    gameId: gameItem.id,
+    title: gameItem.name,
+    image: gameItem.background_image,
+    hasPc,
+    hasXbox,
+    hasPlayStation,
+    genre: gameItem.genres[0].name,
+    rating: gameItem.rating,
+  };
 
   useEffect(() => {
     if (!isLogged) return;
@@ -52,7 +66,7 @@ const MainSection = ({ gameItem }: Props) => {
       return dispatch(setErrorMessage("You need to be logged !") as any);
     try {
       const request = await axiosPrivate.post(path, {
-        gameId: gameItem.id,
+        ...gameInfoObj,
       });
       dispatch(setSuccesMessage(`Game added to your ${listName} !`) as any);
       listName === "games" ? setIsGameAdded(true) : setIsGameInWishes(true);
