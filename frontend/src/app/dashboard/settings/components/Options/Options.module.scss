@@ -29,6 +29,28 @@
   }
 }
 
+@include media-ml{
+  .options{
+    font-size: $font;
+  }
+}
+
+@include media-m{
+  .options{
+    display: grid;
+    grid-template-columns: repeat(2 , auto);
+    row-gap: 30px;
+    justify-content: space-between;
+  }
+}
+
+@include media-s{
+  .options{
+    @include flexcolumn(center , center);
+    gap: 30px;
+  }
+}
+
 @keyframes clicked {
   0% {
     transform: scale(1) rotate(0deg);

@@ -4,3 +4,9 @@
   @include flexcolumn(center, center);
   gap: 30px;
 }
+
+@include media-s{
+  .info{
+    width: 95%;
+  }
+}
