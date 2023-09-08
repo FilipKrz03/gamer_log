@@ -1,26 +1,27 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import Alert from "@/app/UI/Alert/Alert";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
-import classes from "./NewPassword.module.scss";
 import ItemBox from "../ItemBox/ItemBox";
 import Button from "@/app/UI/Button/Button";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
 import { isAxiosError, AxiosError } from "axios";
+import classes from "./NewUsername.module.scss";
 
 type Inputs = {
-  oldPassword: string;
-  newPassword: string;
-  repeatPassword: string;
+  password: string;
+  newUsername: string;
+  repeatUsername: string;
 };
 
-const NewPassword = () => {
+const NewUsername = () => {
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -31,12 +32,13 @@ const NewPassword = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const request = await axiosPrivate.post("/changepwd", {
-        password: data.oldPassword,
-        newPassword: data.newPassword,
+      const request = await axiosPrivate.post("/changeusr", {
+        password: data.password,
+        newUsername: data.newUsername,
       });
       if (request.status === 200) {
         dispatch(setSuccesMessage("Password changed") as any);
+        router.refresh();
       }
     } catch (err: AxiosError | any) {
       if (isAxiosError(err)) {
@@ -60,48 +62,46 @@ const NewPassword = () => {
               fullWidth
               type="password"
               label="Password"
-              {...register("oldPassword", {
+              {...register("password", {
                 required: true,
                 minLength: 6,
               })}
             />
-            {errors.oldPassword && (
+            {errors.password && (
               <Alert message="Password need to be at least 6 characters long" />
             )}
           </div>
           <div className={classes["input-control"]}>
             <TextField
               fullWidth
-              type="password"
-              label="New password"
-              {...register("newPassword", {
+              label="New Username"
+              {...register("newUsername", {
                 required: true,
-                minLength: 6,
+                minLength: 3,
               })}
             />
-            {errors.newPassword && (
-              <Alert message="Password need to be at least 6 characters long" />
+            {errors.newUsername && (
+              <Alert message="Username need to be at least 3 characters long" />
             )}
           </div>
           <div className={classes["input-control"]}>
             <TextField
               fullWidth
-              type="password"
-              label="Repeat password"
-              {...register("repeatPassword", {
+              label="Repeat Username"
+              {...register("repeatUsername", {
                 required: true,
-                minLength: 6,
+                minLength: 3,
                 validate: (val: string) => {
-                  if (watch("newPassword") !== val) {
-                    return "Your passwords do no match";
+                  if (watch("newUsername") !== val) {
+                    return "Your usernames do no match";
                   }
                 },
               })}
             />
-            {errors.repeatPassword && (
+            {errors.repeatUsername && (
               <Alert
                 message={
-                  errors.repeatPassword.message || "Your passwords do no match"
+                  errors.repeatUsername.message || "Your usernames do no match"
                 }
               />
             )}
@@ -113,4 +113,4 @@ const NewPassword = () => {
   );
 };
 
-export default NewPassword;
+export default NewUsername;
