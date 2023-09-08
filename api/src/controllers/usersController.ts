@@ -186,6 +186,25 @@ const removeGameFromUserWishes = async (req: any, res: Response) => {
   res.status(200).json({ message: "Game delated" });
 };
 
+const handleChangePassword = async (req: any, res: Response) => {
+  const { password, newPassword } = req.body;
+  const userId = req.userId;
+  if (!password || !newPassword) return res.sendStatus(401);
+
+  const user = await User.findOne({ where: { id: userId } });
+  if (!user)
+    return res.status(401).json({ message: "We could not find this user" });
+
+  const matchPwd = await bcrypt.compare(password, user.password);
+  if (!matchPwd) return res.status(401).json({ message: "Bad password" });
+
+  const hashedNewPwd = await bcrypt.hash(newPassword , 10);
+  user.password = hashedNewPwd;
+  await user.save();
+
+  res.status(200).json({ message: "Password changed" });
+};
+
 export {
   handleNewUser,
   handleLogin,
@@ -196,4 +215,5 @@ export {
   removeGameFromUserGames,
   removeGameFromUserWishes,
   handleLogout,
+  handleChangePassword,
 };

@@ -12,7 +12,6 @@ import { Rating } from "@mui/material";
 import IconsSection from "@/app/UI/IconsSection/IconsSection";
 import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
-import StatusNotification from "@/app/UI/StatusNotification/StatusNotification";
 import { isAxiosError, AxiosError } from "axios";
 
 type Props = {
@@ -23,7 +22,6 @@ const MainSection = ({ gameItem }: Props) => {
   const [isGameAdded, setIsGameAdded] = useState(false);
   const [isGameInWishes, setIsGameInWishes] = useState(false);
 
-  const statuses = useSelector((state: RootState) => state.status);
   const isLogged = useSelector((state: RootState) => state.users.isLogged);
   const dispatch = useDispatch();
 
@@ -93,18 +91,6 @@ const MainSection = ({ gameItem }: Props) => {
 
   return (
     <>
-      {statuses.isError && (
-        <StatusNotification
-          isProper={false}
-          description={statuses.errorMessage}
-        />
-      )}
-      {statuses.isSucces && (
-        <StatusNotification
-          isProper={true}
-          description={statuses.succesMessage}
-        />
-      )}
       <div className={classes["main-info"]}>
         <Image
           className={classes.image}

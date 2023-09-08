@@ -7,6 +7,7 @@ import { Comfortaa } from "next/font/google";
 import "./globals.scss";
 import ReduxProvider from "./UI/ReduxProvider/ReduxProvider";
 import PersistLogin from "./components/PersistLogin/PersistLogin";
+import Notifications from "./UI/Notifications/Notifications";
 
 const comfortaa = Comfortaa({
   weight: ["400", "700"],
@@ -29,14 +30,16 @@ export default function RootLayout({
       <body className={comfortaa.className}>
         <ReduxProvider>
           <PersistLogin>
-            <Suspense>
-              <ProgressBarComponent />
-            </Suspense>
-            <PageContainer>
-              <Header />
-              {children}
-            </PageContainer>
-            <MobileNav />
+            <Notifications>
+              <Suspense>
+                <ProgressBarComponent />
+              </Suspense>
+              <PageContainer>
+                <Header />
+                {children}
+              </PageContainer>
+              <MobileNav />
+            </Notifications>
           </PersistLogin>
         </ReduxProvider>
       </body>

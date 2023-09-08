@@ -1,11 +1,15 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import Alert from "@/app/UI/Alert/Alert";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
 import classes from "./NewPassword.module.scss";
 import ItemBox from "../ItemBox/ItemBox";
 import Button from "@/app/UI/Button/Button";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
+import { isAxiosError, AxiosError } from "axios";
 
 type Inputs = {
   oldPassword: string;
@@ -14,6 +18,9 @@ type Inputs = {
 };
 
 const NewPassword = () => {
+  const axiosPrivate = useAxiosPrivate();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -22,7 +29,28 @@ const NewPassword = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {};
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const request = await axiosPrivate.post("/changepwd", {
+        password: data.oldPassword,
+        newPassword: data.newPassword,
+      });
+      if (request.status === 200) {
+        dispatch(setSuccesMessage("Password changed") as any);
+      }
+    } catch (err: AxiosError | any) {
+      if (isAxiosError(err)) {
+        dispatch(
+          setErrorMessage(err.response?.data.message || err.message) as any
+        );
+      } else {
+        dispatch(setErrorMessage("Something went wrong ") as any);
+      }
+    }
+    finally{
+        reset();
+    }
+  };
 
   return (
     <ItemBox>
