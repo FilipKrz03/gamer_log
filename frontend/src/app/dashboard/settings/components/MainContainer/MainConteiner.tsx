@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Options from "../Options/Options";
 import UserInfo from "../UserInfo/UserInfo";
+import NewPassword from "../NewPassword/NewPassword";
 import classes from "./MainContainer.module.scss";
 
 const MainContainer = () => {
@@ -13,6 +14,7 @@ const MainContainer = () => {
     <div className={classes["main-container"]}>
       <Options onSetOption={onSetOption} />
       {option === "User info" && <UserInfo />}
+      {option === "Change password" && <NewPassword />}
     </div>
   );
 };
