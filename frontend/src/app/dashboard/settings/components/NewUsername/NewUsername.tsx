@@ -37,7 +37,7 @@ const NewUsername = () => {
         newUsername: data.newUsername,
       });
       if (request.status === 200) {
-        dispatch(setSuccesMessage("Password changed") as any);
+        dispatch(setSuccesMessage("Username changed") as any);
         router.refresh();
       }
     } catch (err: AxiosError | any) {

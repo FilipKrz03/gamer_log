@@ -1,5 +1,5 @@
 "use client";
-import SearchResults from "@/app/search/[searchResults]/components/SearchResults/SearchResults";
+import SearchResults from "@/app/UI/SearchResults/SearchResults";
 
 const UserWishes = () => {
   return (

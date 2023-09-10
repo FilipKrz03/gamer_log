@@ -6,7 +6,6 @@ import Search from "@/app/UI/Search/Search";
 import GameItem from "../GameItem/GameItem";
 import Skeletons from "@/app/UI/Skeletons/Skeletons";
 import NotFoundComponent from "@/app/UI/NotFoundComponent/NotFoundComponent";
-import { Game } from "../../../../../../../types";
 import classes from "./SearchResults.module.scss";
 
 type Props = {
