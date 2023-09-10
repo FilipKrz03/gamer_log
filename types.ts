@@ -31,4 +31,17 @@ export type Game = {
   reddit_url: string;
 };
 
+export type GameFromDb = {
+  UserId: number;
+  gameId: number;
+  genre: string;
+  hasPc: boolean;
+  hasPlayStation: boolean;
+  hasXbox: boolean;
+  id: number;
+  image: string;
+  rating: number;
+  title: string;
+};
+
 export type Screenshots = { image: string }[];

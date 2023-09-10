@@ -129,6 +129,7 @@ const addGameToUsersGames = async (req: any, res: Response) => {
 
   await UserGames.create({
     ...req.body,
+    UserId: userId,
   });
   res.status(200).json({ message: "Game added!" });
 };
@@ -150,6 +151,7 @@ const addGameToUsersWishes = async (req: any, res: Response) => {
 
   await UserWishes.create({
     ...req.body,
+    UserId: userId,
   });
   res.status(200).json({ message: "Game added!" });
 };

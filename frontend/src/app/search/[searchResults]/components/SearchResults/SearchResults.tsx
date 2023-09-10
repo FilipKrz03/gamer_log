@@ -9,7 +9,11 @@ import NotFoundComponent from "@/app/UI/NotFoundComponent/NotFoundComponent";
 import { Game } from "../../../../../../../types";
 import classes from "./SearchResults.module.scss";
 
-const SearchResults = () => {
+type Props = {
+  isUserData?: boolean;
+};
+
+const SearchResults = ({ isUserData = false }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -25,7 +29,7 @@ const SearchResults = () => {
     error,
     results: games,
     maxResultsCount,
-  } = useInfiniteScroll(pageNumber, searchParams);
+  } = useInfiniteScroll(pageNumber, searchParams, isUserData);
 
   const lastPostRef = useCallback(
     (item: HTMLDivElement) => {
@@ -55,11 +59,26 @@ const SearchResults = () => {
     router.push(`/search/${path}`);
   };
 
-  const gamesItems = games.map((game: Game, i: number) => {
+  const gamesItems = games.map((game: any, i: number) => {
     if (i + 1 === games.length) {
-      return <GameItem key={game.name} gameItem={game} ref={lastPostRef} />;
+      return (
+        <GameItem
+          isFromDb={isUserData}
+          key={game.name}
+          gameItem={!isUserData ? game : undefined}
+          dbGameItem={isUserData ? game : undefined}
+          ref={lastPostRef}
+        />
+      );
     } else {
-      return <GameItem key={game.name} gameItem={game} />;
+      return (
+        <GameItem
+          isFromDb={isUserData}
+          key={game.name}
+          gameItem={!isUserData ? game : undefined}
+          dbGameItem={isUserData ? game : undefined}
+        />
+      );
     }
   });
 

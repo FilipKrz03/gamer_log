@@ -89,7 +89,11 @@ export const dashboardOpitons: {
   desc: string;
   imagePath: string;
 }[] = [
-  { link: "", desc: "My games", imagePath: "/images/games.svg" },
+  {
+    link: "/dashboard/mygames",
+    desc: "My games",
+    imagePath: "/images/games.svg",
+  },
   { link: "", desc: "Wish list", imagePath: "/images/wish.svg" },
   { link: "", desc: "Games for you", imagePath: "/images/personalized.svg" },
   {
