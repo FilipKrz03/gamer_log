@@ -2,12 +2,14 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import classes from "./NotFoundComponent.module.scss";
+import Button from "../Button/Button";
 
 type Props = {
   message: string;
+  link?: boolean;
 };
 
-const NotFoundComponent = ({ message }: Props) => {
+const NotFoundComponent = ({ message, link }: Props) => {
   return (
     <div className={classes.container}>
       <motion.h2
@@ -23,12 +25,21 @@ const NotFoundComponent = ({ message }: Props) => {
         transition={{ delay: 0.4, duration: 0.2 }}
       >
         <Image
+          className={classes.image}
           src={"/images/404.svg"}
-          alt="Not found image"
-          width={600}
-          height={450}
+          alt="Game image"
+          width={0}
+          height={0}
+          sizes="40vw"
+          style={{
+            aspectRatio: 2 / 1,
+            width: "40vw",
+            height: "auto",
+            margin: "0 auto",
+          }}
         />
       </motion.div>
+      {link && <Button desc="Explore games" link="/explore" />}
     </div>
   );
 };

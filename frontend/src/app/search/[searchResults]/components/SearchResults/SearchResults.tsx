@@ -14,7 +14,7 @@ type Props = {
   dataPath?: string;
 };
 
-const SearchResults = ({ isUserData = false , dataPath }: Props) => {
+const SearchResults = ({ isUserData = false, dataPath }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -30,7 +30,7 @@ const SearchResults = ({ isUserData = false , dataPath }: Props) => {
     error,
     results: games,
     maxResultsCount,
-  } = useInfiniteScroll(pageNumber, searchParams, isUserData , dataPath);
+  } = useInfiniteScroll(pageNumber, searchParams, isUserData, dataPath);
 
   const lastPostRef = useCallback(
     (item: HTMLDivElement) => {
@@ -91,10 +91,13 @@ const SearchResults = ({ isUserData = false , dataPath }: Props) => {
       <div className={classes.container}>
         {games.length > 0 && gamesItems}
         {isLoading && <Skeletons />}
-        {isLoading === false && games.length === 0 && (
-          <NotFoundComponent message="We could not find you search." />
-        )}
       </div>
+      {isLoading === false && games.length === 0 && isUserData === false && (
+        <NotFoundComponent message="We could not find you search." />
+      )}
+      {isLoading === false && games.length === 0 && isUserData === true && (
+        <NotFoundComponent message="Your list is empty" link={true} />
+      )}
     </div>
   );
 };

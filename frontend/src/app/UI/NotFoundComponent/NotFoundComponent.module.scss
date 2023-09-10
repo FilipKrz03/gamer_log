@@ -1,8 +1,14 @@
 @import "../../variables.scss";
 
 .container {
-  margin: 0px auto 0px;
-  min-height: calc(100vh - 150px);
   @include flexcolumn(center, center);
+  align-self: normal !important;
   gap: 20px;
+}
+
+@include media-l{
+  .container .image{
+    width: 80vw!important;
+    height: auto!important;
+  }
 }
