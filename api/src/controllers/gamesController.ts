@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import axiosApi from "../utils/axios";
 import { Genre } from "../../../types";
 import UserGames from "../models/UserGames";
+import UserWishes from "../models/UserWishes";
 
 const getAllGames = async (req: Request, res: Response) => {
   try {
@@ -86,6 +87,18 @@ const getUserGames = async (req: any, res: Response) => {
     .json({ count: gameList.length, results: slicedGameList });
 };
 
+const getUserWishes = async (req: any, res: Response) => {
+  const userId = req.userId;
+  const { page } = req.query;
+  const pageToSlice = page - 1;
+  if (!userId) return res.sendStatus(401);
+  const gameList = await UserWishes.findAll({ where: { UserId: userId } });
+  const slicedGameList = gameList.slice(pageToSlice * 25, page * 25);
+  return res
+    .status(200)
+    .json({ count: gameList.length, results: slicedGameList });
+};
+
 export {
   getAllGames,
   getGeneres,
@@ -93,4 +106,5 @@ export {
   getSearchedGames,
   getSpecificGame,
   getUserGames,
+  getUserWishes,
 };

@@ -4,8 +4,8 @@ import SearchResults from "@/app/search/[searchResults]/components/SearchResults
 const UserGames = () => {
   return (
     <>
-      <h1 style={{ textAlign: "center", margin: "20px 0px" }}>Your games</h1>
-      <SearchResults isUserData={true} />
+      <h1 style={{ textAlign: "center", margin: "20px 0px" }}>Your game list</h1>
+      <SearchResults isUserData={true} dataPath="mygames" />
     </>
   );
 };

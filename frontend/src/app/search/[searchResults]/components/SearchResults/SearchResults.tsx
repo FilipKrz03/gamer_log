@@ -11,9 +11,10 @@ import classes from "./SearchResults.module.scss";
 
 type Props = {
   isUserData?: boolean;
+  dataPath?: string;
 };
 
-const SearchResults = ({ isUserData = false }: Props) => {
+const SearchResults = ({ isUserData = false , dataPath }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -29,7 +30,7 @@ const SearchResults = ({ isUserData = false }: Props) => {
     error,
     results: games,
     maxResultsCount,
-  } = useInfiniteScroll(pageNumber, searchParams, isUserData);
+  } = useInfiniteScroll(pageNumber, searchParams, isUserData , dataPath);
 
   const lastPostRef = useCallback(
     (item: HTMLDivElement) => {
