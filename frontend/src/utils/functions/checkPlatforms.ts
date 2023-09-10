@@ -3,6 +3,8 @@ const checkPlaforms = (platforms: { platform: { name: string } }[]) => {
   let hasXbox = false;
   let hasPlayStation = false;
 
+  if (!platforms) return { hasPc, hasXbox, hasPlayStation };
+
   platforms.map((platform) => {
     if (platform.platform.name.includes("Xbox")) {
       hasXbox = true;

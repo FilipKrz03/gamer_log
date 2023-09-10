@@ -63,8 +63,7 @@ const SearchResults = ({ isUserData = false }: Props) => {
     if (i + 1 === games.length) {
       return (
         <GameItem
-          isFromDb={isUserData}
-          key={game.name}
+          key={game.name || game.title}
           gameItem={!isUserData ? game : undefined}
           dbGameItem={isUserData ? game : undefined}
           ref={lastPostRef}
@@ -73,8 +72,7 @@ const SearchResults = ({ isUserData = false }: Props) => {
     } else {
       return (
         <GameItem
-          isFromDb={isUserData}
-          key={game.name}
+          key={game.name || game.title}
           gameItem={!isUserData ? game : undefined}
           dbGameItem={isUserData ? game : undefined}
         />
@@ -86,7 +84,7 @@ const SearchResults = ({ isUserData = false }: Props) => {
     <div className={classes.page}>
       <form onSubmit={submitFormHandler}>
         <div className={classes.search}>
-          <Search onFormSubmit={getInputValue} />
+          {!isUserData && <Search onFormSubmit={getInputValue} />}
         </div>
       </form>
       <div className={classes.container}>
