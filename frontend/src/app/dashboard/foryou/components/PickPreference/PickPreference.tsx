@@ -1,6 +1,9 @@
+"use client";
 import { Preferences } from "../../../../../../../types";
 import PreferenceItem from "../PreferenceItem/PreferenceItem";
 import classes from "./PickPreference.module.scss";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
 type Props = {
   preferenceTitle: string;
@@ -21,6 +24,12 @@ const PickPreference = ({ preferenceTitle, preferenceItems }: Props) => {
             />
           );
         })}
+      </div>
+      <div className={`${classes.icon} ${classes.back}`}>
+        <ArrowBackIosNewOutlinedIcon className={classes.arrow} />
+      </div>
+      <div className={`${classes.icon} ${classes.forward}`}>
+        <ArrowForwardIosOutlinedIcon className={classes.arrow} />
       </div>
     </div>
   );

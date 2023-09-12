@@ -7,10 +7,33 @@
   padding: 2em;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  position: relative;
   .preference-box {
     @include flexrow(flex-start, center);
     gap: 15px;
     row-gap: 15px;
     flex-wrap: wrap;
+  }
+  .icon {
+    width: 45px;
+    height: 45px;
+    background-color: $purple;
+    border-radius: 50px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    .arrow {
+      color: $white;
+    }
+  }
+  .forward {
+    position: absolute;
+    top: 50%;
+    right: -10%;
+  }
+  .back {
+    position: absolute;
+    top: 50%;
+    left: -10%;
   }
 }

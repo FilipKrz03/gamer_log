@@ -7,9 +7,10 @@ import PickPreference from "../PickPreference/PickPreference";
 type Props = {
   genres: Preferences[];
   platforms: Preferences[];
+  tags: Preferences[];
 };
 
-const PreferencesForm = ({ genres, platforms }: Props) => {
+const PreferencesForm = ({ genres, platforms, tags }: Props) => {
   const [formStep, setFormStep] = useState(1);
 
   return (
@@ -18,10 +19,24 @@ const PreferencesForm = ({ genres, platforms }: Props) => {
         <h1>Tell us about your preferences</h1>
         <p>We will deliver titles based on what are you like </p>
       </div>
-      <PickPreference
-        preferenceTitle="Pick favourite genres"
-        preferenceItems={genres}
-      />
+      {formStep === 1 && (
+        <PickPreference
+          preferenceTitle="Pick favourite genres"
+          preferenceItems={genres}
+        />
+      )}
+      {formStep === 2 && (
+        <PickPreference
+          preferenceTitle="Pick your platforms"
+          preferenceItems={platforms}
+        />
+      )}
+      {formStep === 3 && (
+        <PickPreference
+          preferenceTitle="Pick what you like"
+          preferenceItems={tags}
+        />
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import axiosApi from "../utils/axios";
-import { Genre } from "../../../types";
+import { Genre, Preferences } from "../../../types";
 import UserGames from "../models/UserGames";
 import UserWishes from "../models/UserWishes";
 
@@ -15,14 +15,14 @@ const getAllGames = async (req: Request, res: Response) => {
 
 const getGeneres = async (req: Request, res: Response) => {
   try {
-    const genres: Awaited<Genre[]> = await axiosApi("genres");
-    let genresArray: Genre[] = [];
-    genres.map((genre) => {
-      const genreIitem = {
-        id: genre.id,
-        name: genre.name,
+    const genres: Awaited<Preferences[]> = await axiosApi("genres");
+    let genresArray: Preferences[] = [];
+    genres.map((tag) => {
+      const tagItem = {
+        id: tag.id,
+        name: tag.name,
       };
-      genresArray.push(genreIitem);
+      genresArray.push(tagItem);
     });
     res.status(200).json({ genres: genresArray });
   } catch (err) {
@@ -34,15 +34,34 @@ const getPlafroms = async (req: Request, res: Response) => {
   try {
     const plafroms: Awaited<Genre[]> = await axiosApi("platforms");
     let plafromsArray: Genre[] = [];
-    plafroms.map((genre) => {
-      const genreIitem = {
-        id: genre.id,
-        name: genre.name,
+    plafroms.map((platform) => {
+      const platformIitem = {
+        id: platform.id,
+        name: platform.name,
       };
-      plafromsArray.push(genreIitem);
+      plafromsArray.push(platformIitem);
       plafromsArray = plafromsArray.slice(0, 15);
     });
     res.status(200).json({ plafroms: plafromsArray });
+  } catch (err) {
+    res.sendStatus(401);
+  }
+};
+const getTags = async (req: Request, res: Response) => {
+  try {
+    const tags: Awaited<Preferences[]> = await axiosApi(
+      "tags",
+      "&page_size=25" , 
+    );
+    let tagsArray: Preferences[] = [];
+    tags.map((tag) => {
+      const genreIitem = {
+        id: tag.id,
+        name: tag.name,
+      };
+      tagsArray.push(genreIitem);
+    });
+    res.status(200).json({ tags: tagsArray });
   } catch (err) {
     res.sendStatus(401);
   }
@@ -103,6 +122,7 @@ export {
   getAllGames,
   getGeneres,
   getPlafroms,
+  getTags,
   getSearchedGames,
   getSpecificGame,
   getUserGames,
