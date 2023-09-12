@@ -45,3 +45,8 @@ export type GameFromDb = {
 };
 
 export type Screenshots = { image: string }[];
+
+export type Preferences = {
+  id: number;
+  name: string;
+};

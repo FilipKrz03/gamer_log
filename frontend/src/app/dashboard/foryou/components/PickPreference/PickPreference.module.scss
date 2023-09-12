@@ -1,0 +1,16 @@
+@import "../../../../variables.scss";
+
+.container {
+  @include flexcolumn(center, center);
+  width: 70%;
+  gap: 40px;
+  padding: 2em;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  .preference-box {
+    @include flexrow(flex-start, center);
+    gap: 15px;
+    row-gap: 15px;
+    flex-wrap: wrap;
+  }
+}

@@ -99,7 +99,11 @@ export const dashboardOpitons: {
     desc: "Wish list",
     imagePath: "/images/wish.svg",
   },
-  { link: "", desc: "Games for you", imagePath: "/images/personalized.svg" },
+  {
+    link: "/dashboard/foryou",
+    desc: "Games for you",
+    imagePath: "/images/personalized.svg",
+  },
   {
     link: "/dashboard/settings",
     desc: "Settings",

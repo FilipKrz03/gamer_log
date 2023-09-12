@@ -1,0 +1,10 @@
+@import "../../../../variables.scss";
+
+.container {
+  .description {
+    @include flexcolumn(center, center);
+    gap: 10px;
+  }
+  @include flexcolumn(center, center);
+  gap: 30px;
+}
