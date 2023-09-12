@@ -13,6 +13,13 @@ type Props = {
 const PreferencesForm = ({ genres, platforms, tags }: Props) => {
   const [formStep, setFormStep] = useState(1);
 
+  const stepChangheHandler = (isForward: boolean) => {
+    if (isForward && formStep === 3) return;
+    if (!isForward && formStep === 1) return;
+    if (isForward) setFormStep((prevValue) => prevValue + 1);
+    if (!isForward) setFormStep((prevValue) => prevValue - 1);
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.description}>
@@ -23,18 +30,21 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
         <PickPreference
           preferenceTitle="Pick favourite genres"
           preferenceItems={genres}
+          onStepChange={stepChangheHandler}
         />
       )}
       {formStep === 2 && (
         <PickPreference
           preferenceTitle="Pick your platforms"
           preferenceItems={platforms}
+          onStepChange={stepChangheHandler}
         />
       )}
       {formStep === 3 && (
         <PickPreference
           preferenceTitle="Pick what you like"
           preferenceItems={tags}
+          onStepChange={stepChangheHandler}
         />
       )}
     </div>
