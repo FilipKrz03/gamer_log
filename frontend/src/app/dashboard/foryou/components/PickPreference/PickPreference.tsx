@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setErrorMessage } from "@/store/statusSlice";
 import { motion } from "framer-motion";
 import { Preferences } from "../../../../../../../types";
 import PreferenceItem from "../PreferenceItem/PreferenceItem";
@@ -24,6 +26,8 @@ const PickPreference = ({
 }: Props) => {
   const [activeItems, setActiveItems] = useState<number[]>(activePreferences);
 
+  const dispatch = useDispatch();
+
   const changeItemActivityHandler = (id: number) => {
     let isFound = false;
     activeItems.map((item) => {
@@ -41,6 +45,10 @@ const PickPreference = ({
   };
 
   const changeStepHandler = (isForward: boolean) => {
+    if ((isForward && activeItems.length === 0))
+      return dispatch(
+        setErrorMessage("You need to pick at least one item") as any
+      );
     onStepChange(isForward);
   };
 

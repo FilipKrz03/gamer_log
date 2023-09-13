@@ -8,6 +8,9 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   position: relative;
+  h2 {
+    color: $orange;
+  }
   .preference-box {
     @include flexrow(flex-start, center);
     gap: 15px;
@@ -22,8 +25,8 @@
     display: grid;
     place-content: center;
     cursor: pointer;
-    transition: .1s ease-in-out;
-    &:hover{
+    transition: 0.1s ease-in-out;
+    &:hover {
       border: 1px solid $light-purple;
       box-shadow: $box-shadow;
     }
