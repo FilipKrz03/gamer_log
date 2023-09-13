@@ -1,6 +1,6 @@
 "use client";
 import useWindowWidth from "@/hooks/useWindowWidth";
-import { Game } from "../../../../../../types";
+import { Game } from "../../../../../../../types";
 import classes from "./AsideDetails.module.scss";
 
 type Props = {

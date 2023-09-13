@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Game } from "../../../../../../types";
+import { Game } from "../../../../../../../types";
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useSelector, useDispatch } from "react-redux";

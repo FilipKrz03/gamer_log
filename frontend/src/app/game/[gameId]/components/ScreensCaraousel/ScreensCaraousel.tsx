@@ -1,6 +1,6 @@
 import Carousel from "nuka-carousel";
 import Image from "next/image";
-import { Screenshots } from "../../../../../../types";
+import { Screenshots } from "../../../../../../../types";
 import classes from "./ScreensCaraousel.module.scss";
 
 type Props = {

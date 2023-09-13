@@ -40,7 +40,7 @@ const RegisterForm = () => {
     setShowError(false);
     setShowSucces(false);
     try {
-      const register = await axios.post("/register", {
+      await axios.post("/register", {
         email: data.email,
         password: data.password,
         username:data.username , 
