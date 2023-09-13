@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setErrorMessage } from "@/store/statusSlice";
 import classes from "./PreferencesForm.module.scss";
 import { Preferences } from "../../../../../../../types";
 import PickPreference from "../PickPreference/PickPreference";
+import Button from "@/app/UI/Button/Button";
 
 type Props = {
   genres: Preferences[];
@@ -16,6 +19,8 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
   const [pickedGenres, setPickedGenres] = useState<number[]>([]);
   const [pickedPlatforms, setPickedPlatforms] = useState<number[]>([]);
   const [pickedTags, setPickedTags] = useState<number[]>([]);
+
+  const dispatch = useDispatch();
 
   const changeGenresActivity = (activeGenres: number[]) => {
     setPickedGenres(activeGenres);
@@ -36,8 +41,16 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
     if (!isForward) setFormStep((prevValue) => prevValue - 1);
   };
 
+  const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (pickedTags.length === 0)
+      return dispatch(
+        setErrorMessage("You need to pick at leat one item") as any
+      );
+  };
+
   return (
-    <div className={classes.container}>
+    <form className={classes.container} onSubmit={submitFormHandler}>
       <div className={classes.description}>
         <h1>Tell us about your preferences</h1>
         <p>We will deliver titles based on what are you like </p>
@@ -80,7 +93,21 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
           className={`${classes.dot} ${formStep === 3 ? classes.active : ""}`}
         />
       </div>
-    </div>
+      {formStep !== 3 && (
+        <Button
+          desc="Save your preferences"
+          isSubmit={false}
+          isDisabled={true}
+        />
+      )}
+      {formStep === 3 && (
+        <Button
+          desc="Save your preferences"
+          isSubmit={true}
+          isDisabled={false}
+        />
+      )}
+    </form>
   );
 };
 

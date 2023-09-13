@@ -11,3 +11,8 @@
   color: $white;
   cursor: pointer;
 }
+
+.disabled{
+  cursor:not-allowed;
+  background-color: $light-purple;
+}
