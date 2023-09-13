@@ -1,0 +1,51 @@
+@import "../../../../variables.scss";
+
+.container {
+  .options {
+    @include flexrow(space-evenly, center);
+    align-self: normal;
+    font-size: $font-ml;
+    font-weight: bolder;
+  }
+  .option-item {
+    position: relative;
+    cursor: pointer;
+    &:active {
+      animation: clicked 0.4s ease-out;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      height: 4px;
+      width: 100%;
+      background-color: $orange;
+      left: 0;
+      transform: scale(0);
+    }
+  }
+  .active {
+    &::before {
+      transform: scale(1);
+    }
+  }
+}
+
+@keyframes clicked {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(0.9) rotate(7.5deg);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-7.5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}

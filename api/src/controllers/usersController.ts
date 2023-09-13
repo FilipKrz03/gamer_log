@@ -282,4 +282,5 @@ export {
   handleChangePassword,
   handleChangeUsername,
   addUserPreferences,
+  getUserPreferences
 };

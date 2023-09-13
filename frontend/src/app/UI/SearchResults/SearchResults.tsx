@@ -11,13 +11,19 @@ import classes from "./SearchResults.module.scss";
 type Props = {
   isUserData?: boolean;
   dataPath?: string;
+  ownSearchParams?: string;
 };
 
-const SearchResults = ({ isUserData = false, dataPath }: Props) => {
+const SearchResults = ({
+  isUserData = false,
+  dataPath,
+  ownSearchParams,
+}: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const searchParams = pathname.slice(8);
+  const searchParams =
+    ownSearchParams !== undefined ? ownSearchParams : pathname.slice(8);
 
   const [pageNumber, setPageNumber] = useState(1);
   const [searchValue, setSearchValue] = useState("");
@@ -84,7 +90,9 @@ const SearchResults = ({ isUserData = false, dataPath }: Props) => {
     <div className={classes.page}>
       <form onSubmit={submitFormHandler}>
         <div className={classes.search}>
-          {!isUserData && <Search onFormSubmit={getInputValue} />}
+          {!isUserData && ownSearchParams === undefined && (
+            <Search onFormSubmit={getInputValue} />
+          )}
         </div>
       </form>
       <div className={classes.container}>
