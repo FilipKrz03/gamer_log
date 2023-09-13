@@ -57,7 +57,6 @@ const LoginForm = () => {
       } else if (err instanceof Error) {
         setErrMessage(err.message);
       }
-    } finally {
       setLoading(false);
       reset();
     }
