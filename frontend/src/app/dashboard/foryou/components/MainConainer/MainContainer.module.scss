@@ -32,6 +32,21 @@
   }
 }
 
+@include media-m {
+  .container .options {
+    margin-top: 20px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+  }
+}
+
+@include media-s{
+  .container .options{
+    font-size: $font;
+  }
+}
+
 @keyframes clicked {
   0% {
     transform: scale(1) rotate(0deg);

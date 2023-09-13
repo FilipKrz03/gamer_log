@@ -21,3 +21,9 @@
     width: 300px;
   }
 }
+
+@media (max-width: 450px) {
+  .body .image-container {
+    flex-direction: column;
+  }
+}

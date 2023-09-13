@@ -10,6 +10,7 @@
   position: relative;
   h2 {
     color: $orange;
+    text-align: center;
   }
   .preference-box {
     @include flexrow(flex-start, center);
@@ -43,5 +44,21 @@
     position: absolute;
     top: 50%;
     left: -10%;
+  }
+}
+
+@include media-m {
+  .container {
+    width: 90%;
+    .preference-box{
+      gap: 7px;
+      font-size: $font-s;
+    }
+    .forward {
+      right: -7%;
+    }
+    .back {
+      left: -7%;
+    }
   }
 }
