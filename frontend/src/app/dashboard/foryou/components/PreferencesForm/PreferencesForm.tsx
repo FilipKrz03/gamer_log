@@ -44,6 +44,7 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
       </div>
       {formStep === 1 && (
         <PickPreference
+          activePreferences={pickedGenres}
           preferenceTitle="Pick favourite genres"
           preferenceItems={genres}
           onStepChange={stepChangheHandler}
@@ -52,6 +53,7 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
       )}
       {formStep === 2 && (
         <PickPreference
+          activePreferences={pickedPlatforms}
           preferenceTitle="Pick your platforms"
           preferenceItems={platforms}
           onStepChange={stepChangheHandler}
@@ -60,6 +62,7 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
       )}
       {formStep === 3 && (
         <PickPreference
+          activePreferences={pickedTags}
           preferenceTitle="Pick what you like"
           preferenceItems={tags}
           onStepChange={stepChangheHandler}

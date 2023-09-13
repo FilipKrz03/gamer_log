@@ -6,11 +6,17 @@ import { useState } from "react";
 type Props = {
   id: number;
   title: string;
+  isActive: boolean;
   onChangeItemActivity: (id: number) => void;
 };
 
-const PreferenceItem = ({ id, title, onChangeItemActivity }: Props) => {
-  const [isItemActive, setIsItemActive] = useState(false);
+const PreferenceItem = ({
+  id,
+  title,
+  isActive,
+  onChangeItemActivity,
+}: Props) => {
+  const [isItemActive, setIsItemActive] = useState(isActive);
 
   const changeActiveHandler = () => {
     setIsItemActive((prevState) => !prevState);

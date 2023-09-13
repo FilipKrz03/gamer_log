@@ -10,6 +10,7 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 type Props = {
   preferenceTitle: string;
   preferenceItems: Preferences[];
+  activePreferences: number[];
   onStepChange: (isFoward: boolean) => void;
   onItemsActivityChange: (itemsArr: number[]) => void;
 };
@@ -17,10 +18,11 @@ type Props = {
 const PickPreference = ({
   preferenceTitle,
   preferenceItems,
+  activePreferences,
   onStepChange,
   onItemsActivityChange,
 }: Props) => {
-  const [activeItems, setActiveItems] = useState<number[]>([]);
+  const [activeItems, setActiveItems] = useState<number[]>(activePreferences);
 
   const changeItemActivityHandler = (id: number) => {
     let isFound = false;
@@ -52,8 +54,10 @@ const PickPreference = ({
       <h2>{preferenceTitle}</h2>
       <div className={classes["preference-box"]}>
         {preferenceItems.map((preference) => {
+          const isActive = activeItems.includes(preference.id);
           return (
             <PreferenceItem
+              isActive={isActive}
               onChangeItemActivity={changeItemActivityHandler}
               key={preference.id}
               id={preference.id}
