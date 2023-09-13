@@ -14,6 +14,7 @@ import usersRouter from "./routes/usersRoute";
 import User from "./models/User";
 import UserGames from "./models/UserGames";
 import UserWishes from "./models/UserWishes";
+import UserPreferences from "./models/UserPreferences";
 
 const app = express();
 
@@ -31,6 +32,8 @@ User.hasMany(UserGames);
 UserGames.hasMany(User);
 User.hasMany(UserWishes);
 UserWishes.hasMany(User);
+User.hasOne(UserPreferences);
+UserPreferences.hasOne(User);
 
 sequelize
   .sync()

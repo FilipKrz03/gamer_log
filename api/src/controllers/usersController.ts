@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { validateNewGame, validateRegister } from "../utils/validate";
 import UserWishes from "../models/UserWishes";
+import UserPreferences from "../models/UserPreferences";
 
 const handleNewUser = async (req: Request, res: Response) => {
   const { email, password, username } = req.body;
@@ -232,6 +233,20 @@ const handleChangeUsername = async (req: any, res: Response) => {
   res.status(200).json({ message: "Username Changed" });
 };
 
+const addUserPreferences = async (req: any, res: Response) => {
+  const userId = req.userId;
+  const { genres, platforms, tags } = req.body;
+  if (!genres || !platforms || !tags) return res.sendStatus(400);
+
+  const user = await User.findOne({ where: { id: userId } });
+  if (!user)
+    return res.status(401).json({ message: "We could not find this user" });
+
+  await UserPreferences.create({ genres, platforms, tags, UserId: userId });
+
+  res.status(200).json({ message: "Preferences added" });
+};
+
 export {
   handleNewUser,
   handleLogin,
@@ -244,4 +259,5 @@ export {
   handleLogout,
   handleChangePassword,
   handleChangeUsername,
+  addUserPreferences,
 };
