@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Preferences } from "../../../../../../../types";
 import PreferenceItem from "../PreferenceItem/PreferenceItem";
 import classes from "./PickPreference.module.scss";
@@ -9,25 +11,50 @@ type Props = {
   preferenceTitle: string;
   preferenceItems: Preferences[];
   onStepChange: (isFoward: boolean) => void;
+  onItemsActivityChange: (itemsArr: number[]) => void;
 };
 
 const PickPreference = ({
   preferenceTitle,
   preferenceItems,
   onStepChange,
+  onItemsActivityChange,
 }: Props) => {
-  
+  const [activeItems, setActiveItems] = useState<number[]>([]);
+
+  const changeItemActivityHandler = (id: number) => {
+    let isFound = false;
+    activeItems.map((item) => {
+      if (item === id) {
+        isFound = true;
+        const newItems = activeItems.filter((item) => item !== id);
+        onItemsActivityChange(newItems);
+        return setActiveItems(newItems);
+      }
+    });
+    if (!isFound) {
+      setActiveItems([...activeItems, id]);
+      onItemsActivityChange([...activeItems, id]);
+    }
+  };
+
   const changeStepHandler = (isForward: boolean) => {
     onStepChange(isForward);
   };
 
   return (
-    <div className={classes.container}>
+    <motion.div
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0.2 }}
+      transition={{ duration: 0.4 }}
+      className={classes.container}
+    >
       <h2>{preferenceTitle}</h2>
       <div className={classes["preference-box"]}>
         {preferenceItems.map((preference) => {
           return (
             <PreferenceItem
+              onChangeItemActivity={changeItemActivityHandler}
               key={preference.id}
               id={preference.id}
               title={preference.name}
@@ -47,7 +74,7 @@ const PickPreference = ({
       >
         <ArrowForwardIosOutlinedIcon className={classes.arrow} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

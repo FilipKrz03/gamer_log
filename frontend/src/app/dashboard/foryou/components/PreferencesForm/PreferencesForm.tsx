@@ -13,6 +13,22 @@ type Props = {
 const PreferencesForm = ({ genres, platforms, tags }: Props) => {
   const [formStep, setFormStep] = useState(1);
 
+  const [pickedGenres, setPickedGenres] = useState<number[]>([]);
+  const [pickedPlatforms, setPickedPlatforms] = useState<number[]>([]);
+  const [pickedTags, setPickedTags] = useState<number[]>([]);
+
+  const changeGenresActivity = (activeGenres: number[]) => {
+    setPickedGenres(activeGenres);
+  };
+
+  const changePlatformsActivity = (activePlatforms: number[]) => {
+    setPickedPlatforms(activePlatforms);
+  };
+
+  const changeTagsActivity = (activeTags: number[]) => {
+    setPickedTags(activeTags);
+  };
+
   const stepChangheHandler = (isForward: boolean) => {
     if (isForward && formStep === 3) return;
     if (!isForward && formStep === 1) return;
@@ -31,6 +47,7 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
           preferenceTitle="Pick favourite genres"
           preferenceItems={genres}
           onStepChange={stepChangheHandler}
+          onItemsActivityChange={changeGenresActivity}
         />
       )}
       {formStep === 2 && (
@@ -38,6 +55,7 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
           preferenceTitle="Pick your platforms"
           preferenceItems={platforms}
           onStepChange={stepChangheHandler}
+          onItemsActivityChange={changePlatformsActivity}
         />
       )}
       {formStep === 3 && (
@@ -45,8 +63,20 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
           preferenceTitle="Pick what you like"
           preferenceItems={tags}
           onStepChange={stepChangheHandler}
+          onItemsActivityChange={changeTagsActivity}
         />
       )}
+      <div className={classes["progres-dots"]}>
+        <div
+          className={`${classes.dot} ${formStep === 1 ? classes.active : ""}`}
+        />
+        <div
+          className={`${classes.dot} ${formStep === 2 ? classes.active : ""}`}
+        />
+        <div
+          className={`${classes.dot} ${formStep === 3 ? classes.active : ""}`}
+        />
+      </div>
     </div>
   );
 };

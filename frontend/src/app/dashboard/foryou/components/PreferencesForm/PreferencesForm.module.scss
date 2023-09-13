@@ -7,4 +7,17 @@
   }
   @include flexcolumn(center, center);
   gap: 30px;
+  .progres-dots {
+    @include flexrow(center, center);
+    gap: 10px;
+    .dot {
+      width: 25px;
+      height: 25px;
+      border-radius: 50px;
+      background-color: $light-purple;
+    }
+    .active{
+      background-color: $purple !important;
+    }
+  }
 }
