@@ -1,5 +1,5 @@
 "use client";
-import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
+import LoadingPage from "@/app/UI/LoadingPage/LoadingPage";
 import useRefreshToken from "@/hooks/useRefreshToken";
 import { useEffect, useState } from "react";
 
@@ -27,7 +27,7 @@ const PersistLogin = ({ children }: Props) => {
     };
   }, [refresh]);
 
-  return <>{isLoading ? <LoadingBody /> : children}</>;
+  return <>{isLoading ? <LoadingPage /> : children}</>;
 };
 
 export default PersistLogin;

@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.body {
+  @include flexcolumn(center, center);
+  gap: 60px;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: $white;
+  .image-container {
+    @include flexrow(center, center);
+    gap: 20px;
+    font-size: $font-xxl;
+    .log {
+      font-weight: bolder;
+      color: $purple;
+    }
+  }
+  z-index: 10000;
+  .linear-box {
+    width: 300px;
+  }
+}

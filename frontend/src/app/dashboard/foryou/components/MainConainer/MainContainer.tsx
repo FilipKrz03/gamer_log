@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useDispatch } from "react-redux";
 import { setErrorMessage } from "@/store/statusSlice";
-import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 import PreferencesForm from "../PreferencesForm/PreferencesForm";
+import SearchResults from "@/app/UI/SearchResults/SearchResults";
+import LoadingPage from "@/app/UI/LoadingPage/LoadingPage";
 import { Preferences } from "../../../../../../../types";
 import classes from "./MainContainer.module.scss";
-import SearchResults from "@/app/UI/SearchResults/SearchResults";
 
 type Props = {
   genres: Preferences[];
@@ -58,7 +58,7 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
 
   return (
     <>
-      {isLoading && <LoadingBody />}
+      {isLoading && <LoadingPage />}
       {!isLoading && !hasUserPreferences && (
         <PreferencesForm
           genres={genres}
