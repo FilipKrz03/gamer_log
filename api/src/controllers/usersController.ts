@@ -269,6 +269,27 @@ const getUserPreferences = async (req: any, res: Response) => {
   return res.status(200).json({ preferences });
 };
 
+const editUserPreferences = async (req: any, res: Response) => {
+  const userId = req.userId;
+  const { genres, platforms, tags } = req.body;
+  if (!genres || !platforms || !tags) return res.sendStatus(400);
+
+  const stringifyGenres = JSON.stringify(genres);
+  const strinigfyPlatforms = JSON.stringify(platforms);
+  const stringifyTags = JSON.stringify(tags);
+
+  const preferences = await UserPreferences.findOne({
+    where: { UserId: userId },
+  });
+  if (!preferences) return res.sendStatus(403);
+  await preferences.update({
+    genres: stringifyGenres,
+    platforms: strinigfyPlatforms,
+    tags: stringifyTags,
+  });
+  res.status(200).json({ message: "Preferences update" });
+};
+
 export {
   handleNewUser,
   handleLogin,
@@ -282,5 +303,6 @@ export {
   handleChangePassword,
   handleChangeUsername,
   addUserPreferences,
-  getUserPreferences
+  getUserPreferences,
+  editUserPreferences,
 };

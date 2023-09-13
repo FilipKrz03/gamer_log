@@ -73,7 +73,7 @@ export const exploreOpitons: {
     imagePath: "/images/scary.svg",
   },
   {
-    link: "/search/&tags=sport",
+    link: "/search/&genres=15",
     desc: "Sport passion",
     imagePath: "/images/sport.svg",
   },

@@ -21,6 +21,7 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
   const [pickedGenres, setPickedGenres] = useState<number[]>([]);
   const [pickedPlatforms, setPickedPlatforms] = useState<number[]>([]);
   const [pickedTags, setPickedTags] = useState<number[]>([]);
+
   const [showGames, setShowGames] = useState(true);
 
   const axiosPrivate = useAxiosPrivate();
@@ -44,8 +45,8 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
         setIsLoading(false);
       }
     }
-    fetchPreferences();
-  }, [axiosPrivate, dispatch, hasUserPreferences]);
+    if (showGames) fetchPreferences();
+  }, [axiosPrivate, dispatch, hasUserPreferences, showGames]);
 
   const genreString = `${"&genres=" + pickedGenres.map((filter) => filter)}`;
   const platformString = `${
@@ -93,7 +94,21 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
               Modife your preferences
             </p>
           </div>
-          <SearchResults ownSearchParams={searchString} />
+          {showGames && <SearchResults ownSearchParams={searchString} />}
+          {!showGames && (
+            <PreferencesForm
+              genres={genres}
+              platforms={platforms}
+              tags={tags}
+              onSave={() => {
+                setShowGames(true);
+              }}
+              activeGenres={pickedGenres}
+              activePlatforms={pickedPlatforms}
+              activeTags={pickedTags}
+              isEditing={true}
+            />
+          )}
         </div>
       )}
     </>

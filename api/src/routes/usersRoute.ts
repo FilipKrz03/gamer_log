@@ -13,6 +13,7 @@ import {
   handleChangeUsername,
   addUserPreferences,
   getUserPreferences,
+  editUserPreferences,
 } from "../controllers/usersController";
 import verifyJwt from "../middleware/verifyJWT";
 
@@ -31,5 +32,6 @@ usersRouter.post("/changepwd", verifyJwt, handleChangePassword);
 usersRouter.post("/changeusr", verifyJwt, handleChangeUsername);
 usersRouter.post("/preferences", verifyJwt, addUserPreferences);
 usersRouter.get('/preferences' , verifyJwt , getUserPreferences);
+usersRouter.post('/editpreferences' , verifyJwt , editUserPreferences)
 
 export default usersRouter;

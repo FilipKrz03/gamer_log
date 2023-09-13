@@ -12,15 +12,32 @@ type Props = {
   genres: Preferences[];
   platforms: Preferences[];
   tags: Preferences[];
+  isEditing?: boolean;
+  activeGenres?: number[];
+  activePlatforms?: number[];
+  activeTags?: number[];
   onSave: () => void;
 };
 
-const PreferencesForm = ({ genres, platforms, tags, onSave }: Props) => {
+const PreferencesForm = ({
+  genres,
+  platforms,
+  tags,
+  onSave,
+  isEditing = false,
+  activeGenres,
+  activePlatforms,
+  activeTags,
+}: Props) => {
   const [formStep, setFormStep] = useState(1);
 
-  const [pickedGenres, setPickedGenres] = useState<number[]>([]);
-  const [pickedPlatforms, setPickedPlatforms] = useState<number[]>([]);
-  const [pickedTags, setPickedTags] = useState<number[]>([]);
+  const [pickedGenres, setPickedGenres] = useState<number[]>(
+    activeGenres || []
+  );
+  const [pickedPlatforms, setPickedPlatforms] = useState<number[]>(
+    activePlatforms || []
+  );
+  const [pickedTags, setPickedTags] = useState<number[]>(activeTags || []);
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -49,13 +66,14 @@ const PreferencesForm = ({ genres, platforms, tags, onSave }: Props) => {
     event: React.MouseEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+    const requestPath = isEditing ? "/editpreferences" : "/preferences";
     if (pickedTags.length === 0)
       return dispatch(
         setErrorMessage("You need to pick at leat one item") as any
       );
     try {
       await axiosPrivate.post(
-        "/preferences",
+        requestPath,
         JSON.stringify({
           genres: pickedGenres,
           platforms: pickedPlatforms,
