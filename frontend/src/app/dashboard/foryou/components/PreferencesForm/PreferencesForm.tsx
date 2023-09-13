@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { setErrorMessage, setSuccesMessage } from "@/store/statusSlice";
@@ -12,9 +12,10 @@ type Props = {
   genres: Preferences[];
   platforms: Preferences[];
   tags: Preferences[];
+  onSave: () => void;
 };
 
-const PreferencesForm = ({ genres, platforms, tags }: Props) => {
+const PreferencesForm = ({ genres, platforms, tags, onSave }: Props) => {
   const [formStep, setFormStep] = useState(1);
 
   const [pickedGenres, setPickedGenres] = useState<number[]>([]);
@@ -53,7 +54,7 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
         setErrorMessage("You need to pick at leat one item") as any
       );
     try {
-      const res = await axiosPrivate.post(
+      await axiosPrivate.post(
         "/preferences",
         JSON.stringify({
           genres: pickedGenres,
@@ -61,10 +62,9 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
           tags: pickedTags,
         })
       );
-      dispatch(setSuccesMessage("Preferences saced") as any);
-      console.log(res);
+      dispatch(setSuccesMessage("Preferences saved") as any);
+      onSave();
     } catch (err) {
-      console.log(err);
       dispatch(setErrorMessage("Something went wrong") as any);
     }
   };

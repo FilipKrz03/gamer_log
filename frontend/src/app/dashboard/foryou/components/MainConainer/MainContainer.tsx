@@ -45,7 +45,7 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
       }
     }
     fetchPreferences();
-  }, [axiosPrivate, dispatch]);
+  }, [axiosPrivate, dispatch, hasUserPreferences]);
 
   const genreString = `${"&genres=" + pickedGenres.map((filter) => filter)}`;
   const platformString = `${
@@ -59,7 +59,14 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
     <>
       {isLoading && <LoadingBody />}
       {!isLoading && !hasUserPreferences && (
-        <PreferencesForm genres={genres} platforms={platforms} tags={tags} />
+        <PreferencesForm
+          genres={genres}
+          platforms={platforms}
+          tags={tags}
+          onSave={() => {
+            setHasUserPreferences(true);
+          }}
+        />
       )}
 
       {!isLoading && hasUserPreferences && (
