@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setErrorMessage } from "@/store/statusSlice";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import { setErrorMessage, setSuccesMessage } from "@/store/statusSlice";
 import classes from "./PreferencesForm.module.scss";
 import { Preferences } from "../../../../../../../types";
 import PickPreference from "../PickPreference/PickPreference";
@@ -19,6 +20,8 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
   const [pickedGenres, setPickedGenres] = useState<number[]>([]);
   const [pickedPlatforms, setPickedPlatforms] = useState<number[]>([]);
   const [pickedTags, setPickedTags] = useState<number[]>([]);
+
+  const axiosPrivate = useAxiosPrivate();
 
   const dispatch = useDispatch();
 
@@ -41,12 +44,29 @@ const PreferencesForm = ({ genres, platforms, tags }: Props) => {
     if (!isForward) setFormStep((prevValue) => prevValue - 1);
   };
 
-  const submitFormHandler = (event: React.MouseEvent<HTMLFormElement>) => {
+  const submitFormHandler = async (
+    event: React.MouseEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     if (pickedTags.length === 0)
       return dispatch(
         setErrorMessage("You need to pick at leat one item") as any
       );
+    try {
+      const res = await axiosPrivate.post(
+        "/preferences",
+        JSON.stringify({
+          genres: pickedGenres,
+          platforms: pickedPlatforms,
+          tags: pickedTags,
+        })
+      );
+      dispatch(setSuccesMessage("Preferences saced") as any);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      dispatch(setErrorMessage("Something went wrong") as any);
+    }
   };
 
   return (

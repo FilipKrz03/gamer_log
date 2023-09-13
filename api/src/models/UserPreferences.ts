@@ -1,3 +1,4 @@
+import { Json } from "sequelize/types/utils";
 import sequelize from "../utils/database";
 import {
   DataTypes,
@@ -12,26 +13,19 @@ interface UserPreferencesModel
     InferAttributes<UserPreferencesModel>,
     InferCreationAttributes<UserPreferencesModel>
   > {
-  id: CreationOptional<number>;
-  genres: number[];
-  platforms: number[];
-  tags: number[];
+  genres: string;
+  platforms: string;
+  tags: string;
   UserId: number;
 }
 
 const UserPreferences = sequelize.define<UserPreferencesModel>(
   "UserPreferences",
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    genres: DataTypes.ARRAY(DataTypes.NUMBER),
-    platforms: DataTypes.ARRAY(DataTypes.NUMBER),
-    tags: DataTypes.ARRAY(DataTypes.NUMBER),
-    UserId: DataTypes.INTEGER,
+    genres: { type: DataTypes.JSON },
+    platforms: { type: DataTypes.JSON },
+    tags: { type: DataTypes.JSON },
+    UserId: { type: DataTypes.INTEGER },
   }
 );
 

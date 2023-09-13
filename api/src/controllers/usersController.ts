@@ -7,6 +7,7 @@ import { Request, Response } from "express";
 import { validateNewGame, validateRegister } from "../utils/validate";
 import UserWishes from "../models/UserWishes";
 import UserPreferences from "../models/UserPreferences";
+import { Json } from "sequelize/types/utils";
 
 const handleNewUser = async (req: Request, res: Response) => {
   const { email, password, username } = req.body;
@@ -242,9 +243,30 @@ const addUserPreferences = async (req: any, res: Response) => {
   if (!user)
     return res.status(401).json({ message: "We could not find this user" });
 
-  await UserPreferences.create({ genres, platforms, tags, UserId: userId });
+  const stringifyGenres = JSON.stringify(genres);
+  const strinigfyPlatforms = JSON.stringify(platforms);
+  const stringifyTags = JSON.stringify(tags);
+
+  await UserPreferences.create({
+    genres: stringifyGenres,
+    platforms: strinigfyPlatforms,
+    tags: stringifyTags,
+    UserId: userId,
+  });
 
   res.status(200).json({ message: "Preferences added" });
+};
+
+const getUserPreferences = async (req: any, res: Response) => {
+  const userId = req.userId;
+
+  const preferences = await UserPreferences.findOne({
+    where: { UserId: userId },
+  });
+
+  if (!preferences) return res.sendStatus(204);
+
+  return res.status(200).json({ preferences });
 };
 
 export {
