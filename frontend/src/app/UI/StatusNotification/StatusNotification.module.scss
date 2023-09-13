@@ -7,9 +7,12 @@
   position: fixed;
   bottom: 50px;
   left: 5%;
-  width: 250px;
-  height: 80px;
-  padding: 0.5em 0em;
+  width: 260px;
+  height: 70px;
+  border-radius: $border-radius;
+  border: 3px solid $light-purple;
+  font-size: $font-s;
+  padding: 1em;
   color: $white;
 
   p {
@@ -44,6 +47,6 @@
     width: 0px;
   }
   to {
-    width: 250px;
+    width: 225px;
   }
 }

@@ -10,10 +10,10 @@ const ItemBox = ({ children }: Props) => {
   return (
     <motion.div
       className={classes.box}
-      animate={{ x: 0, filter: "blur(0px)" }}
-      initial={{ x: -200, filter: "blur(2px)" }}
-      transition={{duration:0.4}}
-    >   
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.6 }}
+    >
       {children}
     </motion.div>
   );

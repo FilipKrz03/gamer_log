@@ -69,7 +69,7 @@ const PreferencesForm = ({
     const requestPath = isEditing ? "/editpreferences" : "/preferences";
     if (pickedTags.length === 0)
       return dispatch(
-        setErrorMessage("You need to pick at leat one item") as any
+        setErrorMessage("You need to pick at least one item") as any
       );
     try {
       await axiosPrivate.post(
