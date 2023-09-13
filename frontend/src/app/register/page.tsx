@@ -4,7 +4,7 @@ import RegisterForm from "./components/RegisterForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Register",
+  title: "Register | GamerLog",
 };
 
 export default function Register() {

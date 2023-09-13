@@ -1,13 +1,28 @@
 import GameDetails from "./components/GameDetails/GameDetails";
 import { getSpecificGame } from "@/lib/gamesApi";
-import { headers } from "next/headers";
 import { Game, Screenshots } from "../../../../types";
+import { Metadata } from "next";
 
-export default async function GameInfo() {
-  const headersList = headers();
-  const activePath = headersList.get("x-invoke-path")?.slice(1);
+export async function generateMetadata({
+  params,
+}: {
+  params: { gameId: string };
+}): Promise<Metadata> {
+  const gameInfo: Awaited<{ game: Game }> = await getSpecificGame(
+    parseInt(params.gameId)
+  );
+  return {
+    title: gameInfo.game.name + " | GamerLog",
+  };
+}
+
+export default async function GameInfo({
+  params,
+}: {
+  params: { gameId: string };
+}) {
   const gameInfo: Awaited<{ game: Game; screenshots: Screenshots }> =
-    await getSpecificGame(parseInt(activePath!));
+    await getSpecificGame(parseInt(params.gameId));
 
   return (
     <GameDetails gameItem={gameInfo.game} screenshots={gameInfo.screenshots} />

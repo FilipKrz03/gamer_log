@@ -16,7 +16,7 @@ const ScreensCaraousel = ({ screenshots }: Props) => {
           return (
             <Image
               className={classes.image}
-              loading="eager"
+              loading="lazy"
               key={screen.image}
               alt="Game screen image"
               src={screen.image}

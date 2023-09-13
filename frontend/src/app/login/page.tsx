@@ -4,7 +4,7 @@ import FormTitle from "../UI/FormTitle/FormTitle";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Log In",
+  title: "Log In | GamerLog",
 };
 
 export default function Login() {

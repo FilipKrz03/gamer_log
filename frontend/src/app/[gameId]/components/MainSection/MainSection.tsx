@@ -107,6 +107,7 @@ const MainSection = ({ gameItem }: Props) => {
     <>
       <div className={classes["main-info"]}>
         <Image
+          loading="lazy"
           className={classes.image}
           src={gameItem.background_image}
           alt="Game image"

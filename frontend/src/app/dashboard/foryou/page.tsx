@@ -1,11 +1,10 @@
 import { getGenres, getPlafroms, getTags } from "@/lib/gamesApi";
 import { Metadata } from "next";
 import { Preferences } from "../../../../../types";
-import PreferencesForm from "./components/PreferencesForm/PreferencesForm";
-import MainContainer from './components/MainConainer/MainContainer';
+import MainContainer from "./components/MainConainer/MainContainer";
 
 export const metadata: Metadata = {
-  title: "For you",
+  title: "For you | GamerLog",
 };
 
 export default async function ForYou() {
@@ -13,5 +12,5 @@ export default async function ForYou() {
   const platforms: Awaited<Preferences[]> = await getPlafroms();
   const tags: Awaited<Preferences[]> = await getTags();
 
-  return <MainContainer genres={genres}  platforms={platforms} tags={tags}/>;
+  return <MainContainer genres={genres} platforms={platforms} tags={tags} />;
 }
