@@ -16,6 +16,7 @@ const LoadingPage = () => {
           Gamer<span className={classes.log}>Log</span>
         </p>
         <Image
+          priority={true}
           alt="Page logo"
           src={"/images/logo.png"}
           width={150}

@@ -65,7 +65,7 @@ const MainSection = ({ gameItem }: Props) => {
     if (!isLogged)
       return dispatch(setErrorMessage("You need to be logged !") as any);
     try {
-      const request = await axiosPrivate.post(path, {
+      await axiosPrivate.post(path, {
         ...gameInfoObj,
       });
       dispatch(setSuccesMessage(`Game added to your ${listName} !`) as any);
@@ -85,7 +85,7 @@ const MainSection = ({ gameItem }: Props) => {
     if (!isLogged)
       return dispatch(setErrorMessage("You need to be logged !") as any);
     try {
-      const delateGame = await axiosPrivate.delete(path, {
+      await axiosPrivate.delete(path, {
         data: {
           gameId: gameItem.id,
         },
@@ -107,7 +107,7 @@ const MainSection = ({ gameItem }: Props) => {
     <>
       <div className={classes["main-info"]}>
         <Image
-          loading="lazy"
+          priority={true}
           className={classes.image}
           src={gameItem.background_image}
           alt="Game image"
@@ -124,6 +124,7 @@ const MainSection = ({ gameItem }: Props) => {
         <div className={classes["text-info"]}>
           <div className={classes["actions-row"]}>
             <div
+              id="My games"
               className={`${classes.content} ${
                 isGameAdded ? classes.added : ""
               }`}
