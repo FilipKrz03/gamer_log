@@ -29,7 +29,7 @@ const GameItem = forwardRef<Ref, Props>(({ gameItem, dbGameItem }, ref) => {
     return (
       <>
         {ref && (
-          <Link href={`/game/${link}`}>
+          <Link href={`/game/${link}`} id="game">
             <div className={classes.item} ref={ref}>
               {children}
             </div>
