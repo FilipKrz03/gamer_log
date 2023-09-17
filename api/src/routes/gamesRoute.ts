@@ -10,6 +10,7 @@ import {
   getUserWishes,
 } from "../controllers/gamesController";
 import verifyJwt from "../middleware/verifyJWT";
+import { catchAsyncErrors } from "../middleware/errors";
 import { IRouter } from "express";
 
 interface IRouterUserId extends IRouter {
@@ -18,13 +19,13 @@ interface IRouterUserId extends IRouter {
 
 const gamesRouter: IRouterUserId = express.Router();
 
-gamesRouter.get("/", getAllGames);
-gamesRouter.get("/search/:id", getSpecificGame);
-gamesRouter.get("/search", getSearchedGames);
-gamesRouter.get("/genres", getGeneres);
-gamesRouter.get("/platforms", getPlafroms);
-gamesRouter.get("/tags", getTags);
-gamesRouter.get("/mygames", verifyJwt, getUserGames);
-gamesRouter.get("/mywishes", verifyJwt, getUserWishes);
+gamesRouter.get("/", catchAsyncErrors(getAllGames));
+gamesRouter.get("/search/:id", catchAsyncErrors(getSpecificGame));
+gamesRouter.get("/search", catchAsyncErrors(getSearchedGames));
+gamesRouter.get("/genres", catchAsyncErrors(getGeneres));
+gamesRouter.get("/platforms", catchAsyncErrors(getPlafroms));
+gamesRouter.get("/tags", catchAsyncErrors(getTags));
+gamesRouter.get("/mygames", verifyJwt, catchAsyncErrors(getUserGames));
+gamesRouter.get("/mywishes", verifyJwt, catchAsyncErrors(getUserWishes));
 
 export default gamesRouter;

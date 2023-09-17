@@ -15,6 +15,7 @@ import User from "./models/User";
 import UserGames from "./models/UserGames";
 import UserWishes from "./models/UserWishes";
 import UserPreferences from "./models/UserPreferences";
+import { errorHandler } from "./middleware/errors";
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.use(express.json());
 
 app.use("/", gamesRouter);
 app.use("/", usersRouter);
+
+app.use(errorHandler);
 
 User.hasMany(UserGames);
 UserGames.hasMany(User);
