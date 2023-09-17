@@ -2,12 +2,11 @@ require("dotenv").config();
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
+export interface IGetUserId extends Request {
+  userId?: number;
+}
 
-const verifyJwt = (
-  req: any,
-  res: Response,
-  next: NextFunction
-) => {
+const verifyJwt = (req: IGetUserId, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
   if (!authHeader) return res.sendStatus(401);
   const token = authHeader.split(" ")[1];

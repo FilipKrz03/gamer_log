@@ -3,6 +3,13 @@ import axiosApi from "../utils/axios";
 import { Genre, Preferences } from "../../../types";
 import UserGames from "../models/UserGames";
 import UserWishes from "../models/UserWishes";
+import { IGetUserId } from "../middleware/verifyJWT";
+
+interface IGetUserIdWithPage extends IGetUserId {
+  query: {
+    page: string;
+  };
+}
 
 const getAllGames = async (req: Request, res: Response) => {
   try {
@@ -51,7 +58,7 @@ const getTags = async (req: Request, res: Response) => {
   try {
     const tags: Awaited<Preferences[]> = await axiosApi(
       "tags",
-      "&page_size=25" , 
+      "&page_size=25"
     );
     let tagsArray: Preferences[] = [];
     tags.map((tag) => {
@@ -94,9 +101,10 @@ const getSpecificGame = async (req: Request, res: Response) => {
   }
 };
 
-const getUserGames = async (req: any, res: Response) => {
+const getUserGames = async (req: IGetUserIdWithPage, res: Response) => {
   const userId = req.userId;
-  const { page } = req.query;
+  let { page }: { page: string | number } = req.query;
+  page = parseInt(page);
   const pageToSlice = page - 1;
   if (!userId) return res.sendStatus(401);
   const gameList = await UserGames.findAll({ where: { UserId: userId } });
@@ -106,9 +114,10 @@ const getUserGames = async (req: any, res: Response) => {
     .json({ count: gameList.length, results: slicedGameList });
 };
 
-const getUserWishes = async (req: any, res: Response) => {
+const getUserWishes = async (req: IGetUserIdWithPage, res: Response) => {
   const userId = req.userId;
-  const { page } = req.query;
+  let { page }: { page: string | number } = req.query;
+  page = parseInt(page);
   const pageToSlice = page - 1;
   if (!userId) return res.sendStatus(401);
   const gameList = await UserWishes.findAll({ where: { UserId: userId } });

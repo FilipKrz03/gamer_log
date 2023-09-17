@@ -1,20 +1,22 @@
 import express from "express";
 import {
-  handleLogin,
-  handleNewUser,
-  handleRefresh,
   addGameToUsersGames,
   addGameToUsersWishes,
   checkIfGameIsOnTheList,
   removeGameFromUserGames,
   removeGameFromUserWishes,
-  handleLogout,
   handleChangePassword,
   handleChangeUsername,
   addUserPreferences,
   getUserPreferences,
   editUserPreferences,
 } from "../controllers/usersController";
+import {
+  handleNewUser,
+  handleLogin,
+  handleRefresh,
+  handleLogout,
+} from "../controllers/authController";
 import verifyJwt from "../middleware/verifyJWT";
 
 const usersRouter = express.Router();
@@ -31,7 +33,7 @@ usersRouter.delete("/wish", verifyJwt, removeGameFromUserWishes);
 usersRouter.post("/changepwd", verifyJwt, handleChangePassword);
 usersRouter.post("/changeusr", verifyJwt, handleChangeUsername);
 usersRouter.post("/preferences", verifyJwt, addUserPreferences);
-usersRouter.get('/preferences' , verifyJwt , getUserPreferences);
-usersRouter.post('/editpreferences' , verifyJwt , editUserPreferences)
+usersRouter.get("/preferences", verifyJwt, getUserPreferences);
+usersRouter.post("/editpreferences", verifyJwt, editUserPreferences);
 
 export default usersRouter;

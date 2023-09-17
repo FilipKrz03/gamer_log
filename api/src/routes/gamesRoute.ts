@@ -10,8 +10,13 @@ import {
   getUserWishes,
 } from "../controllers/gamesController";
 import verifyJwt from "../middleware/verifyJWT";
+import { IRouter } from "express";
 
-const gamesRouter = express.Router();
+interface IRouterUserId extends IRouter {
+  userId?: number;
+}
+
+const gamesRouter: IRouterUserId = express.Router();
 
 gamesRouter.get("/", getAllGames);
 gamesRouter.get("/search/:id", getSpecificGame);

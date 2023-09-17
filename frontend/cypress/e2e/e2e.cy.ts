@@ -63,7 +63,7 @@ describe("The page works properly ", () => {
     cy.wait(300);
     cy.contains("Game delated from your games");
   });
-  it("Logged user can change his username only if he repeat username properly", () => {
+  it("Logged user can change his username properly", () => {
     cy.login(email, password);
     cy.visit("/dashboard/settings");
     cy.contains("Change username").click();
@@ -72,6 +72,7 @@ describe("The page works properly ", () => {
     cy.get('input[name="newUsername"]').type("Changed username");
     cy.get('input[name="repeatUsername"]').type("Changed username");
     cy.get('button[type="submit"]').click();
+    cy.wait(500);
     cy.visit("/dashboard");
     cy.contains("Changed username");
   });
