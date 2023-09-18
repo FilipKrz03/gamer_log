@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
@@ -12,6 +14,7 @@ import axios from "@/utils/axios";
 import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 import Success from "@/app/UI/Success/Success";
 import { AxiosError, isAxiosError } from "axios";
+import { RootState } from "@/store";
 
 type Inputs = {
   email: string;
@@ -26,11 +29,18 @@ const RegisterForm = () => {
   const [errMessage, setErrMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+  const isLogged = useSelector((state: RootState) => state.users.isLogged);
+
+  useEffect(() => {
+    if (isLogged) return router.push("/dashboard");
+  }, [isLogged, router]);
+
   const {
     register,
     handleSubmit,
     watch,
-    reset ,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
@@ -43,14 +53,14 @@ const RegisterForm = () => {
       await axios.post("/register", {
         email: data.email,
         password: data.password,
-        username:data.username , 
+        username: data.username,
       });
       setShowSucces(true);
     } catch (err: AxiosError | any) {
       setShowError(true);
       if (isAxiosError(err)) {
         setErrMessage(err.response?.data.message || err.message);
-      } 
+      }
     } finally {
       setLoading(false);
       reset();

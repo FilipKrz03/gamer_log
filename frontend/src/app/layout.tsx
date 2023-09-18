@@ -4,10 +4,10 @@ import MobileNav from "./components/MobileNav/MobileNav";
 import PageContainer from "./UI/PageContainer/PageContainer";
 import ProgressBarComponent from "./UI/ProgresBar/ProgresBar";
 import { Comfortaa } from "next/font/google";
-import "./globals.scss";
 import ReduxProvider from "./UI/ReduxProvider/ReduxProvider";
 import PersistLogin from "./components/PersistLogin/PersistLogin";
 import Notifications from "./UI/Notifications/Notifications";
+import "./globals.scss";
 
 const comfortaa = Comfortaa({
   weight: ["400", "700"],

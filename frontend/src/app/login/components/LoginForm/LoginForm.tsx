@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, ThemeProvider } from "@mui/material";
 import { textfieldTheme } from "@/utils/themes";
@@ -14,6 +14,7 @@ import axios from "@/utils/axios";
 import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 import { userActions } from "@/store/userSlice";
 import { AxiosError, isAxiosError } from "axios";
+import { RootState } from "@/store";
 
 type Inputs = {
   email: string;
@@ -25,8 +26,14 @@ const LoginForm = () => {
   const [errMessage, setErrMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const isLogged = useSelector((state: RootState) => state.users.isLogged);
+
   const dispatch = useDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    if (isLogged) return router.push("/dashboard");
+  }, [isLogged, router]);
 
   const {
     register,

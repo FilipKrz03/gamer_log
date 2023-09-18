@@ -37,6 +37,7 @@ const Hero = () => {
         </form>
       </div>
       <Image
+        priority={true}
         src={"/images/hero-image.svg"}
         alt="Controller and peaople"
         width={555}
