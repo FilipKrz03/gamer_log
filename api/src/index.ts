@@ -32,7 +32,7 @@ app.use("/", usersRouter);
 
 app.use(errorHandler);
 
-User.hasMany(UserGames);
+/* User.hasMany(UserGames);
 UserGames.hasMany(User);
 User.hasMany(UserWishes);
 UserWishes.hasMany(User);
@@ -44,7 +44,7 @@ sequelize
   .then((result) => {})
   .catch((err) => {
     console.log(err);
-  });
+  }); */
 
 const PORT = process.env.PORT || 3500;
 
