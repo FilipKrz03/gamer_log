@@ -26,7 +26,7 @@ usersRouter.post("/register", catchAsyncErrors(handleNewUser));
 usersRouter.post("/login", catchAsyncErrors(handleLogin));
 usersRouter.get("/refresh", catchAsyncErrors(handleRefresh));
 usersRouter.get("/logout", catchAsyncErrors(handleLogout));
-usersRouter.post("/newgame", verifyJwt, catchAsyncErrors(handleLogout));
+usersRouter.post("/newgame", verifyJwt, catchAsyncErrors(addGameToUsersGames));
 usersRouter.post("/newwish", verifyJwt, catchAsyncErrors(addGameToUsersWishes));
 usersRouter.post("/check", verifyJwt, catchAsyncErrors(checkIfGameIsOnTheList));
 usersRouter.delete(

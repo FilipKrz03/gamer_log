@@ -54,7 +54,6 @@ const addGameToUsersWishes = async (req: IGetUserId, res: Response) => {
 
 const checkIfGameIsOnTheList = async (req: IGetUserId, res: Response) => {
   const userId = req.userId;
-  console.log("USER ID ", userId);
   const { gameId } = req.body;
   if (!gameId || !userId) return res.sendStatus(403);
   let isOnTheGameList = false;

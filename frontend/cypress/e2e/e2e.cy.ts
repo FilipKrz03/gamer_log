@@ -51,6 +51,7 @@ describe("The page works properly ", () => {
   it("Logged user can add game to his game list", () => {
     cy.login(email, password);
     cy.visit("/game/3498"); // Game id for GTA V
+    cy.wait(300);
     cy.get('div[id="My games"]').click();
     cy.wait(300);
     cy.contains("Game added to your games");

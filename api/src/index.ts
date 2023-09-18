@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import sequelize from "./utils/database";
 import corsOptions from "./config/corsOptions";
 import credentials from "./middleware/credentials";
+import { errorHandler } from "./middleware/errors";
 
 import gamesRouter from "./routes/gamesRoute";
 import usersRouter from "./routes/usersRoute";
@@ -15,7 +16,6 @@ import User from "./models/User";
 import UserGames from "./models/UserGames";
 import UserWishes from "./models/UserWishes";
 import UserPreferences from "./models/UserPreferences";
-import { errorHandler } from "./middleware/errors";
 
 const app = express();
 

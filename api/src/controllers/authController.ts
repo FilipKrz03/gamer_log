@@ -19,8 +19,6 @@ const handleNewUser = async (req: Request, res: Response) => {
   const hashedPwd = await bcrypt.hash(password, 10);
   await User.create({ email, password: hashedPwd, username });
   res.status(201).json({ message: "User created" });
-
-  res.status(500).json({ message: "Something went wrong" });
 };
 
 const handleLogin = async (req: Request, res: Response) => {
