@@ -1,4 +1,5 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 import { Sequelize } from "sequelize";
 import express from "express";
 import bodyParser from "body-parser";
@@ -17,7 +18,7 @@ import UserGames from "./models/UserGames";
 import UserWishes from "./models/UserWishes";
 import UserPreferences from "./models/UserPreferences";
 
-const app = express();
+export const app = express();
 
 app.use(credentials);
 app.use(bodyParser.urlencoded({ extended: false }));

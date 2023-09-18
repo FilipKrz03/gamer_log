@@ -1,4 +1,5 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
@@ -8,6 +9,7 @@ const sequelize = new Sequelize(
   {
     host: "localhost",
     dialect: "mysql",
+    logging:false , 
   }
 );
 

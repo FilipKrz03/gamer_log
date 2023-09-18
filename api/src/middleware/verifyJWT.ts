@@ -1,4 +1,6 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
+
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 

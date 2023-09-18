@@ -1,4 +1,5 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 import User from "../models/User";
 import UserGames from "../models/UserGames";
 import bcrypt from "bcrypt";
