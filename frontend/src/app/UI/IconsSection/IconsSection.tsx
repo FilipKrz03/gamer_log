@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Game } from "../../../../../types";
+import { Game } from "@/utils/types";
 import classes from "./IconsSection.module.scss";
 import checkPlaforms from "@/utils/functions/checkPlatforms";
 

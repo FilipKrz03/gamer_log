@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setErrorMessage } from "@/store/statusSlice";
 import { motion } from "framer-motion";
-import { Preferences } from "../../../../../../../types";
+import { Preferences } from "@/utils/types";
 import PreferenceItem from "../PreferenceItem/PreferenceItem";
 import classes from "./PickPreference.module.scss";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";

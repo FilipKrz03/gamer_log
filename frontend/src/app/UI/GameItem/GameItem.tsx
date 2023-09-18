@@ -1,5 +1,5 @@
 "use client";
-import { Game, GameFromDb } from "../../../../../types";
+import { Game, GameFromDb } from "@/utils/types";
 import classes from "./GameItem.module.scss";
 import Link from "next/link";
 import { forwardRef } from "react";

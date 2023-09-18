@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { setErrorMessage, setSuccesMessage } from "@/store/statusSlice";
 import classes from "./PreferencesForm.module.scss";
-import { Preferences } from "../../../../../../../types";
+import { Preferences } from "@/utils/types";
 import PickPreference from "../PickPreference/PickPreference";
 import Button from "@/app/UI/Button/Button";
 

@@ -1,12 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import classes from "./SearchBox.module.scss";
-import { Genre } from "../../../../../../types";
-import { Platform } from "../../../../../../types";
 import PlatformItem from "../PlatformItem/PlatformItem";
 import GenreItem from "../GenreItem/GenreItem";
 import Search from "@/app/UI/Search/Search";
+import { Genre, Platform } from "@/utils/types";
+import classes from "./SearchBox.module.scss";
 
 type Props = {
   genres: Genre[];

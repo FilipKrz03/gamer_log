@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import axiosApi from "../utils/axios";
-import { Genre, Preferences } from "../../../types";
+import { Genre, Preferences } from "../utils/types";
 import UserGames from "../models/UserGames";
 import UserWishes from "../models/UserWishes";
 import { IGetUserId } from "../middleware/verifyJWT";

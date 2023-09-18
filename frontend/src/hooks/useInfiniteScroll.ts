@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getSearchedGames } from "@/lib/gamesApi";
-import { Games } from "../../../types";
+import { Games } from "@/utils/types";
 import useAxiosPrivate from "./useAxiosPrivate";
 
 const useInfiniteScroll = (

@@ -1,6 +1,6 @@
 import GameDetails from "./components/GameDetails/GameDetails";
 import { getSpecificGame } from "@/lib/gamesApi";
-import { Game , Screenshots } from "../../../../../types";
+import { Game , Screenshots } from "@/utils/types";
 import { Metadata } from "next";
 
 export async function generateMetadata({

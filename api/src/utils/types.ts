@@ -22,7 +22,7 @@ export type Game = {
   genres: { name: string }[];
   platforms: { platform: { name: string } }[];
   description_raw: string;
-  description: TrustedHTML;
+  description: any;
   playtime: number;
   ratings_count: number;
   website: string;

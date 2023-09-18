@@ -1,5 +1,5 @@
 "use client";
-import { Game , Screenshots } from "../../../../../../../types";
+import { Game , Screenshots } from "@/utils/types";
 import classes from "./GameDetails.module.scss";
 import MainSection from "../MainSection/MainSection";
 import ScreensCaraousel from "../ScreensCaraousel/ScreensCaraousel";

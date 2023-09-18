@@ -6,7 +6,7 @@ import { setErrorMessage } from "@/store/statusSlice";
 import PreferencesForm from "../PreferencesForm/PreferencesForm";
 import SearchResults from "@/app/UI/SearchResults/SearchResults";
 import LoadingPage from "@/app/UI/LoadingPage/LoadingPage";
-import { Preferences } from "../../../../../../../types";
+import { Preferences } from "@/utils/types";
 import classes from "./MainContainer.module.scss";
 
 type Props = {

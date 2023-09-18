@@ -1,6 +1,6 @@
 import { getGenres, getPlafroms, getTags } from "@/lib/gamesApi";
 import { Metadata } from "next";
-import { Preferences } from "../../../../../types";
+import { Preferences } from "@/utils/types";
 import MainContainer from "./components/MainConainer/MainContainer";
 
 export const metadata: Metadata = {

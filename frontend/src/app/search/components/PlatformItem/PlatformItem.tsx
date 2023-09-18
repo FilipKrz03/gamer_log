@@ -1,8 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
-import classes from "./PlatformItem.module.scss";
-import { Platform } from "../../../../../../types";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Platform } from "@/utils/types";
+import classes from "./PlatformItem.module.scss";
+
 
 type Props = {
   platform: Platform;

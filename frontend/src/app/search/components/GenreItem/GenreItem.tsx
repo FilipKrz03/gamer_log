@@ -1,9 +1,8 @@
 "use client";
-import { memo } from "react";
 import { motion } from "framer-motion";
-import { Genre } from "../../../../../../types";
+import { Genre } from "@/utils/types";
 import classes from "./GenreItem.module.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 type Props = {
   genre: Genre;
