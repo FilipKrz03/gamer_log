@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { setErrorMessage } from "@/store/statusSlice";
 import PreferencesForm from "../PreferencesForm/PreferencesForm";
 import SearchResults from "@/app/UI/SearchResults/SearchResults";
-import LoadingPage from "@/app/UI/LoadingPage/LoadingPage";
+import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 import { Preferences } from "@/utils/types";
 import classes from "./MainContainer.module.scss";
+
 
 type Props = {
   genres: Preferences[];
@@ -58,7 +59,7 @@ const MainContainer = ({ genres, platforms, tags }: Props) => {
 
   return (
     <>
-      {isLoading && <LoadingPage />}
+      {isLoading && <LoadingBody />}
       {!isLoading && !hasUserPreferences && (
         <PreferencesForm
           genres={genres}

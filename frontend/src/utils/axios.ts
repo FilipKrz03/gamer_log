@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'https://gamerlog.onrender.com';
+const baseUrl = process.env.NEXT_PUBLIC_API_ADRESS;
 
 export default axios.create({
   baseURL: baseUrl,
