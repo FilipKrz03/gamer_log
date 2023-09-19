@@ -40,7 +40,7 @@ const handleLogin = async (req: Request, res: Response) => {
   const accessToken = jwt.sign(
     { userId: user.id },
     process.env.ACCESS_TOKEN_SECRET!,
-    { expiresIn: "60s" }
+    { expiresIn: "10m" }
   );
 
   const refreshToken = jwt.sign(
@@ -64,7 +64,7 @@ const handleLogin = async (req: Request, res: Response) => {
 const handleRefresh = async (req: Request, res: Response) => {
   const cookies = req.cookies;
 
-  if (!cookies?.jwt) return res.sendStatus(403);
+  if (!cookies?.jwt) return res.sendStatus(401);
   const refreshToken = cookies.jwt;
 
   const user = await User.findOne({ where: { token: refreshToken } });
@@ -79,9 +79,9 @@ const handleRefresh = async (req: Request, res: Response) => {
       const accessToken = jwt.sign(
         { userId: decoded.userId },
         process.env.ACCESS_TOKEN_SECRET!,
-        { expiresIn: "60s" }
+        { expiresIn: "10m" }
       );
-      res.json({
+      res.status(200).json({
         accessToken,
         email: user.email,
         username: user.username,
