@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -11,6 +12,8 @@ import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
 import { isAxiosError, AxiosError } from "axios";
 import classes from "./NewUsername.module.scss";
+import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
+
 
 type Inputs = {
   password: string;
@@ -22,6 +25,7 @@ const NewUsername = () => {
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
   const router = useRouter();
+  const [loading , setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,12 +35,14 @@ const NewUsername = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     try {
       const request = await axiosPrivate.post("/changeusr", {
         password: data.password,
         newUsername: data.newUsername,
       });
       if (request.status === 200) {
+        setLoading(false);
         dispatch(setSuccesMessage("Username changed") as any);
         router.refresh();
       }
@@ -55,6 +61,7 @@ const NewUsername = () => {
 
   return (
     <ItemBox>
+      {loading && <LoadingBody />}
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <ThemeProvider theme={textfieldTheme}>
           <div className={classes["input-control"]}>

@@ -8,6 +8,7 @@ const useRefreshToken = () => {
     try {
       const request = await axios.get("/refresh", {
         withCredentials: true,
+        timeout: 4000,
       });
       dispatch(userActions.setUser(request.data));
       return request.data.accessToken;

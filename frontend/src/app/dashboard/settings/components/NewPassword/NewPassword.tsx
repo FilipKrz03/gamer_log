@@ -10,6 +10,8 @@ import Button from "@/app/UI/Button/Button";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
 import { isAxiosError, AxiosError } from "axios";
+import { useState } from "react";
+import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 
 type Inputs = {
   oldPassword: string;
@@ -20,6 +22,7 @@ type Inputs = {
 const NewPassword = () => {
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -30,12 +33,14 @@ const NewPassword = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     try {
       const request = await axiosPrivate.post("/changepwd", {
         password: data.oldPassword,
         newPassword: data.newPassword,
       });
       if (request.status === 200) {
+        setLoading(false);
         dispatch(setSuccesMessage("Password changed") as any);
       }
     } catch (err: AxiosError | any) {
@@ -53,6 +58,7 @@ const NewPassword = () => {
 
   return (
     <ItemBox>
+      {loading && <LoadingBody />}
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <ThemeProvider theme={textfieldTheme}>
           <div className={classes["input-control"]}>
