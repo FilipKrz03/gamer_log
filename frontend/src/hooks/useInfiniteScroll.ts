@@ -14,7 +14,7 @@ const useInfiniteScroll = (
   const [results, setResults] = useState<any>([]);
   const [maxResultsCount, setMaxResultsCount] = useState(200);
   const firstUpdate = useRef(true);
-  
+
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {

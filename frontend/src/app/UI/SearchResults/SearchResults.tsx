@@ -7,6 +7,7 @@ import GameItem from "../GameItem/GameItem";
 import Skeletons from "@/app/UI/Skeletons/Skeletons";
 import NotFoundComponent from "@/app/UI/NotFoundComponent/NotFoundComponent";
 import classes from "./SearchResults.module.scss";
+import { result } from "cypress/types/lodash";
 
 type Props = {
   isUserData?: boolean;
