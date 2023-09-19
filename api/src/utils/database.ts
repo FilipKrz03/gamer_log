@@ -3,13 +3,13 @@ dotenv.config();
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
-  "gamer_log",
-  "root",
-  process.env.DATABASE_SECRET,
+  process.env.DB_NAME!,
+  process.env.DB_USER!,
+  process.env.DB_PASSWORD!,
   {
-    host: "localhost",
+    host: process.env.DB_HOST,
     dialect: "mysql",
-    logging:false , 
+    logging: false,
   }
 );
 
