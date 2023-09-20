@@ -14,6 +14,7 @@ import pickColorBasedOnRating from "@/utils/functions/pickColorBasedOnRating";
 import { setSuccesMessage, setErrorMessage } from "@/store/statusSlice";
 import { isAxiosError, AxiosError } from "axios";
 import checkPlaforms from "@/utils/functions/checkPlatforms";
+import LoadingBody from "@/app/UI/LoadingBody/LoadingBody";
 
 type Props = {
   gameItem: Game;
@@ -22,6 +23,7 @@ type Props = {
 const MainSection = ({ gameItem }: Props) => {
   const [isGameAdded, setIsGameAdded] = useState(false);
   const [isGameInWishes, setIsGameInWishes] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const isLogged = useSelector((state: RootState) => state.users.isLogged);
   const dispatch = useDispatch();
@@ -65,6 +67,7 @@ const MainSection = ({ gameItem }: Props) => {
     if (!isLogged)
       return dispatch(setErrorMessage("You need to be logged !") as any);
     try {
+      setLoading(true);
       await axiosPrivate.post(path, {
         ...gameInfoObj,
       });
@@ -78,6 +81,8 @@ const MainSection = ({ gameItem }: Props) => {
       } else {
         dispatch(setErrorMessage("Something went wrong ") as any);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,6 +90,7 @@ const MainSection = ({ gameItem }: Props) => {
     if (!isLogged)
       return dispatch(setErrorMessage("You need to be logged !") as any);
     try {
+      setLoading(true);
       await axiosPrivate.delete(path, {
         data: {
           gameId: gameItem.id,
@@ -100,11 +106,14 @@ const MainSection = ({ gameItem }: Props) => {
       } else {
         dispatch(setErrorMessage("Something went wrong ") as any);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
+      {loading && <LoadingBody />}
       <div className={classes["main-info"]}>
         <Image
           priority={true}
