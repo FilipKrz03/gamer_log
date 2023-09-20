@@ -1,11 +1,12 @@
 import axios from "@/utils/axios";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "@/store/userSlice";
 
 const useRefreshToken = () => {
   const dispatch = useDispatch();
-  
-  const refresh = async () => {
+
+  const refresh = useCallback(async () => {
     try {
       const request = await axios.get("/refresh", {
         withCredentials: true,
@@ -15,7 +16,7 @@ const useRefreshToken = () => {
     } catch (err) {
       dispatch(userActions.logoutUser());
     }
-  };
+  }, [dispatch]);
   return refresh;
 };
 
