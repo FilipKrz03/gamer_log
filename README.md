@@ -29,7 +29,7 @@ User can also manage account data - he is able to change username or password an
 | Typescript | Stongly type language based on Js     |
 | Node.js    | Javascript runtime                    |
 | Express    | Web Node.js framework                 |
-| MySql      | Relational database                   |
+| PostgreSql | Relational database                   |
 | Sequalize  | Node.js ORM                           |
 | Jwt        | Safe auth tokens - refresh and access |
 | Joi        | Backend data validation               |
