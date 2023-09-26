@@ -1,9 +1,7 @@
 ## Project Introduction🖌️
 
-Gamer log 🎮 is a fullstack aplication that help gamers to easy search and explore any kind of games.
-It have authentiaction so evry user can easly create account. Authentiacted user has dashboard panel , option to
-save/delate games in GameList or WishList and can save and change his game prefenrences - website will delivery best games based on what user like.
-User can also manage account data - he is able to change username or password and of course logout.
+Gamer Log 🎮 is full-stack application for gamers that fetches game data from an external API. The project allows browsing, searching, discovering, and displaying detailed information about games.  Logged-in users can add games to their library and wishlist, as well as save their preferences - the application will provide a list of games that match the user's choices.. Authentication is handled using JsonWebTokens. The user data is stored in a relational PostgreSQL database. A make an effort to provide best possible UI/UX
+
 
 ## Used Technologies 🤖
 
